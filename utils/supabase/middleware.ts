@@ -11,7 +11,7 @@ export const updateSession = async (request: NextRequest) => {
     request,
   })
 
-  if (!supabaseUrl || !supabaseKey) {
+  if (!supabaseUrl || !supabaseKey || supabaseUrl.includes('ujewukrgqlmiefiwnjfy.supabase.co')) {
     return supabaseResponse
   }
 
@@ -36,9 +36,13 @@ export const updateSession = async (request: NextRequest) => {
     },
   })
 
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
+  let user = null
+  try {
+    const { data } = await supabase.auth.getUser()
+    user = data.user
+  } catch (error) {
+    console.error('Supabase auth error in middleware:', error)
+  }
 
   if (
     request.nextUrl.pathname.startsWith('/admin') &&

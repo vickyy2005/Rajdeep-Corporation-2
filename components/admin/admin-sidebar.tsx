@@ -31,15 +31,15 @@ export function AdminSidebar({ user, isSuper }: AdminSidebarProps) {
   }
 
   return (
-    <aside className="flex w-64 flex-col border-r border-border bg-card">
+    <aside className="flex w-64 flex-col border-r border-slate-200 bg-white">
       {/* Logo */}
-      <div className="flex h-16 items-center gap-2 border-b border-border px-4">
-        <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary text-primary-foreground font-bold">
+      <div className="flex h-16 items-center gap-2 border-b border-slate-150 px-4">
+        <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-blue-600 to-indigo-650 text-white font-bold">
           RC
         </div>
         <div>
-          <div className="text-sm font-semibold">Rajdeep Corp</div>
-          <div className="text-xs text-muted-foreground">Admin Panel</div>
+          <div className="text-sm font-bold text-slate-900">Rajdeep Corp</div>
+          <div className="text-xs text-slate-500 font-semibold">Admin Panel</div>
         </div>
       </div>
 
@@ -54,10 +54,10 @@ export function AdminSidebar({ user, isSuper }: AdminSidebarProps) {
               key={item.name}
               href={item.href}
               className={cn(
-                'flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors',
+                'flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-semibold transition-colors',
                 isActive
-                  ? 'bg-primary text-primary-foreground'
-                  : 'text-muted-foreground hover:bg-muted hover:text-foreground'
+                  ? 'bg-blue-600 text-white hover:bg-blue-700 shadow-md font-bold'
+                  : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
               )}
             >
               <item.icon className="h-5 w-5" />
@@ -68,22 +68,22 @@ export function AdminSidebar({ user, isSuper }: AdminSidebarProps) {
       </nav>
 
       {/* View website link */}
-      <div className="border-t border-border p-4">
+      <div className="border-t border-slate-150 p-4">
         <Link
           href="/"
           target="_blank"
-          className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+          className="flex items-center gap-2 text-sm text-slate-500 hover:text-slate-900 transition-colors font-semibold"
         >
-          <ExternalLink className="h-4 w-4" />
+          <ExternalLink className="h-4 w-4 text-slate-400" />
           View Website
         </Link>
       </div>
 
       {/* User info & logout */}
-      <div className="border-t border-border p-4">
+      <div className="border-t border-slate-150 p-4">
         <div className="mb-3">
-          <p className="text-sm font-medium text-foreground truncate">{user.email}</p>
-          <p className="text-xs text-muted-foreground">
+          <p className="text-sm font-bold text-slate-900 truncate">{user.email}</p>
+          <p className="text-xs text-slate-500 font-semibold">
             {isSuper ? 'Super Admin' : 'Admin'}
           </p>
         </div>
@@ -91,7 +91,7 @@ export function AdminSidebar({ user, isSuper }: AdminSidebarProps) {
           variant="outline"
           size="sm"
           onClick={handleSignOut}
-          className="w-full"
+          className="w-full border-slate-200 text-slate-700 hover:bg-slate-50 font-semibold animate-duration-200"
         >
           <LogOut className="mr-2 h-4 w-4" />
           Sign Out

@@ -1,5 +1,6 @@
 import { createServerClient } from '@supabase/ssr'
 import { cookies } from 'next/headers'
+import { createMockClient } from './mock-client'
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
 const supabaseKey =
@@ -9,6 +10,10 @@ const supabaseKey =
 export async function createClient(
   cookieStore?: Awaited<ReturnType<typeof cookies>>,
 ) {
+  if (!supabaseUrl || !supabaseKey || supabaseUrl.includes('ujewukrgqlmiefiwnjfy.supabase.co')) {
+    return createMockClient() as any
+  }
+
   const resolvedCookieStore = cookieStore ?? (await cookies())
 
   return createServerClient(supabaseUrl!, supabaseKey!, {

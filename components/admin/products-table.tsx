@@ -45,10 +45,10 @@ export function ProductsTable({ products }: ProductsTableProps) {
   const [isDeleting, setIsDeleting] = useState(false)
 
   const categoryColors = {
-    pipes: 'bg-blue-100 text-blue-800',
-    fittings: 'bg-green-100 text-green-800',
-    valves: 'bg-amber-100 text-amber-800',
-    flanges: 'bg-purple-100 text-purple-800',
+    pipes: 'bg-blue-50 text-blue-700 border-blue-100 border',
+    fittings: 'bg-emerald-50 text-emerald-705 border-emerald-100 border',
+    valves: 'bg-amber-50 text-amber-750 border-amber-100 border',
+    flanges: 'bg-violet-50 text-violet-755 border-violet-100 border',
   }
 
   const handleToggleActive = async (product: Product) => {
@@ -90,10 +90,10 @@ export function ProductsTable({ products }: ProductsTableProps) {
 
   if (products.length === 0) {
     return (
-      <div className="rounded-lg border border-border bg-card p-12 text-center">
-        <h3 className="text-lg font-semibold text-foreground">No products yet</h3>
-        <p className="mt-2 text-muted-foreground">Get started by adding your first product.</p>
-        <Button asChild className="mt-4">
+      <div className="rounded-lg border border-slate-200 bg-white p-12 text-center">
+        <h3 className="text-lg font-bold text-slate-900">No products yet</h3>
+        <p className="mt-2 text-sm text-slate-500 font-medium">Get started by adding your first product.</p>
+        <Button asChild className="mt-4 bg-blue-600 text-white hover:bg-blue-700 font-bold shadow-md">
           <Link href="/admin/products/new">Add Product</Link>
         </Button>
       </div>
@@ -102,7 +102,7 @@ export function ProductsTable({ products }: ProductsTableProps) {
 
   return (
     <>
-      <div className="rounded-lg border border-border bg-card">
+      <div className="rounded-lg border border-slate-200 bg-white shadow-sm">
         <Table>
           <TableHeader>
             <TableRow>
@@ -118,7 +118,7 @@ export function ProductsTable({ products }: ProductsTableProps) {
               <TableRow key={product.id}>
                 <TableCell>
                   <div className="flex items-center gap-3">
-                    <div className="h-10 w-10 rounded-lg bg-muted flex items-center justify-center overflow-hidden">
+                    <div className="h-10 w-10 rounded-lg bg-slate-100 flex items-center justify-center overflow-hidden border border-slate-150">
                       {product.image_url ? (
                         <img
                           src={product.image_url}
@@ -126,7 +126,7 @@ export function ProductsTable({ products }: ProductsTableProps) {
                           className="h-full w-full object-cover"
                         />
                       ) : (
-                        <span className="text-sm font-medium text-muted-foreground">
+                        <span className="text-sm font-bold text-slate-400">
                           {product.name.charAt(0)}
                         </span>
                       )}

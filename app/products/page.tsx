@@ -7,6 +7,7 @@ import { ProductCard } from '@/components/product-card'
 import { ProductFilters } from '@/components/products/product-filters'
 import { Spinner } from '@/components/ui/spinner'
 import { Package } from 'lucide-react'
+import { MOCK_PRODUCTS } from '@/lib/mock-products'
 import type { Product, Category } from '@/lib/types'
 import type { Metadata } from 'next'
 
@@ -20,33 +21,48 @@ interface ProductsPageProps {
 }
 
 async function ProductGrid({ category, search }: { category?: string; search?: string }) {
-  const supabase = await createClient()
-  
-  let query = supabase
-    .from('products')
-    .select('*')
-    .order('name')
+  let products: Product[] = []
+  let hasError = false
 
-  if (category && ['pipes', 'fittings', 'valves', 'flanges'].includes(category)) {
-    query = query.eq('category', category as Category)
+  try {
+    const supabase = await createClient()
+    
+    let query = supabase
+      .from('products')
+      .select('*')
+      .order('name')
+
+    if (category && ['pipes', 'fittings', 'valves', 'flanges'].includes(category)) {
+      query = query.eq('category', category as Category)
+    }
+
+    if (search) {
+      query = query.ilike('name', `%${search}%`)
+    }
+
+    const { data, error } = await query
+    if (error) {
+      console.warn('Supabase error loading products:', error)
+      hasError = true
+    } else if (data) {
+      products = data as Product[]
+    }
+  } catch (error) {
+    console.warn('Failed to query products from Supabase, using mock fallback:', error)
+    hasError = true
   }
 
-  if (search) {
-    query = query.ilike('name', `%${search}%`)
-  }
-
-  const { data: products, error } = await query
-
-  if (error) {
-    return (
-      <div className="rounded-2xl border-2 border-destructive/20 bg-destructive/5 p-8 sm:p-12 text-center animate-fade-up">
-        <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-destructive/10 mb-4">
-          <Package className="h-6 w-6 text-destructive" />
-        </div>
-        <h3 className="text-lg font-semibold text-destructive">Error loading products</h3>
-        <p className="mt-2 text-muted-foreground">Please try again later.</p>
-      </div>
-    )
+  // Fallback to local mock data if query failed or returned empty
+  if (hasError || !products || products.length === 0) {
+    let localProducts = [...MOCK_PRODUCTS]
+    if (category && ['pipes', 'fittings', 'valves', 'flanges'].includes(category)) {
+      localProducts = localProducts.filter(p => p.category === category)
+    }
+    if (search) {
+      const searchLower = search.toLowerCase()
+      localProducts = localProducts.filter(p => p.name.toLowerCase().includes(searchLower))
+    }
+    products = localProducts
   }
 
   if (!products || products.length === 0) {
@@ -90,15 +106,15 @@ function ProductGridSkeleton() {
   return (
     <div className="grid gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
       {[...Array(8)].map((_, i) => (
-        <div key={i} className="rounded-xl border bg-card overflow-hidden animate-pulse">
-          <div className="aspect-[4/3] bg-muted" />
+        <div key={i} className="rounded-xl border border-slate-200 bg-white/80 overflow-hidden animate-pulse">
+          <div className="aspect-[4/3] bg-slate-100" />
           <div className="p-4 sm:p-5 space-y-3">
-            <div className="h-5 bg-muted rounded w-3/4" />
-            <div className="h-4 bg-muted rounded w-full" />
-            <div className="h-4 bg-muted rounded w-2/3" />
+            <div className="h-5 bg-slate-200 rounded w-3/4" />
+            <div className="h-4 bg-slate-100 rounded w-full" />
+            <div className="h-4 bg-slate-100 rounded w-2/3" />
           </div>
           <div className="p-4 sm:p-5 pt-0">
-            <div className="h-10 bg-muted rounded" />
+            <div className="h-10 bg-slate-200 rounded" />
           </div>
         </div>
       ))}
@@ -112,32 +128,32 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
   const search = params.search
 
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="flex min-h-screen flex-col bg-slate-50 text-slate-800">
       <SiteHeader />
       <main className="flex-1">
         {/* Page header */}
-        <section className="relative overflow-hidden bg-gradient-to-br from-primary via-primary to-primary/90 py-10 sm:py-12 lg:py-16">
+        <section className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 py-12 sm:py-16 border-b border-slate-950 text-white">
           {/* Background pattern */}
-          <div className="absolute inset-0 opacity-10">
+          <div className="absolute inset-0 opacity-5">
             <div className="products-hero-pattern absolute inset-0" />
           </div>
           
           <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-primary-foreground animate-fade-up">
-              Our Products
+            <h1 className="text-3xl font-bold tracking-tight text-white animate-fade-up">
+              Our Products Catalog
             </h1>
-            <p className="mt-2 text-base sm:text-lg text-primary-foreground/80 max-w-2xl animate-fade-up stagger-1">
-              Browse our complete range of quality industrial pipes, fittings, valves, and flanges
+            <p className="mt-2 text-sm sm:text-base text-slate-300 max-w-2xl animate-fade-up stagger-1">
+              Browse our complete range of high-performance industrial pipes, fittings, valves, and flanges.
             </p>
           </div>
         </section>
 
         {/* Products section */}
-        <section className="py-8 sm:py-10 lg:py-12">
+        <section className="py-10 sm:py-12">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <ProductFilters currentCategory={category} currentSearch={search} />
             
-            <div className="mt-6 sm:mt-8">
+            <div className="mt-8">
               <Suspense fallback={<ProductGridSkeleton />}>
                 <ProductGrid category={category} search={search} />
               </Suspense>

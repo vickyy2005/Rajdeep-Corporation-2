@@ -32,10 +32,10 @@ const statusOptions = [
 ]
 
 const statusColors = {
-  pending: 'bg-amber-100 text-amber-800',
-  reviewed: 'bg-blue-100 text-blue-800',
-  quoted: 'bg-green-100 text-green-800',
-  closed: 'bg-gray-100 text-gray-800',
+  pending: 'bg-amber-50 text-amber-700 border border-amber-100',
+  reviewed: 'bg-blue-50 text-blue-700 border border-blue-100',
+  quoted: 'bg-emerald-50 text-emerald-700 border border-emerald-100',
+  closed: 'bg-slate-50 text-slate-700 border border-slate-150',
 }
 
 interface RfqTableProps {
@@ -83,9 +83,9 @@ export function RfqTable({ requests, currentStatus }: RfqTableProps) {
 
   if (requests.length === 0) {
     return (
-      <div className="rounded-lg border border-border bg-card p-12 text-center">
-        <h3 className="text-lg font-semibold text-foreground">No quote requests yet</h3>
-        <p className="mt-2 text-muted-foreground">
+      <div className="rounded-lg border border-slate-200 bg-white p-12 text-center">
+        <h3 className="text-lg font-bold text-slate-900">No quote requests yet</h3>
+        <p className="mt-2 text-sm text-slate-550 font-medium">
           {currentStatus ? `No ${currentStatus} requests found.` : 'Quote requests will appear here when customers submit them.'}
         </p>
       </div>
@@ -97,9 +97,9 @@ export function RfqTable({ requests, currentStatus }: RfqTableProps) {
       {/* Filters */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <Filter className="h-4 w-4 text-muted-foreground" />
+          <Filter className="h-4 w-4 text-slate-400" />
           <Select value={currentStatus || 'all'} onValueChange={handleStatusFilter}>
-            <SelectTrigger className="w-[180px]">
+            <SelectTrigger className="w-[180px] bg-white border-slate-200">
               <SelectValue placeholder="Filter by status" />
             </SelectTrigger>
             <SelectContent>
@@ -111,14 +111,14 @@ export function RfqTable({ requests, currentStatus }: RfqTableProps) {
             </SelectContent>
           </Select>
         </div>
-        <Button variant="outline" onClick={handleExportCsv}>
+        <Button variant="outline" onClick={handleExportCsv} className="border-slate-200 text-slate-700 hover:bg-slate-50 font-semibold shadow-sm">
           <Download className="mr-2 h-4 w-4" />
           Export CSV
         </Button>
       </div>
 
       {/* Table */}
-      <div className="rounded-lg border border-border bg-card">
+      <div className="rounded-lg border border-slate-200 bg-white shadow-sm">
         <Table>
           <TableHeader>
             <TableRow>

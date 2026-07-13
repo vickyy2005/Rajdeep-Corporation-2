@@ -38,6 +38,17 @@ interface ProductFormProps {
   product?: Product
 }
 
+const PRESET_IMAGES = [
+  { label: 'Enter custom URL', value: 'custom' },
+  { label: 'Mild Steel Pipe (MS) - Preset', value: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=800&auto=format&fit=crop' },
+  { label: 'Galvanized Iron Pipe (GI) - Preset', value: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&auto=format&fit=crop' },
+  { label: 'Stainless Steel Pipe (SS) - Preset', value: 'https://images.unsplash.com/photo-1535813547-99c456a41d4a?w=800&auto=format&fit=crop' },
+  { label: 'Flanged Elbow Joint - Preset', value: 'https://images.unsplash.com/photo-1617155093730-a8bf47be792d?w=800&auto=format&fit=crop' },
+  { label: 'Industrial Gate Valve - Preset', value: 'https://images.unsplash.com/photo-1599819811279-d5ad9cccf838?w=800&auto=format&fit=crop' },
+  { label: 'Brass Ball Valve - Preset', value: 'https://images.unsplash.com/photo-1624969862644-791f3dc98927?w=800&auto=format&fit=crop' },
+  { label: 'Industrial Blind Flange - Preset', value: 'https://images.unsplash.com/photo-1542060748-10c28b629f6f?w=800&auto=format&fit=crop' },
+]
+
 export function ProductForm({ product }: ProductFormProps) {
   const router = useRouter()
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -65,6 +76,12 @@ export function ProductForm({ product }: ProductFormProps) {
   })
 
   const isActive = watch('is_active')
+  const imageUrl = watch('image_url')
+
+  const presetMatch = PRESET_IMAGES.find(img => img.value === product?.image_url)
+  const [selectedPreset, setSelectedPreset] = useState<string>(
+    presetMatch ? presetMatch.value : (product?.image_url ? 'custom' : 'custom')
+  )
 
   const addSpecification = () => {
     setSpecifications([...specifications, { key: '', value: '' }])
@@ -172,18 +189,64 @@ export function ProductForm({ product }: ProductFormProps) {
             )}
           </div>
 
-          <div className="space-y-2">
-            <Label htmlFor="image_url">Image URL</Label>
-            <Input
-              id="image_url"
-              type="url"
-              placeholder="https://example.com/image.jpg"
-              {...register('image_url')}
-            />
-            {errors.image_url && (
-              <p className="text-sm text-destructive">{errors.image_url.message}</p>
-            )}
+          <div className="grid gap-4 sm:grid-cols-2">
+            <div className="space-y-2">
+              <Label>Product Image Selection</Label>
+              <Select
+                value={selectedPreset}
+                onValueChange={(value) => {
+                  setSelectedPreset(value)
+                  if (value !== 'custom') {
+                    setValue('image_url', value)
+                  } else if (!product?.image_url) {
+                    setValue('image_url', '')
+                  }
+                }}
+              >
+                <SelectTrigger className="bg-white border-slate-200">
+                  <SelectValue placeholder="Choose preset image" />
+                </SelectTrigger>
+                <SelectContent>
+                  {PRESET_IMAGES.map((img) => (
+                    <SelectItem key={img.value} value={img.value}>
+                      {img.label}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="image_url">Image URL</Label>
+              <Input
+                id="image_url"
+                type="url"
+                placeholder="https://example.com/image.jpg"
+                {...register('image_url')}
+                disabled={selectedPreset !== 'custom'}
+                className="bg-white border-slate-200 disabled:bg-slate-50 disabled:text-slate-500"
+              />
+              {errors.image_url && (
+                <p className="text-sm text-destructive">{errors.image_url.message}</p>
+              )}
+            </div>
           </div>
+
+          {imageUrl && (
+            <div className="mt-2 space-y-2">
+              <Label>Live Preview</Label>
+              <div className="relative aspect-video max-w-sm rounded-lg border border-slate-200 overflow-hidden bg-slate-50 flex items-center justify-center">
+                <img
+                  src={imageUrl}
+                  alt="Live Product Preview"
+                  className="max-h-full max-w-full object-contain"
+                  onError={(e) => {
+                    ;(e.target as HTMLElement).style.display = 'none'
+                  }}
+                />
+              </div>
+            </div>
+          )}
 
           <div className="flex items-center justify-between rounded-lg border border-border p-4">
             <div>

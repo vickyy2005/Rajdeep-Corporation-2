@@ -71,14 +71,14 @@ export default function AdminLoginPage() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-muted/30 px-4">
-      <Card className="w-full max-w-md">
+    <div className="flex min-h-screen items-center justify-center bg-slate-50 px-4">
+      <Card className="w-full max-w-md bg-white border-slate-205 shadow-xl">
         <CardHeader className="text-center">
-          <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary text-primary-foreground font-bold text-lg">
+          <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-blue-600 to-indigo-650 text-white font-bold text-lg">
             RC
           </div>
-          <CardTitle className="text-2xl">{mode === 'signin' ? 'Admin Login' : 'Create Admin Account'}</CardTitle>
-          <CardDescription>
+          <CardTitle className="text-2xl text-slate-900">{mode === 'signin' ? 'Admin Login' : 'Create Admin Account'}</CardTitle>
+          <CardDescription className="text-slate-500 font-medium">
             {mode === 'signin'
               ? 'Sign in to access the admin dashboard'
               : 'Create an auth account, then add it to admin_users in Supabase'}
@@ -87,12 +87,13 @@ export default function AdminLoginPage() {
         <CardContent>
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
+              <Label htmlFor="email" className="text-slate-700 font-semibold">Email</Label>
               <Input
                 id="email"
                 type="email"
                 placeholder="admin@rajdeepcorp.com"
                 {...register('email')}
+                className="bg-white border-slate-200 focus:border-blue-650 focus:ring-blue-100"
                 aria-invalid={errors.email ? 'true' : 'false'}
               />
               {errors.email && (
@@ -101,12 +102,13 @@ export default function AdminLoginPage() {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="password">Password</Label>
+              <Label htmlFor="password" className="text-slate-700 font-semibold">Password</Label>
               <Input
                 id="password"
                 type="password"
                 placeholder="Enter your password"
                 {...register('password')}
+                className="bg-white border-slate-200 focus:border-blue-650 focus:ring-blue-100"
                 aria-invalid={errors.password ? 'true' : 'false'}
               />
               {errors.password && (
@@ -114,7 +116,7 @@ export default function AdminLoginPage() {
               )}
             </div>
 
-            <Button type="submit" className="w-full" disabled={isLoading}>
+            <Button type="submit" className="w-full bg-blue-600 text-white hover:bg-blue-700 font-bold shadow-md" disabled={isLoading}>
               {isLoading ? (
                 <>
                   <Spinner className="mr-2 h-4 w-4" />
@@ -129,7 +131,7 @@ export default function AdminLoginPage() {
           <div className="mt-4 flex items-center justify-center gap-3 text-sm">
             <button
               type="button"
-              className="text-primary hover:underline"
+              className="text-blue-600 hover:text-blue-700 font-semibold hover:underline"
               onClick={() => setMode(mode === 'signin' ? 'signup' : 'signin')}
             >
               {mode === 'signin' ? 'Need a new admin account?' : 'Already have an account?'}
@@ -137,7 +139,7 @@ export default function AdminLoginPage() {
           </div>
 
           <div className="mt-6 text-center">
-            <Link href="/" className="text-sm text-muted-foreground hover:text-foreground">
+            <Link href="/" className="text-sm text-slate-500 hover:text-slate-900 font-medium">
               Back to website
             </Link>
           </div>

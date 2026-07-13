@@ -3,7 +3,7 @@ CREATE EXTENSION IF NOT EXISTS "pgcrypto";
 
 -- Create products table
 CREATE TABLE IF NOT EXISTS products (
-  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  id TEXT PRIMARY KEY,
   name TEXT NOT NULL,
   description TEXT,
   category TEXT NOT NULL,
@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS rfq_requests (
   company_name TEXT,
   message TEXT,
   quantity TEXT,
-  product_id UUID REFERENCES products(id) ON DELETE SET NULL,
+  product_id TEXT REFERENCES products(id) ON DELETE SET NULL,
   admin_notes TEXT,
   status TEXT DEFAULT 'pending' CHECK (status IN ('pending', 'reviewed', 'quoted', 'closed')),
   user_id UUID REFERENCES auth.users(id) ON DELETE SET NULL,
