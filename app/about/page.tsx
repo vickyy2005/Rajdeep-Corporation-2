@@ -5,6 +5,7 @@ import { SiteFooter } from '@/components/site-footer'
 import { WhatsAppButton } from '@/components/whatsapp-button'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
+import { cn } from '@/lib/utils'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -24,21 +25,49 @@ const values = [
     icon: ShieldCheck,
     title: 'Quality First',
     description: 'We source only the highest quality materials from ISO-certified manufacturers, ensuring every product meets international standards and pressure ratings.',
+    hoverBg: 'from-blue-50/70 via-white to-blue-50/30',
+    iconColor: 'text-blue-600',
+    iconBg: 'bg-blue-50/60 border-blue-100/70',
+    borderGlow: 'group-hover:border-blue-400/50',
+    topBar: 'from-blue-500 to-blue-600',
+    hoverText: 'group-hover:text-blue-600',
+    shadowGlow: 'hover:shadow-blue-500/5',
   },
   {
     icon: Heart,
     title: 'Customer-Centric',
     description: 'Your success is our priority. We work closely with procurement managers and engineers to understand project requirements and provide tailored solutions.',
+    hoverBg: 'from-rose-50/70 via-white to-rose-50/30',
+    iconColor: 'text-rose-600',
+    iconBg: 'bg-rose-50/60 border-rose-100/70',
+    borderGlow: 'group-hover:border-rose-400/50',
+    topBar: 'from-rose-500 to-rose-600',
+    hoverText: 'group-hover:text-rose-600',
+    shadowGlow: 'hover:shadow-rose-500/5',
   },
   {
     icon: ThumbsUp,
     title: 'Fair Pricing',
     description: 'Through strong manufacturer relationships and efficient logistics operations, we offer competitive trade pricing without compromising quality.',
+    hoverBg: 'from-emerald-50/70 via-white to-emerald-50/30',
+    iconColor: 'text-emerald-600',
+    iconBg: 'bg-emerald-50/60 border-emerald-100/70',
+    borderGlow: 'group-hover:border-emerald-400/50',
+    topBar: 'from-emerald-500 to-emerald-600',
+    hoverText: 'group-hover:text-emerald-600',
+    shadowGlow: 'hover:shadow-emerald-500/5',
   },
   {
     icon: TrendingUp,
     title: 'Timely Delivery',
     description: 'We maintain an extensive, ready-to-ship inventory in our warehouses to ensure your orders are delivered on schedule, minimizing downtime.',
+    hoverBg: 'from-amber-50/70 via-white to-amber-50/30',
+    iconColor: 'text-amber-600',
+    iconBg: 'bg-amber-50/60 border-amber-100/70',
+    borderGlow: 'group-hover:border-amber-400/50',
+    topBar: 'from-amber-500 to-amber-600',
+    hoverText: 'group-hover:text-amber-600',
+    shadowGlow: 'hover:shadow-amber-500/5',
   },
 ]
 
@@ -214,14 +243,47 @@ export default function AboutPage() {
 
             <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
               {values.map((value, idx) => (
-                <Card key={idx} className="relative overflow-hidden bg-white border-slate-200 hover:border-blue-400/50 transition-all duration-300 shadow-md hover:shadow-xl hover:-translate-y-1.5 flex flex-col justify-between group">
-                  {/* Animated top blue border indicator */}
-                  <div className="absolute top-0 left-0 h-1 w-0 bg-gradient-to-r from-blue-500 to-indigo-600 transition-all duration-500 group-hover:w-full" />
-                  <CardContent className="pt-8 pb-6 px-6">
-                    <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-blue-50 text-blue-600 border border-blue-100 group-hover:bg-gradient-to-br group-hover:from-blue-600 group-hover:to-indigo-700 group-hover:text-white group-hover:border-blue-600 transition-all duration-300 mb-6 group-hover:scale-110 shadow-sm">
-                      <value.icon className="h-5 w-5" />
+                <Card 
+                  key={idx} 
+                  className={cn(
+                    "relative overflow-hidden bg-white border-slate-200 transition-all duration-300 shadow-md hover:shadow-xl flex flex-col justify-between group",
+                    value.borderGlow,
+                    value.shadowGlow,
+                    "hover:-translate-y-1.5"
+                  )}
+                >
+                  {/* Background gradient fade-in on hover */}
+                  <div className={cn(
+                    "absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-100 transition-opacity duration-500",
+                    value.hoverBg
+                  )} />
+
+                  {/* Animated top custom-colored border indicator */}
+                  <div className={cn(
+                    "absolute top-0 left-0 h-1 w-0 transition-all duration-500 group-hover:w-full bg-gradient-to-r",
+                    value.topBar
+                  )} />
+
+                  <CardContent className="pt-8 pb-6 px-6 relative z-10">
+                    <div className={cn(
+                      "relative inline-flex h-12 w-12 items-center justify-center rounded-xl transition-all duration-300 mb-6 group-hover:scale-110 shadow-sm border",
+                      value.iconBg,
+                      value.iconColor,
+                      "group-hover:text-white"
+                    )}>
+                      {/* Background fill container */}
+                      <div className={cn(
+                        "absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 bg-gradient-to-br transition-all duration-300 z-[-1]",
+                        value.topBar
+                      )} />
+                      <value.icon className="h-5 w-5 relative z-10" />
                     </div>
-                    <h3 className="text-lg font-bold text-slate-900 tracking-wide group-hover:text-blue-600 transition-colors">{value.title}</h3>
+                    <h3 className={cn(
+                      "text-lg font-bold text-slate-900 tracking-wide transition-colors",
+                      value.hoverText
+                    )}>
+                      {value.title}
+                    </h3>
                     <p className="mt-3 text-xs sm:text-sm text-slate-500 leading-relaxed font-medium">
                       {value.description}
                     </p>
