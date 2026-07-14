@@ -74,7 +74,7 @@ export function CategoriesSection() {
                       {category.description}
                     </p>
                   </div>
-                  <div className="mt-5 flex items-center text-xs font-semibold text-slate-650 group-hover:text-blue-600 transition-colors">
+                  <div className="mt-5 flex items-center text-xs font-semibold text-slate-600 group-hover:text-blue-600 transition-colors">
                     View Products
                     <ArrowRight className="ml-1 h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
                   </div>

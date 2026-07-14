@@ -77,7 +77,7 @@ export function ProductFilters({ currentCategory, currentSearch }: ProductFilter
             <button
               type="button"
               onClick={() => setSearchValue('')}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-650 transition-colors"
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 transition-colors"
             >
               <X className="h-4 w-4" />
             </button>
@@ -121,7 +121,7 @@ export function ProductFilters({ currentCategory, currentSearch }: ProductFilter
                 'transition-all duration-200 font-semibold',
                 currentCategory === category.value 
                   ? 'bg-blue-600 text-white shadow-md hover:bg-blue-700 border-blue-600' 
-                  : 'border-slate-200 text-slate-650 bg-white hover:bg-slate-50 hover:border-slate-300 hover:text-slate-800'
+                  : 'border-slate-200 text-slate-600 bg-white hover:bg-slate-50 hover:border-slate-300 hover:text-slate-800'
               )}
             >
               {category.label}

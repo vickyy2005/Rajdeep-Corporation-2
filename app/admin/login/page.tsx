@@ -72,9 +72,9 @@ export default function AdminLoginPage() {
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-slate-50 px-4">
-      <Card className="w-full max-w-md bg-white border-slate-205 shadow-xl">
+      <Card className="w-full max-w-md bg-white border-slate-200 shadow-xl">
         <CardHeader className="text-center">
-          <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-blue-600 to-indigo-650 text-white font-bold text-lg">
+          <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-blue-600 to-indigo-700 text-white font-bold text-lg">
             RC
           </div>
           <CardTitle className="text-2xl text-slate-900">{mode === 'signin' ? 'Admin Login' : 'Create Admin Account'}</CardTitle>
@@ -93,7 +93,7 @@ export default function AdminLoginPage() {
                 type="email"
                 placeholder="admin@rajdeepcorp.com"
                 {...register('email')}
-                className="bg-white border-slate-200 focus:border-blue-650 focus:ring-blue-100"
+                className="bg-white border-slate-200 focus:border-blue-600 focus:ring-blue-100"
                 aria-invalid={errors.email ? 'true' : 'false'}
               />
               {errors.email && (
@@ -108,7 +108,7 @@ export default function AdminLoginPage() {
                 type="password"
                 placeholder="Enter your password"
                 {...register('password')}
-                className="bg-white border-slate-200 focus:border-blue-650 focus:ring-blue-100"
+                className="bg-white border-slate-200 focus:border-blue-600 focus:ring-blue-100"
                 aria-invalid={errors.password ? 'true' : 'false'}
               />
               {errors.password && (

@@ -85,7 +85,7 @@ export function RfqTable({ requests, currentStatus }: RfqTableProps) {
     return (
       <div className="rounded-lg border border-slate-200 bg-white p-12 text-center">
         <h3 className="text-lg font-bold text-slate-900">No quote requests yet</h3>
-        <p className="mt-2 text-sm text-slate-550 font-medium">
+        <p className="mt-2 text-sm text-slate-500 font-medium">
           {currentStatus ? `No ${currentStatus} requests found.` : 'Quote requests will appear here when customers submit them.'}
         </p>
       </div>

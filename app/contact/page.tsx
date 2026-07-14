@@ -87,7 +87,7 @@ export default function ContactPage() {
                               <a
                                 key={index}
                                 href={item.href}
-                                className="block text-xs sm:text-sm text-slate-500 hover:text-blue-650 transition-colors font-semibold"
+                                className="block text-xs sm:text-sm text-slate-500 hover:text-blue-600 transition-colors font-semibold"
                               >
                                 {detail}
                               </a>

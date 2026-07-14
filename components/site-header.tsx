@@ -54,7 +54,7 @@ export function SiteHeader() {
       {/* Main navigation */}
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 py-3.5">
         <Link href="/" className="flex items-center gap-3 group">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-blue-600 to-indigo-650 text-white font-extrabold text-lg shadow-md transition-transform duration-300 group-hover:scale-105">
+          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-blue-600 to-indigo-700 text-white font-extrabold text-lg shadow-md transition-transform duration-300 group-hover:scale-105">
             RC
           </div>
           <div>
@@ -69,7 +69,7 @@ export function SiteHeader() {
             <Link
               key={item.name}
               href={item.href}
-              className="relative px-4 py-2 text-sm font-semibold text-slate-600 transition-colors hover:text-blue-600 rounded-lg hover:bg-slate-55"
+              className="relative px-4 py-2 text-sm font-semibold text-slate-600 transition-colors hover:text-blue-600 rounded-lg hover:bg-slate-50"
             >
               {item.name}
             </Link>
@@ -110,7 +110,7 @@ export function SiteHeader() {
             <Link
               key={item.name}
               href={item.href}
-              className="flex items-center justify-between rounded-lg px-4 py-3 text-base font-semibold text-slate-700 hover:bg-slate-55 hover:text-blue-600 transition-colors"
+              className="flex items-center justify-between rounded-lg px-4 py-3 text-base font-semibold text-slate-700 hover:bg-slate-50 hover:text-blue-600 transition-colors"
               onClick={() => setMobileMenuOpen(false)}
             >
               {item.name}

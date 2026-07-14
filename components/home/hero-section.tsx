@@ -38,7 +38,7 @@ export function HeroSection() {
         <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
           {/* Left copy */}
           <div className="text-center lg:text-left lg:col-span-7">
-            <div className="animate-fade-down inline-flex items-center gap-2 rounded-full bg-blue-50 border border-blue-100 px-4 py-1.5 text-xs font-semibold text-blue-650 mb-6 shadow-sm">
+            <div className="animate-fade-down inline-flex items-center gap-2 rounded-full bg-blue-50 border border-blue-100 px-4 py-1.5 text-xs font-semibold text-blue-600 mb-6 shadow-sm">
               <Sparkles className="h-4 w-4 text-blue-600" />
               <span>Leading industrial distributor in India</span>
             </div>
@@ -70,7 +70,7 @@ export function HeroSection() {
               {features.map((feature, index) => (
                 <div 
                   key={feature} 
-                  className={`flex items-center gap-2.5 text-slate-650 stagger-${index + 4}`}
+                  className={`flex items-center gap-2.5 text-slate-600 stagger-${index + 4}`}
                 >
                   <CheckCircle className="h-5 w-5 text-blue-600 shrink-0" />
                   <span className="text-sm font-semibold">{feature}</span>
@@ -94,7 +94,7 @@ export function HeroSection() {
 
               {/* Floating Badge 1 */}
               <div className="absolute -left-6 top-8 animate-float hidden sm:flex items-center gap-3 rounded-xl border border-slate-200 bg-white/95 p-3 shadow-lg backdrop-blur-md">
-                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-50 text-blue-650 border border-blue-100">
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-50 text-blue-600 border border-blue-100">
                   <ShieldCheck className="h-6 w-6" />
                 </div>
                 <div>
@@ -105,7 +105,7 @@ export function HeroSection() {
 
               {/* Floating Badge 2 */}
               <div className="absolute -right-6 bottom-8 animate-float stagger-3 hidden sm:flex items-center gap-3 rounded-xl border border-slate-200 bg-white/95 p-3 shadow-lg backdrop-blur-md">
-                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-amber-50 text-amber-650 border border-amber-100">
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-amber-50 text-amber-600 border border-amber-100">
                   <Truck className="h-6 w-6" />
                 </div>
                 <div>

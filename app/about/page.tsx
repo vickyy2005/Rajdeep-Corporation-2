@@ -77,7 +77,7 @@ export default function AboutPage() {
                 <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900">
                   Our Legacy of Trust & Quality
                 </h2>
-                <div className="mt-6 space-y-4 text-slate-650 leading-relaxed text-sm sm:text-base font-medium">
+                <div className="mt-6 space-y-4 text-slate-600 leading-relaxed text-sm sm:text-base font-medium">
                   <p>
                     Founded in 2005, Rajdeep Corporation began with a simple mission: to supply 
                     industrial piping products of uncompromised quality at competitive trade prices.
@@ -107,11 +107,11 @@ export default function AboutPage() {
                   <div className="products-hero-pattern absolute inset-0" />
                 </div>
                 <div className="text-center relative z-10">
-                  <div className="flex h-28 w-28 mx-auto items-center justify-center rounded-2xl bg-gradient-to-br from-blue-600 to-indigo-655 text-white font-extrabold text-4xl shadow-lg shadow-blue-500/20">
+                  <div className="flex h-28 w-28 mx-auto items-center justify-center rounded-2xl bg-gradient-to-br from-blue-600 to-indigo-700 text-white font-extrabold text-4xl shadow-lg shadow-blue-500/20">
                     RC
                   </div>
                   <p className="mt-6 text-2xl font-bold text-slate-900 tracking-wide">Rajdeep Corporation</p>
-                  <p className="text-blue-605 text-sm font-semibold tracking-widest uppercase mt-1">Established 2005</p>
+                  <p className="text-blue-600 text-sm font-semibold tracking-widest uppercase mt-1">Established 2005</p>
                   <p className="text-slate-500 mt-4 text-xs max-w-xs mx-auto font-medium">
                     Supplying heavy-duty industrial components to steel mills, refineries, and engineering projects.
                   </p>
@@ -128,13 +128,13 @@ export default function AboutPage() {
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
               {stats.map((stat, idx) => (
-                <div key={idx} className="text-center p-6 rounded-xl border border-slate-200 bg-white/85 backdrop-blur-sm hover:border-slate-350 hover:shadow-md transition-all duration-300">
-                  <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-xl bg-blue-50 text-blue-650 border border-blue-100 mb-4">
+                <div key={idx} className="text-center p-6 rounded-xl border border-slate-200 bg-white/85 backdrop-blur-sm hover:border-slate-300 hover:shadow-md transition-all duration-300">
+                  <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-xl bg-blue-50 text-blue-600 border border-blue-100 mb-4">
                     <stat.icon className="h-7 w-7" />
                   </div>
                   <div className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">{stat.value}</div>
                   <div className="mt-1 font-bold text-slate-700 text-sm">{stat.label}</div>
-                  <div className="mt-2 text-xs text-slate-550 leading-normal font-medium">{stat.description}</div>
+                  <div className="mt-2 text-xs text-slate-500 leading-normal font-medium">{stat.description}</div>
                 </div>
               ))}
             </div>
@@ -157,13 +157,13 @@ export default function AboutPage() {
               {milestones.map((milestone, idx) => (
                 <div key={idx} className="relative animate-fade-up">
                   {/* Timeline bullet */}
-                  <div className="absolute -left-[31px] sm:-left-[47px] top-1.5 flex h-6 w-6 items-center justify-center rounded-full bg-white border-2 border-blue-600 text-blue-605">
+                  <div className="absolute -left-[31px] sm:-left-[47px] top-1.5 flex h-6 w-6 items-center justify-center rounded-full bg-white border-2 border-blue-600 text-blue-600">
                     <div className="h-2 w-2 rounded-full bg-blue-600" />
                   </div>
                   <div>
                     <span className="inline-block text-blue-600 font-bold text-xs sm:text-sm bg-blue-50 border border-blue-100 px-3 py-1 rounded-full">{milestone.year}</span>
                     <h3 className="text-lg font-bold text-slate-900 mt-3">{milestone.title}</h3>
-                    <p className="mt-2 text-xs sm:text-sm text-slate-550 leading-relaxed font-medium">{milestone.description}</p>
+                    <p className="mt-2 text-xs sm:text-sm text-slate-500 leading-relaxed font-medium">{milestone.description}</p>
                   </div>
                 </div>
               ))}
@@ -178,16 +178,16 @@ export default function AboutPage() {
               <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900">
                 Core Foundations
               </h2>
-              <p className="mt-4 text-sm sm:text-base text-slate-505 font-medium">
+              <p className="mt-4 text-sm sm:text-base text-slate-500 font-medium">
                 The core principles that govern our operations and quality control.
               </p>
             </div>
 
             <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
               {values.map((value, idx) => (
-                <Card key={idx} className="bg-white border-slate-200 hover:border-slate-350 transition-all duration-300 shadow-md group">
+                <Card key={idx} className="bg-white border-slate-200 hover:border-slate-300 transition-all duration-300 shadow-md group">
                   <CardContent className="pt-6">
-                    <div className="inline-flex h-12 w-12 items-center justify-center rounded-lg bg-blue-50 text-blue-605 border border-blue-100 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300 mb-4">
+                    <div className="inline-flex h-12 w-12 items-center justify-center rounded-lg bg-blue-50 text-blue-600 border border-blue-100 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300 mb-4">
                       <value.icon className="h-6 w-6" />
                     </div>
                     <h3 className="text-lg font-bold text-slate-900 tracking-wide">{value.title}</h3>

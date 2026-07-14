@@ -34,7 +34,7 @@ export function AdminSidebar({ user, isSuper }: AdminSidebarProps) {
     <aside className="flex w-64 flex-col border-r border-slate-200 bg-white">
       {/* Logo */}
       <div className="flex h-16 items-center gap-2 border-b border-slate-150 px-4">
-        <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-blue-600 to-indigo-650 text-white font-bold">
+        <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-blue-600 to-indigo-700 text-white font-bold">
           RC
         </div>
         <div>

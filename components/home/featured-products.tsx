@@ -40,7 +40,7 @@ export function FeaturedProducts({ products }: FeaturedProductsProps) {
               <p className="text-slate-400">
                 Featured products will appear here. Add products and mark them as featured in the admin dashboard.
               </p>
-              <Button asChild variant="outline" className="mt-4 border-slate-200 text-slate-650 hover:bg-slate-50">
+              <Button asChild variant="outline" className="mt-4 border-slate-200 text-slate-600 hover:bg-slate-50">
                 <Link href="/products">
                   Browse All Products
                 </Link>

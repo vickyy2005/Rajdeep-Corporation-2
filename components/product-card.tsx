@@ -38,7 +38,7 @@ export function ProductCard({ product }: ProductCardProps) {
   const config = categoryConfig[product.category] || categoryConfig.pipes
 
   return (
-    <Card className="group h-full overflow-hidden transition-all duration-350 hover:shadow-xl hover:-translate-y-1 bg-white border-slate-200 hover:border-slate-300 shadow-md flex flex-col justify-between">
+    <Card className="group h-full overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/5 hover:-translate-y-1 bg-white border-slate-200 hover:border-blue-400/50 shadow-md flex flex-col justify-between">
       <div>
         <div className="relative aspect-[4/3] overflow-hidden bg-gradient-to-br from-slate-100 to-slate-200 border-b border-slate-100">
           {product.image_url ? (
@@ -61,7 +61,7 @@ export function ProductCard({ product }: ProductCardProps) {
           </Badge>
 
           {product.featured && (
-            <Badge className="absolute right-3 top-3 bg-blue-600 text-white shadow-sm font-semibold text-xs py-0.5 px-2.5 rounded-md border border-blue-650">
+            <Badge className="absolute right-3 top-3 bg-blue-600 text-white shadow-sm font-semibold text-xs py-0.5 px-2.5 rounded-md border border-blue-700">
               Featured
             </Badge>
           )}
