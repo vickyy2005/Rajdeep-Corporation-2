@@ -122,7 +122,16 @@ export function ProductForm({ product }: ProductFormProps) {
         if (error) throw error
         toast.success('Product updated successfully')
       } else {
-        const { error } = await supabase.from('products').insert(payload)
+        const baseSlug = data.name
+          .toLowerCase()
+          .replace(/[^a-z0-9]+/g, '-')
+          .replace(/(^-|-$)+/g, '')
+        const uniqueSlug = `${baseSlug}-${Date.now().toString().slice(-4)}`
+
+        const { error } = await supabase.from('products').insert({
+          ...payload,
+          id: uniqueSlug,
+        })
         if (error) throw error
         toast.success('Product created successfully')
       }
