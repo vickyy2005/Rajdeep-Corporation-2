@@ -102,22 +102,47 @@ export default function AboutPage() {
               </div>
 
               {/* Graphical Card */}
-              <div className="animate-slide-in-right relative aspect-square max-w-md mx-auto lg:max-w-none w-full rounded-2xl border border-slate-200 bg-white/80 p-6 flex items-center justify-center shadow-2xl backdrop-blur-sm overflow-hidden">
-                <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
-                  <div className="products-hero-pattern absolute inset-0" />
-                </div>
-                <div className="text-center relative z-10">
-                  <div className="flex h-28 w-28 mx-auto items-center justify-center rounded-2xl bg-gradient-to-br from-blue-600 to-indigo-700 text-white font-extrabold text-4xl shadow-lg shadow-blue-500/20">
+              <div className="animate-slide-in-right relative overflow-hidden rounded-3xl border border-slate-200/85 bg-white/80 p-8 shadow-2xl backdrop-blur-md flex flex-col gap-6 justify-between group hover:border-blue-400/30 transition-all duration-500">
+                {/* Background glowing effects */}
+                <div className="absolute top-0 right-0 -mr-16 -mt-16 w-48 h-48 rounded-full bg-blue-500/10 blur-3xl opacity-60 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute bottom-0 left-0 -ml-16 -mb-16 w-48 h-48 rounded-full bg-indigo-500/10 blur-3xl opacity-60 group-hover:opacity-100 transition-opacity duration-500" />
+                
+                {/* Shield Header */}
+                <div className="flex items-center gap-4 relative z-10">
+                  <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-600 to-indigo-700 text-white font-extrabold text-2xl shadow-lg shadow-blue-500/20">
                     RC
                   </div>
-                  <p className="mt-6 text-2xl font-bold text-slate-900 tracking-wide">Rajdeep Corporation</p>
-                  <p className="text-blue-600 text-sm font-semibold tracking-widest uppercase mt-1">Established 2005</p>
-                  <p className="text-slate-500 mt-4 text-xs max-w-xs mx-auto font-medium">
-                    Supplying heavy-duty industrial components to steel mills, refineries, and engineering projects.
+                  <div>
+                    <h3 className="font-bold text-slate-900 text-lg">Rajdeep Corporation</h3>
+                    <p className="text-xs font-semibold text-blue-600 tracking-wider uppercase mt-0.5">ESTD. 2005</p>
+                  </div>
+                </div>
+
+                {/* Core trust tags */}
+                <div className="grid gap-3 grid-cols-1 sm:grid-cols-2 mt-4 relative z-10">
+                  <div className="flex items-center gap-3 p-3 rounded-xl border border-slate-100 bg-slate-50/50 hover:bg-white hover:shadow-md transition-all duration-300">
+                    <ShieldCheck className="h-5 w-5 text-emerald-500 shrink-0" />
+                    <span className="text-xs font-bold text-slate-700">ISO 9001:2015 Certified</span>
+                  </div>
+                  <div className="flex items-center gap-3 p-3 rounded-xl border border-slate-100 bg-slate-50/50 hover:bg-white hover:shadow-md transition-all duration-300">
+                    <Award className="h-5 w-5 text-blue-500 shrink-0" />
+                    <span className="text-xs font-bold text-slate-700">Top Industrial Brand</span>
+                  </div>
+                  <div className="flex items-center gap-3 p-3 rounded-xl border border-slate-100 bg-slate-50/50 hover:bg-white hover:shadow-md transition-all duration-300">
+                    <Package className="h-5 w-5 text-indigo-500 shrink-0" />
+                    <span className="text-xs font-bold text-slate-700">500+ Active SKUs</span>
+                  </div>
+                  <div className="flex items-center gap-3 p-3 rounded-xl border border-slate-100 bg-slate-50/50 hover:bg-white hover:shadow-md transition-all duration-300">
+                    <Users className="h-5 w-5 text-amber-500 shrink-0" />
+                    <span className="text-xs font-bold text-slate-700">1000+ B2B Clients</span>
+                  </div>
+                </div>
+
+                <div className="border-t border-slate-100 pt-4 mt-2 relative z-10">
+                  <p className="text-xs text-slate-500 leading-relaxed font-semibold italic text-center">
+                    "Delivering engineering compliance and high-durability products to India's major infrastructure initiatives."
                   </p>
                 </div>
-                <div className="absolute -bottom-10 -right-10 h-40 w-40 rounded-full bg-blue-500/5 blur-3xl" />
-                <div className="absolute -top-10 -left-10 h-40 w-40 rounded-full bg-indigo-500/5 blur-3xl" />
               </div>
             </div>
           </div>
@@ -128,8 +153,8 @@ export default function AboutPage() {
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
               {stats.map((stat, idx) => (
-                <div key={idx} className="text-center p-6 rounded-xl border border-slate-200 bg-white/85 backdrop-blur-sm hover:border-slate-300 hover:shadow-md transition-all duration-300">
-                  <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-xl bg-blue-50 text-blue-600 border border-blue-100 mb-4">
+                <div key={idx} className="group text-center p-6 rounded-2xl border border-slate-200 bg-white/85 backdrop-blur-sm hover:border-blue-400/50 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                  <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-xl bg-blue-50 text-blue-600 border border-blue-100 mb-4 group-hover:scale-110 transition-transform duration-300">
                     <stat.icon className="h-7 w-7" />
                   </div>
                   <div className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">{stat.value}</div>
@@ -153,16 +178,20 @@ export default function AboutPage() {
               </p>
             </div>
 
-            <div className="mt-16 relative border-l-2 border-slate-200 max-w-3xl mx-auto pl-6 sm:pl-10 space-y-12">
+            <div className="mt-16 relative border-l-4 border-slate-100 max-w-3xl mx-auto pl-8 sm:pl-12 space-y-12">
+              {/* Pipe connection line representation */}
+              <div className="absolute left-[2px] top-4 w-1 bg-gradient-to-b from-blue-500 to-indigo-600 h-[calc(100%-32px)] opacity-85" />
+              
               {milestones.map((milestone, idx) => (
-                <div key={idx} className="relative animate-fade-up">
-                  {/* Timeline bullet */}
-                  <div className="absolute -left-[31px] sm:-left-[47px] top-1.5 flex h-6 w-6 items-center justify-center rounded-full bg-white border-2 border-blue-600 text-blue-600">
-                    <div className="h-2 w-2 rounded-full bg-blue-600" />
+                <div key={idx} className="relative animate-fade-up group">
+                  {/* Timeline joint (glowing valve bullet) */}
+                  <div className="absolute -left-[42px] sm:-left-[58px] top-1.5 flex h-6 w-6 sm:h-8 sm:w-8 items-center justify-center rounded-full bg-white border-4 border-slate-200 group-hover:border-blue-600 group-hover:bg-blue-50 transition-all duration-300 shadow-md">
+                    <div className="h-2 w-2 rounded-full bg-slate-400 group-hover:bg-blue-600 transition-colors duration-300 animate-pulse" />
                   </div>
-                  <div>
-                    <span className="inline-block text-blue-600 font-bold text-xs sm:text-sm bg-blue-50 border border-blue-100 px-3 py-1 rounded-full">{milestone.year}</span>
-                    <h3 className="text-lg font-bold text-slate-900 mt-3">{milestone.title}</h3>
+                  
+                  <div className="bg-white/80 backdrop-blur-sm border border-slate-200/80 rounded-2xl p-6 shadow-md hover:shadow-xl hover:border-blue-400/50 hover:bg-white hover:-translate-y-1 transition-all duration-300">
+                    <span className="inline-block text-blue-605 font-bold text-xs sm:text-sm bg-blue-50 border border-blue-100 px-3 py-1 rounded-full">{milestone.year}</span>
+                    <h3 className="text-lg font-bold text-slate-900 mt-3 group-hover:text-blue-605 transition-colors">{milestone.title}</h3>
                     <p className="mt-2 text-xs sm:text-sm text-slate-500 leading-relaxed font-medium">{milestone.description}</p>
                   </div>
                 </div>
@@ -185,12 +214,14 @@ export default function AboutPage() {
 
             <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
               {values.map((value, idx) => (
-                <Card key={idx} className="bg-white border-slate-200 hover:border-slate-300 transition-all duration-300 shadow-md group">
-                  <CardContent className="pt-6">
-                    <div className="inline-flex h-12 w-12 items-center justify-center rounded-lg bg-blue-50 text-blue-600 border border-blue-100 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300 mb-4">
-                      <value.icon className="h-6 w-6" />
+                <Card key={idx} className="relative overflow-hidden bg-white border-slate-200 hover:border-blue-400/50 transition-all duration-300 shadow-md hover:shadow-xl hover:-translate-y-1.5 flex flex-col justify-between group">
+                  {/* Animated top blue border indicator */}
+                  <div className="absolute top-0 left-0 h-1 w-0 bg-gradient-to-r from-blue-500 to-indigo-600 transition-all duration-500 group-hover:w-full" />
+                  <CardContent className="pt-8 pb-6 px-6">
+                    <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-blue-50 text-blue-600 border border-blue-100 group-hover:bg-gradient-to-br group-hover:from-blue-600 group-hover:to-indigo-700 group-hover:text-white group-hover:border-blue-600 transition-all duration-300 mb-6 group-hover:scale-110 shadow-sm">
+                      <value.icon className="h-5 w-5" />
                     </div>
-                    <h3 className="text-lg font-bold text-slate-900 tracking-wide">{value.title}</h3>
+                    <h3 className="text-lg font-bold text-slate-900 tracking-wide group-hover:text-blue-600 transition-colors">{value.title}</h3>
                     <p className="mt-3 text-xs sm:text-sm text-slate-500 leading-relaxed font-medium">
                       {value.description}
                     </p>
