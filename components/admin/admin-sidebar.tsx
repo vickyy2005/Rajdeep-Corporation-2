@@ -43,7 +43,7 @@ export function AdminSidebar({ user, isSuper }: AdminSidebarProps) {
           className="h-11 w-11 shrink-0 object-contain"
         />
         <div>
-          <div className="text-sm font-bold text-slate-900">Rajdeep Corp</div>
+          <div className="text-sm font-bold text-slate-900">RAJDEEP CORP</div>
           <div className="text-xs text-slate-500 font-semibold">Admin Panel</div>
         </div>
       </div>

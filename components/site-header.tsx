@@ -68,7 +68,7 @@ export function SiteHeader() {
           />
           <div>
             <div className="text-lg sm:text-xl md:text-2xl font-black text-slate-900 tracking-wide leading-tight group-hover:text-blue-600 transition-colors">
-              Rajdeep Corporation
+              RAJDEEP CORPORATION
             </div>
             <div className="text-xs sm:text-sm text-slate-500 font-medium mt-0.5">
               Industrial Piping Solutions

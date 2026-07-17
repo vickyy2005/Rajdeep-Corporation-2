@@ -33,7 +33,7 @@ export function SiteFooter() {
               />
               <div>
                 <div className="text-lg sm:text-xl md:text-2xl font-black text-white tracking-wide leading-tight">
-                  Rajdeep Corporation
+                  RAJDEEP CORPORATION
                 </div>
                 <div className="text-xs sm:text-sm text-slate-400 font-medium mt-0.5">
                   Industrial Piping Solutions
