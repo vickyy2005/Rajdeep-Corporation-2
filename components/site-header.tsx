@@ -36,20 +36,21 @@ export function SiteHeader() {
         : 'bg-white border-b border-slate-200/80'
     )}>
       {/* Top bar - hidden on mobile */}
-      <div className="hidden border-b border-slate-100 bg-slate-50 text-slate-600 lg:block">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 py-2 text-xs font-medium">
+      <div className="hidden border-b border-slate-800 bg-slate-900 text-slate-300 lg:block">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 py-2.5 text-xs font-semibold">
           <div className="flex items-center gap-6">
-            <a href="tel:+917021003269" className="flex items-center gap-2 hover:text-blue-600 transition-colors duration-200">
-              <Phone className="h-3.5 w-3.5 text-slate-500" />
+            <a href="tel:+917021003269" className="flex items-center gap-2 hover:text-white transition-colors duration-200">
+              <Phone className="h-3.5 w-3.5 text-blue-400" />
               <span>+91 70210 03269</span>
             </a>
-            <a href="mailto:sales@rajdeepcorp.com" className="flex items-center gap-2 hover:text-blue-600 transition-colors duration-200">
-              <Mail className="h-3.5 w-3.5 text-slate-500" />
+            <a href="mailto:sales@rajdeepcorp.com" className="flex items-center gap-2 hover:text-white transition-colors duration-200">
+              <Mail className="h-3.5 w-3.5 text-blue-400" />
               <span>sales@rajdeepcorp.com</span>
             </a>
           </div>
-          <div className="text-slate-500">
-            Mon - Sat: 9:30 AM - 6:30 PM (IST)
+          <div className="text-slate-400 flex items-center gap-2">
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse shrink-0" />
+            <span>Mon - Sat: 9:30 AM - 6:30 PM (IST)</span>
           </div>
         </div>
       </div>
