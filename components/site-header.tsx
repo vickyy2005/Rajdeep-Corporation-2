@@ -61,16 +61,16 @@ export function SiteHeader() {
           <Image
             src="/logo.png"
             alt="Rajdeep Corporation Logo"
-            width={58}
-            height={58}
-            className="h-14 w-14 sm:h-16 sm:w-16 shrink-0 object-contain transition-transform duration-300 group-hover:scale-105"
+            width={72}
+            height={72}
+            className="h-16 w-16 sm:h-20 sm:w-20 shrink-0 object-contain transition-transform duration-300 group-hover:scale-105"
             priority
           />
           <div>
-            <div className="text-base sm:text-lg md:text-xl font-bold text-slate-900 tracking-wide leading-tight group-hover:text-blue-600 transition-colors">
+            <div className="text-lg sm:text-xl md:text-2xl font-black text-slate-900 tracking-wide leading-tight group-hover:text-blue-600 transition-colors">
               Rajdeep Corporation
             </div>
-            <div className="text-[11px] sm:text-xs md:text-sm text-slate-500 font-medium mt-0.5">
+            <div className="text-xs sm:text-sm text-slate-500 font-medium mt-0.5">
               Industrial Piping Solutions
             </div>
           </div>
