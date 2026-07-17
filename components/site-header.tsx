@@ -54,18 +54,22 @@ export function SiteHeader() {
 
       {/* Main navigation */}
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 py-3.5">
-        <Link href="/" className="flex items-center gap-3 group">
+        <Link href="/" className="flex items-center gap-4 group">
           <Image
             src="/logo.png"
             alt="Rajdeep Corporation Logo"
-            width={48}
-            height={48}
-            className="h-12 w-12 shrink-0 object-contain transition-transform duration-300 group-hover:scale-105"
+            width={58}
+            height={58}
+            className="h-14 w-14 sm:h-16 sm:w-16 shrink-0 object-contain transition-transform duration-300 group-hover:scale-105"
             priority
           />
           <div>
-            <div className="text-sm sm:text-base font-bold text-slate-900 tracking-wide leading-tight group-hover:text-blue-600 transition-colors">Rajdeep Corporation</div>
-            <div className="text-[10px] sm:text-xs text-slate-500 font-medium">Industrial Piping Solutions</div>
+            <div className="text-base sm:text-lg md:text-xl font-bold text-slate-900 tracking-wide leading-tight group-hover:text-blue-600 transition-colors">
+              Rajdeep Corporation
+            </div>
+            <div className="text-[11px] sm:text-xs md:text-sm text-slate-500 font-medium mt-0.5">
+              Industrial Piping Solutions
+            </div>
           </div>
         </Link>
 

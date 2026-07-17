@@ -23,17 +23,21 @@ export function SiteFooter() {
         <div className="grid gap-8 sm:gap-10 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
           {/* Company info */}
           <div className="sm:col-span-2 lg:col-span-1">
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-4">
               <Image
                 src="/logo.png"
                 alt="Rajdeep Corporation Logo"
-                width={48}
-                height={48}
-                className="h-12 w-12 shrink-0 object-contain transition-transform hover:scale-105"
+                width={58}
+                height={58}
+                className="h-14 w-14 sm:h-16 sm:w-16 shrink-0 object-contain transition-transform hover:scale-105"
               />
               <div>
-                <div className="text-base font-bold text-white tracking-wide">Rajdeep Corporation</div>
-                <div className="text-xs text-slate-400 font-medium">Industrial Piping Solutions</div>
+                <div className="text-base sm:text-lg md:text-xl font-bold text-white tracking-wide leading-tight">
+                  Rajdeep Corporation
+                </div>
+                <div className="text-[11px] sm:text-xs md:text-sm text-slate-400 font-medium mt-0.5">
+                  Industrial Piping Solutions
+                </div>
               </div>
             </div>
             <p className="mt-4 text-xs sm:text-sm text-slate-400 leading-relaxed max-w-xs">
