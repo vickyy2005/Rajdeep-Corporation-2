@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button'
 
 export function CTASection() {
   return (
-    <section className="py-16 sm:py-24 bg-white border-t border-slate-100 overflow-hidden">
+    <section className="py-16 sm:py-24 bg-transparent border-t border-slate-100 overflow-hidden">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="relative overflow-hidden rounded-2xl bg-slate-900 px-6 py-12 sm:px-12 sm:py-16 lg:px-16 border border-slate-800 shadow-sm">
           

@@ -130,6 +130,10 @@
   }
   body {
     @apply bg-background text-foreground antialiased;
+    background-image: 
+      linear-gradient(to right, rgba(15, 23, 42, 0.018) 1.5px, transparent 1.5px),
+      linear-gradient(to bottom, rgba(15, 23, 42, 0.018) 1.5px, transparent 1.5px);
+    background-size: 32px 32px;
   }
 }
 

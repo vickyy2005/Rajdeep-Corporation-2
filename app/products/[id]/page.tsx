@@ -101,7 +101,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
   const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(whatsappMessage)}`
 
   return (
-    <div className="flex min-h-screen flex-col bg-slate-50 text-slate-800">
+    <div className="flex min-h-screen flex-col bg-transparent text-slate-800">
       <SiteHeader />
       <main className="flex-1">
         {/* Breadcrumb */}
