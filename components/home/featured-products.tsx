@@ -15,7 +15,7 @@ export function FeaturedProducts({ products }: FeaturedProductsProps) {
   const showPlaceholder = products.length === 0
 
   return (
-    <section className="relative bg-slate-50/50 border-t border-slate-100 py-20 sm:py-28 overflow-hidden">
+    <section className="relative bg-transparent border-t border-slate-100/50 py-20 sm:py-28 overflow-hidden">
       {/* Decorative blurred glow elements */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-40">
         <div className="absolute top-12 right-1/4 w-[350px] h-[350px] bg-teal-300/20 rounded-full blur-[120px]" />

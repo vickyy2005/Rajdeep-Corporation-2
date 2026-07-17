@@ -55,7 +55,7 @@ const categories = [
 
 export function CategoriesSection() {
   return (
-    <section className="relative py-20 sm:py-28 bg-slate-50/50 border-t border-slate-100 overflow-hidden">
+    <section className="relative py-20 sm:py-28 bg-transparent border-t border-slate-100/50 overflow-hidden">
       {/* Decorative blurred glow elements */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-40">
         <div className="absolute top-12 left-1/4 w-[350px] h-[350px] bg-blue-300/20 rounded-full blur-[120px]" />

@@ -105,8 +105,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
     <div className="flex min-h-screen flex-col bg-transparent text-slate-800">
       <SiteHeader />
       <main className="flex-1">
-        {/* Breadcrumb */}
-        <div className="border-b border-slate-200 bg-white">
+        <div className="border-b border-slate-200/50 bg-transparent">
           <div className="mx-auto max-w-7xl px-4 py-4">
             <Link 
               href="/products" 

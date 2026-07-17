@@ -33,7 +33,7 @@ export function SiteHeader() {
       'sticky top-0 z-50 w-full transition-all duration-300',
       scrolled 
         ? 'bg-white/80 backdrop-blur-md shadow-md border-b border-slate-200/80' 
-        : 'bg-white border-b border-slate-200/80'
+        : 'bg-white/70 backdrop-blur-md border-b border-slate-200/50'
     )}>
       {/* Top bar - hidden on mobile */}
       <div className="hidden border-b border-slate-800 bg-slate-900 text-slate-300 lg:block">
