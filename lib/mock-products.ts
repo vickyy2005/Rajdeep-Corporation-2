@@ -2,15 +2,15 @@ import type { Product } from './types'
 
 export const MOCK_PRODUCTS: Product[] = [
   {
-    id: 'ms-pipe',
-    name: 'MS Pipe (Mild Steel)',
-    description: 'High-quality mild steel pipes suitable for construction, plumbing, and industrial applications. Available in various sizes and thicknesses.',
-    category: 'pipes',
+    id: 'di-pipe-socket',
+    name: 'DI Pipe Socket Spigot (Class K9)',
+    description: 'High-tensile ductile iron pipes with socket and spigot joints. Lined with cement mortar for water transmission.',
+    category: 'di-pipes',
     specifications: {
-      material: 'Mild Steel',
-      sizes: '15mm - 300mm',
-      thickness: '1.5mm - 10mm',
-      length: '6m standard'
+      material: 'Ductile Iron',
+      class: 'Class K9 / K7',
+      sizes: '80mm - 1000mm',
+      standard: 'IS 8329 / ISO 2531'
     },
     image_url: null,
     is_active: true,
@@ -18,15 +18,15 @@ export const MOCK_PRODUCTS: Product[] = [
     updated_at: new Date().toISOString()
   },
   {
-    id: 'gi-pipe',
-    name: 'GI Pipe (Galvanized Iron)',
-    description: 'Corrosion-resistant galvanized iron pipes ideal for water supply and gas lines. Hot-dip galvanized for maximum durability.',
-    category: 'pipes',
+    id: 'ci-pipe-flanged',
+    name: 'CI Double Flanged Pipe',
+    description: 'Centrifugally cast double flanged cast iron pipes for sewage and vertical lines. High durability and corrosion resistance.',
+    category: 'ci-pipes',
     specifications: {
-      material: 'Galvanized Iron',
-      sizes: '15mm - 150mm',
-      coating: 'Hot-dip galvanized',
-      standard: 'IS 1239'
+      material: 'Cast Iron (Grey Iron)',
+      sizes: '80mm - 600mm',
+      length: '2.75m / 5.5m',
+      standard: 'IS 7181 / IS 1536'
     },
     image_url: null,
     is_active: true,
@@ -34,15 +34,15 @@ export const MOCK_PRODUCTS: Product[] = [
     updated_at: new Date().toISOString()
   },
   {
-    id: 'ss-pipe',
-    name: 'SS Pipe (Stainless Steel)',
-    description: 'Premium stainless steel pipes for food processing, pharmaceutical, and high-corrosion environments.',
-    category: 'pipes',
+    id: 'ci-earthing-pipe',
+    name: 'CI Earthing Pipe with Funnel',
+    description: 'Cast iron earthing pipes equipped with funnels and clamp arrangements. Designed for low soil resistivity earthing.',
+    category: 'ci-earthing-pipes',
     specifications: {
-      material: 'SS 304/316',
-      sizes: '6mm - 200mm',
-      finish: 'Mirror/Matte',
-      schedule: 'SCH 10/40/80'
+      material: 'Cast Iron',
+      sizes: '100mm / 150mm Diameter',
+      length: '2m / 3m standard',
+      components: 'Includes funnel & clamp'
     },
     image_url: null,
     is_active: true,
@@ -50,15 +50,47 @@ export const MOCK_PRODUCTS: Product[] = [
     updated_at: new Date().toISOString()
   },
   {
-    id: 'gi-elbow',
-    name: 'GI Elbow',
-    description: 'Galvanized iron elbows for corrosion-resistant pipe fittings in water and gas applications.',
-    category: 'fittings',
+    id: 'sgp-pipe-water',
+    name: 'SGP Carbon Steel Pipe',
+    description: 'SGP steel pipes suitable for low-pressure steam, water, gas, air, and oil systems. Available in black or galvanized finish.',
+    category: 'sgp-pipes',
     specifications: {
-      material: 'Galvanized Iron',
-      angles: '45°, 90°',
-      sizes: '15mm - 150mm',
-      threading: 'BSP/NPT'
+      material: 'Carbon Steel (SGP)',
+      sizes: '15A - 300A',
+      finish: 'Black / Galvanized',
+      standard: 'JIS G3452'
+    },
+    image_url: null,
+    is_active: true,
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString()
+  },
+  {
+    id: 'di-elbow-fitting',
+    name: 'DI Socket Bend 90°',
+    description: 'Ductile iron socket elbow fitting designed for 90-degree directional changes in water utility pipelines.',
+    category: 'di-fittings',
+    specifications: {
+      material: 'Ductile Iron',
+      angle: '90 Degree',
+      pressure: 'PN10 / PN16 / PN25',
+      coating: 'Epoxy powder coated'
+    },
+    image_url: null,
+    is_active: true,
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString()
+  },
+  {
+    id: 'di-flanged-tee',
+    name: 'DI All Flanged Tee',
+    description: 'Ductile iron flanged tee fitting for branching piping systems. High pressure capacity and leak-proof joints.',
+    category: 'di-fittings',
+    specifications: {
+      material: 'Ductile Iron',
+      sizes: '80mm - 600mm',
+      connection: 'Flanged PN16',
+      coating: 'Blue Epoxy'
     },
     image_url: null,
     is_active: true,
@@ -130,13 +162,45 @@ export const MOCK_PRODUCTS: Product[] = [
     updated_at: new Date().toISOString()
   },
   {
-    id: 'all-flange-cross-tee',
-    name: 'All Flange Cross Tee',
-    description: 'High-quality Cast Iron fitting designed for industrial and B2B piping networks.',
-    category: 'fittings',
+    id: 'rubber-ring-gasket',
+    name: 'Rubber Gasket Ring',
+    description: 'Premium elastomeric EPDM rubber rings for push-on socket joints of ductile iron pipes.',
+    category: 'ring',
     specifications: {
-      "material": "Cast Iron",
-      "type": "CI Fitting"
+      material: 'EPDM Rubber',
+      sizes: '80mm - 1000mm',
+      application: 'Water joint seal',
+      standard: 'EN 681-1 / IS 5382'
+    },
+    image_url: null,
+    is_active: true,
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString()
+  },
+  {
+    id: 'woltman-water-meter',
+    name: 'Woltman Water Flow Meter',
+    description: 'Industrial Woltman type bulk water flow meters with magnetic drive. Suitable for high-flow rate pipelines.',
+    category: 'water-meter',
+    specifications: {
+      type: 'Woltman Turbine',
+      sizes: '50mm - 300mm',
+      accuracy: 'Class B',
+      pressure: 'PN16'
+    },
+    image_url: null,
+    is_active: true,
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString()
+  },
+  {
+    id: 'all-flange-cross-tee',
+    name: 'CI All Flange Cross Tee',
+    description: 'High-quality Cast Iron cross tee fitting designed for industrial and B2B piping networks.',
+    category: 'ci-fittings',
+    specifications: {
+      material: 'Cast Iron',
+      type: 'CI Fitting'
     },
     image_url: '/images/All Flange Cross Tee.jpeg',
     is_active: true,
@@ -145,12 +209,12 @@ export const MOCK_PRODUCTS: Product[] = [
   },
   {
     id: 'all-socket-cross-tee',
-    name: 'All Socket Cross Tee',
-    description: 'High-quality Cast Iron fitting designed for industrial and B2B piping networks.',
-    category: 'fittings',
+    name: 'CI All Socket Cross Tee',
+    description: 'High-quality Cast Iron socket cross tee fitting designed for industrial and B2B piping networks.',
+    category: 'ci-fittings',
     specifications: {
-      "material": "Cast Iron",
-      "type": "CI Fitting"
+      material: 'Cast Iron',
+      type: 'CI Fitting'
     },
     image_url: '/images/All Socket Cross Tee.jpg',
     is_active: true,
@@ -159,12 +223,12 @@ export const MOCK_PRODUCTS: Product[] = [
   },
   {
     id: 'ci-duckfoot-bend',
-    name: 'CI Duckfoot Bend',
-    description: 'High-quality Cast Iron fitting designed for industrial and B2B piping networks.',
-    category: 'fittings',
+    name: 'CI Duckfoot Bend Fitting',
+    description: 'High-quality Cast Iron duckfoot bend fitting designed for industrial and B2B piping networks.',
+    category: 'ci-fittings',
     specifications: {
-      "material": "Cast Iron",
-      "type": "CI Fitting"
+      material: 'Cast Iron',
+      type: 'CI Fitting'
     },
     image_url: '/images/CI Duckfoot Bend.jpg',
     is_active: true,
@@ -175,10 +239,10 @@ export const MOCK_PRODUCTS: Product[] = [
     id: 'ci-mj-hydrant-tee-1',
     name: 'CI MJ Hydrant Tee 1',
     description: 'High-quality Cast Iron fitting designed for industrial and B2B piping networks.',
-    category: 'fittings',
+    category: 'ci-fittings',
     specifications: {
-      "material": "Cast Iron",
-      "type": "CI Fitting"
+      material: 'Cast Iron',
+      type: 'CI Fitting'
     },
     image_url: '/images/CI MJ Hyadrant Tee-1.jpeg',
     is_active: true,
@@ -189,10 +253,10 @@ export const MOCK_PRODUCTS: Product[] = [
     id: 'ci-mj-hydrant-tee-2',
     name: 'CI MJ Hydrant Tee 2',
     description: 'High-quality Cast Iron fitting designed for industrial and B2B piping networks.',
-    category: 'fittings',
+    category: 'ci-fittings',
     specifications: {
-      "material": "Cast Iron",
-      "type": "CI Fitting"
+      material: 'Cast Iron',
+      type: 'CI Fitting'
     },
     image_url: '/images/CI MJ Hyadrant Tee-2.jpg',
     is_active: true,
@@ -201,12 +265,12 @@ export const MOCK_PRODUCTS: Product[] = [
   },
   {
     id: 'cid-joint',
-    name: 'CID Joint',
-    description: 'High-quality Cast Iron fitting designed for industrial and B2B piping networks.',
-    category: 'fittings',
+    name: 'CI CID Joint',
+    description: 'High-quality Cast Iron coupling CID joint designed for industrial and B2B piping networks.',
+    category: 'ci-fittings',
     specifications: {
-      "material": "Cast Iron",
-      "type": "CI Fitting"
+      material: 'Cast Iron',
+      type: 'CI Fitting'
     },
     image_url: '/images/CID Joint.jpg',
     is_active: true,
@@ -215,12 +279,12 @@ export const MOCK_PRODUCTS: Product[] = [
   },
   {
     id: 'collar-coupling',
-    name: 'Collar Coupling',
-    description: 'High-quality Cast Iron fitting designed for industrial and B2B piping networks.',
-    category: 'fittings',
+    name: 'CI Collar Coupling',
+    description: 'High-quality Cast Iron collar coupling designed for industrial and B2B piping networks.',
+    category: 'ci-fittings',
     specifications: {
-      "material": "Cast Iron",
-      "type": "CI Fitting"
+      material: 'Cast Iron',
+      type: 'CI Fitting'
     },
     image_url: '/images/Collar Coupling.jpg',
     is_active: true,
@@ -229,12 +293,12 @@ export const MOCK_PRODUCTS: Product[] = [
   },
   {
     id: 'flange-adaptor',
-    name: 'Flange Adaptor',
-    description: 'High-quality Cast Iron fitting designed for industrial and B2B piping networks.',
-    category: 'fittings',
+    name: 'CI Flange Adaptor',
+    description: 'High-quality Cast Iron flange adaptor designed for industrial and B2B piping networks.',
+    category: 'ci-fittings',
     specifications: {
-      "material": "Cast Iron",
-      "type": "CI Fitting"
+      material: 'Cast Iron',
+      type: 'CI Fitting'
     },
     image_url: '/images/Flange Adaptor.jpeg',
     is_active: true,
@@ -243,12 +307,12 @@ export const MOCK_PRODUCTS: Product[] = [
   },
   {
     id: 'mj-bend',
-    name: 'MJ Bend',
-    description: 'High-quality Cast Iron fitting designed for industrial and B2B piping networks.',
-    category: 'fittings',
+    name: 'CI MJ Bend',
+    description: 'High-quality Cast Iron MJ bend fitting designed for industrial and B2B piping networks.',
+    category: 'ci-fittings',
     specifications: {
-      "material": "Cast Iron",
-      "type": "CI Fitting"
+      material: 'Cast Iron',
+      type: 'CI Fitting'
     },
     image_url: '/images/MJ Bend.jpg',
     is_active: true,
@@ -257,12 +321,12 @@ export const MOCK_PRODUCTS: Product[] = [
   },
   {
     id: 'mj-end-cap',
-    name: 'MJ End Cap',
-    description: 'High-quality Cast Iron fitting designed for industrial and B2B piping networks.',
-    category: 'fittings',
+    name: 'CI MJ End Cap',
+    description: 'High-quality Cast Iron MJ end cap designed for industrial and B2B piping networks.',
+    category: 'ci-fittings',
     specifications: {
-      "material": "Cast Iron",
-      "type": "CI Fitting"
+      material: 'Cast Iron',
+      type: 'CI Fitting'
     },
     image_url: '/images/MJ End Cap.jpeg',
     is_active: true,
@@ -271,12 +335,12 @@ export const MOCK_PRODUCTS: Product[] = [
   },
   {
     id: 'mj-reducer',
-    name: 'MJ Reducer',
-    description: 'High-quality Cast Iron fitting designed for industrial and B2B piping networks.',
-    category: 'fittings',
+    name: 'CI MJ Reducer',
+    description: 'High-quality Cast Iron MJ reducer designed for industrial and B2B piping networks.',
+    category: 'ci-fittings',
     specifications: {
-      "material": "Cast Iron",
-      "type": "CI Fitting"
+      material: 'Cast Iron',
+      type: 'CI Fitting'
     },
     image_url: '/images/MJ Reducer.jpg',
     is_active: true,

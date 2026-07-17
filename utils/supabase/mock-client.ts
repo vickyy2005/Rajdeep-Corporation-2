@@ -127,7 +127,17 @@ export function createMockClient() {
               let list = table === 'products' ? db.products : table === 'rfq_requests' ? db.rfqs : [{ id: 'offline-admin-id', is_super_admin: true }]
               if (filterStatus) list = list.filter((x: any) => x.status === filterStatus)
               if (filterId) list = list.filter((x: any) => x.id === filterId)
-              if (filterCategory) list = list.filter((x: any) => x.category === filterCategory)
+              if (filterCategory) {
+                if (filterCategory === 'pipes') {
+                  list = list.filter((x: any) => ['pipes', 'di-pipes', 'ci-pipes', 'ci-earthing-pipes', 'sgp-pipes'].includes(x.category))
+                } else if (filterCategory === 'fittings') {
+                  list = list.filter((x: any) => ['fittings', 'di-fittings', 'ci-fittings'].includes(x.category))
+                } else if (filterCategory === 'other') {
+                  list = list.filter((x: any) => ['other', 'ring', 'flanges', 'water-meter'].includes(x.category))
+                } else {
+                  list = list.filter((x: any) => x.category === filterCategory)
+                }
+              }
               return { data: list[0] || null, error: list.length === 0 ? { message: 'Row not found' } : null }
             },
             then: async (resolve: any) => {
@@ -135,7 +145,17 @@ export function createMockClient() {
               let list = table === 'products' ? db.products : table === 'rfq_requests' ? db.rfqs : [{ id: 'offline-admin-id', is_super_admin: true }]
               if (filterStatus) list = list.filter((x: any) => x.status === filterStatus)
               if (filterId) list = list.filter((x: any) => x.id === filterId)
-              if (filterCategory) list = list.filter((x: any) => x.category === filterCategory)
+              if (filterCategory) {
+                if (filterCategory === 'pipes') {
+                  list = list.filter((x: any) => ['pipes', 'di-pipes', 'ci-pipes', 'ci-earthing-pipes', 'sgp-pipes'].includes(x.category))
+                } else if (filterCategory === 'fittings') {
+                  list = list.filter((x: any) => ['fittings', 'di-fittings', 'ci-fittings'].includes(x.category))
+                } else if (filterCategory === 'other') {
+                  list = list.filter((x: any) => ['other', 'ring', 'flanges', 'water-meter'].includes(x.category))
+                } else {
+                  list = list.filter((x: any) => x.category === filterCategory)
+                }
+              }
               if (limitCount !== null) list = list.slice(0, limitCount)
               
               if (head && count === 'exact') {

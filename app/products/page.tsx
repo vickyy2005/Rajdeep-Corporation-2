@@ -8,7 +8,7 @@ import { ProductFilters } from '@/components/products/product-filters'
 import { Spinner } from '@/components/ui/spinner'
 import { Package } from 'lucide-react'
 import { MOCK_PRODUCTS } from '@/lib/mock-products'
-import type { Product, Category } from '@/lib/types'
+import { Product, Category, CATEGORIES } from '@/lib/types'
 import type { Metadata } from 'next'
 import { ParticleBackground } from '@/components/particle-background'
 import { ScrollReveal } from '@/components/scroll-reveal'
@@ -34,8 +34,17 @@ async function ProductGrid({ category, search }: { category?: string; search?: s
       .select('*')
       .order('name')
 
-    if (category && ['pipes', 'fittings', 'valves', 'flanges'].includes(category)) {
-      query = query.eq('category', category as Category)
+    // Category filtering supporting subcategories
+    if (category) {
+      if (category === 'pipes') {
+        query = query.in('category', ['pipes', 'di-pipes', 'ci-pipes', 'ci-earthing-pipes', 'sgp-pipes'])
+      } else if (category === 'fittings') {
+        query = query.in('category', ['fittings', 'di-fittings', 'ci-fittings'])
+      } else if (category === 'other') {
+        query = query.in('category', ['other', 'ring', 'flanges', 'water-meter'])
+      } else {
+        query = query.eq('category', category)
+      }
     }
 
     if (search) {
@@ -57,13 +66,31 @@ async function ProductGrid({ category, search }: { category?: string; search?: s
   // Fallback to mock products if database is empty or failed
   if (hasError || !products || products.length === 0) {
     let mockProducts = MOCK_PRODUCTS
-    if (category && ['pipes', 'fittings', 'valves', 'flanges'].includes(category)) {
-      mockProducts = mockProducts.filter(p => p.category === category)
+    if (category) {
+      if (category === 'pipes') {
+        mockProducts = mockProducts.filter(p => ['pipes', 'di-pipes', 'ci-pipes', 'ci-earthing-pipes', 'sgp-pipes'].includes(p.category))
+      } else if (category === 'fittings') {
+        mockProducts = mockProducts.filter(p => ['fittings', 'di-fittings', 'ci-fittings'].includes(p.category))
+      } else if (category === 'other') {
+        mockProducts = mockProducts.filter(p => ['other', 'ring', 'flanges', 'water-meter'].includes(p.category))
+      } else {
+        mockProducts = mockProducts.filter(p => p.category === category)
+      }
     }
     if (search) {
       mockProducts = mockProducts.filter(p => p.name.toLowerCase().includes(search.toLowerCase()))
     }
     products = mockProducts
+  }
+
+  const getCategoryLabel = (val?: string) => {
+    if (!val) return ''
+    for (const cat of CATEGORIES) {
+      if (cat.value === val) return cat.label
+      const sub = cat.subcategories?.find(s => s.value === val)
+      if (sub) return sub.label
+    }
+    return val
   }
 
   if (products.length === 0) {
@@ -82,7 +109,7 @@ async function ProductGrid({ category, search }: { category?: string; search?: s
     <>
       <p className="text-sm text-muted-foreground mb-6 animate-fade-in">
         Showing {products.length} product{products.length !== 1 ? 's' : ''}
-        {category && ` in ${category}`}
+        {category && ` in ${getCategoryLabel(category)}`}
         {search && ` matching "${search}"`}
       </p>
       <div className="grid gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">

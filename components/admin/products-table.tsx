@@ -46,9 +46,33 @@ export function ProductsTable({ products }: ProductsTableProps) {
 
   const categoryColors = {
     pipes: 'bg-blue-50 text-blue-700 border-blue-100 border',
-    fittings: 'bg-emerald-50 text-emerald-705 border-emerald-100 border',
+    fittings: 'bg-emerald-50 text-emerald-700 border-emerald-100 border',
     valves: 'bg-amber-50 text-amber-750 border-amber-100 border',
     flanges: 'bg-violet-50 text-violet-755 border-violet-100 border',
+  }
+
+  const resolveCategoryKey = (cat: string) => {
+    if (['pipes', 'di-pipes', 'ci-pipes', 'ci-earthing-pipes', 'sgp-pipes'].includes(cat)) return 'pipes'
+    if (['fittings', 'di-fittings', 'ci-fittings'].includes(cat)) return 'fittings'
+    if (cat === 'valves') return 'valves'
+    return 'flanges'
+  }
+
+  const getCategoryLabel = (val: string) => {
+    if (val === 'pipes') return 'Pipes'
+    if (val === 'di-pipes') return 'DI Pipes'
+    if (val === 'ci-pipes') return 'CI Pipes'
+    if (val === 'ci-earthing-pipes') return 'CI Earthing Pipes'
+    if (val === 'sgp-pipes') return 'SGP Pipes'
+    if (val === 'fittings') return 'Fittings'
+    if (val === 'di-fittings') return 'DI Fittings'
+    if (val === 'ci-fittings') return 'CI Fittings'
+    if (val === 'valves') return 'Valves'
+    if (val === 'other') return 'Other'
+    if (val === 'ring') return 'Ring'
+    if (val === 'flanges') return 'Flanges'
+    if (val === 'water-meter') return 'Water Meter'
+    return val
   }
 
   const handleToggleActive = async (product: Product) => {
@@ -140,8 +164,8 @@ export function ProductsTable({ products }: ProductsTableProps) {
                   </div>
                 </TableCell>
                 <TableCell>
-                  <Badge className={categoryColors[product.category]}>
-                    {product.category.charAt(0).toUpperCase() + product.category.slice(1)}
+                  <Badge className={categoryColors[resolveCategoryKey(product.category)] || categoryColors.pipes}>
+                    {getCategoryLabel(product.category)}
                   </Badge>
                 </TableCell>
                 <TableCell>

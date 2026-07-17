@@ -8,6 +8,13 @@ import { Input } from '@/components/ui/input'
 import { CATEGORIES } from '@/lib/types'
 import { cn } from '@/lib/utils'
 
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu'
+
 interface ProductFiltersProps {
   currentCategory?: string
   currentSearch?: string
@@ -55,6 +62,15 @@ export function ProductFilters({ currentCategory, currentSearch }: ProductFilter
     startTransition(() => {
       router.push('/products')
     })
+  }
+
+  const getCategoryLabel = (val: string) => {
+    for (const cat of CATEGORIES) {
+      if (cat.value === val) return cat.label
+      const sub = cat.subcategories?.find(s => s.value === val)
+      if (sub) return sub.label
+    }
+    return val
   }
 
   const hasFilters = currentCategory || currentSearch
@@ -106,27 +122,72 @@ export function ProductFilters({ currentCategory, currentSearch }: ProductFilter
       {/* Category filters - Desktop always visible, mobile collapsible */}
       <div className={cn(
         'transition-all duration-300 overflow-hidden',
-        showFilters ? 'max-h-40 opacity-100' : 'max-h-0 opacity-0 lg:max-h-40 lg:opacity-100'
+        showFilters ? 'max-h-48 opacity-100' : 'max-h-0 opacity-0 lg:max-h-48 lg:opacity-100'
       )}>
         <div className="flex flex-wrap items-center gap-2 py-2">
           <span className="text-sm font-semibold text-slate-500 mr-2">Categories:</span>
-          {CATEGORIES.map((category) => (
-            <Button
-              key={category.value}
-              variant={currentCategory === category.value ? 'default' : 'outline'}
-              size="sm"
-              onClick={() => handleCategoryClick(category.value)}
-              disabled={isPending}
-              className={cn(
-                'transition-all duration-200 font-semibold',
-                currentCategory === category.value 
-                  ? 'bg-blue-600 text-white shadow-md hover:bg-blue-700 border-blue-600' 
-                  : 'border-slate-200 text-slate-600 bg-white hover:bg-slate-50 hover:border-slate-300 hover:text-slate-800'
-              )}
-            >
-              {category.label}
-            </Button>
-          ))}
+          {CATEGORIES.map((category) => {
+            const hasSub = !!category.subcategories
+            const isMainActive = currentCategory === category.value || 
+              (category.subcategories?.some(sub => sub.value === currentCategory) ?? false)
+
+            if (hasSub) {
+              return (
+                <DropdownMenu key={category.value}>
+                  <DropdownMenuTrigger asChild>
+                    <Button
+                      variant={isMainActive ? 'default' : 'outline'}
+                      size="sm"
+                      disabled={isPending}
+                      className={cn(
+                        'transition-all duration-200 font-semibold gap-1.5',
+                        isMainActive 
+                          ? 'bg-blue-600 text-white shadow-md hover:bg-blue-700 border-blue-600 font-extrabold' 
+                          : 'border-slate-200 text-slate-600 bg-white hover:bg-slate-50 hover:border-slate-300 hover:text-slate-800'
+                      )}
+                    >
+                      {category.label}
+                      <span className="text-[9px] opacity-75">▼</span>
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent className="w-48 bg-white border border-slate-200/80 rounded-xl shadow-lg p-1 z-50">
+                    {category.subcategories?.map((sub) => (
+                      <DropdownMenuItem
+                        key={sub.value}
+                        onClick={() => updateFilters(sub.value, currentSearch)}
+                        className={cn(
+                          "cursor-pointer rounded-lg px-3 py-2 text-xs font-semibold transition-all duration-200",
+                          currentCategory === sub.value
+                            ? "bg-blue-50 text-blue-700 font-extrabold"
+                            : "text-slate-700 hover:bg-slate-50 hover:text-slate-900"
+                        )}
+                      >
+                        {sub.label}
+                      </DropdownMenuItem>
+                    ))}
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              )
+            }
+
+            return (
+              <Button
+                key={category.value}
+                variant={currentCategory === category.value ? 'default' : 'outline'}
+                size="sm"
+                onClick={() => handleCategoryClick(category.value)}
+                disabled={isPending}
+                className={cn(
+                  'transition-all duration-200 font-semibold',
+                  currentCategory === category.value 
+                    ? 'bg-blue-600 text-white shadow-md hover:bg-blue-700 border-blue-600 font-extrabold' 
+                    : 'border-slate-200 text-slate-600 bg-white hover:bg-slate-50 hover:border-slate-300 hover:text-slate-800'
+                )}
+              >
+                {category.label}
+              </Button>
+            )
+          })}
           {hasFilters && (
             <Button
               variant="ghost"
@@ -148,7 +209,7 @@ export function ProductFilters({ currentCategory, currentSearch }: ProductFilter
           <span className="text-xs text-slate-500">Active:</span>
           {currentCategory && (
             <span className="inline-flex items-center gap-1 bg-blue-50 text-blue-600 border border-blue-100 text-xs px-2.5 py-1 rounded-full font-medium">
-              {currentCategory}
+              {getCategoryLabel(currentCategory)}
               <button onClick={() => handleCategoryClick(currentCategory)} className="hover:bg-blue-100 rounded-full p-0.5 ml-1">
                 <X className="h-3 w-3" />
               </button>

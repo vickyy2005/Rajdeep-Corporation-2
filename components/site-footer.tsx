@@ -7,7 +7,7 @@ const footerLinks = {
     { name: 'Pipes', href: '/products?category=pipes' },
     { name: 'Fittings', href: '/products?category=fittings' },
     { name: 'Valves', href: '/products?category=valves' },
-    { name: 'Flanges', href: '/products?category=flanges' },
+    { name: 'Other Categories', href: '/products?category=other' },
   ],
   company: [
     { name: 'About Us', href: '/about' },

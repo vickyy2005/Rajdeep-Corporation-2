@@ -40,7 +40,31 @@ const categoryConfig = {
 }
 
 export function ProductCard({ product }: ProductCardProps) {
-  const config = categoryConfig[product.category] || categoryConfig.pipes
+  const resolveCategoryKey = (cat: string) => {
+    if (['pipes', 'di-pipes', 'ci-pipes', 'ci-earthing-pipes', 'sgp-pipes'].includes(cat)) return 'pipes'
+    if (['fittings', 'di-fittings', 'ci-fittings'].includes(cat)) return 'fittings'
+    if (cat === 'valves') return 'valves'
+    return 'flanges'
+  }
+  
+  const getCategoryLabel = (val: string) => {
+    if (val === 'pipes') return 'Pipes'
+    if (val === 'di-pipes') return 'DI Pipes'
+    if (val === 'ci-pipes') return 'CI Pipes'
+    if (val === 'ci-earthing-pipes') return 'CI Earthing Pipes'
+    if (val === 'sgp-pipes') return 'SGP Pipes'
+    if (val === 'fittings') return 'Fittings'
+    if (val === 'di-fittings') return 'DI Fittings'
+    if (val === 'ci-fittings') return 'CI Fittings'
+    if (val === 'valves') return 'Valves'
+    if (val === 'other') return 'Other'
+    if (val === 'ring') return 'Ring'
+    if (val === 'flanges') return 'Flanges'
+    if (val === 'water-meter') return 'Water Meter'
+    return val
+  }
+
+  const config = categoryConfig[resolveCategoryKey(product.category)] || categoryConfig.pipes
 
   return (
     <div className="group block h-full hover:-translate-y-1.5 transition-all duration-500">
@@ -79,7 +103,7 @@ export function ProductCard({ product }: ProductCardProps) {
                 "absolute left-3 top-3 border shadow-sm font-extrabold text-[10px] py-0.5 px-2.5 rounded-md uppercase tracking-wider",
                 config.bg
               )}>
-                {product.category}
+                {getCategoryLabel(product.category)}
               </Badge>
 
               {product.featured && (

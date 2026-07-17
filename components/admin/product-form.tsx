@@ -26,13 +26,23 @@ import { CATEGORIES, type Product } from '@/lib/types'
 
 const productSchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters'),
-  category: z.enum(['pipes', 'fittings', 'valves', 'flanges']),
+  category: z.string().min(1, 'Category is required'),
   description: z.string().min(10, 'Description must be at least 10 characters'),
   image_url: z.string().optional().or(z.literal('')),
   is_active: z.boolean(),
 })
 
 type ProductFormData = z.infer<typeof productSchema>
+
+const SELECTABLE_CATEGORIES = CATEGORIES.flatMap(cat => {
+  if (cat.subcategories) {
+    return cat.subcategories.map(sub => ({
+      value: sub.value,
+      label: sub.value === cat.value ? `${cat.label} (Generic)` : `${cat.label} → ${sub.label}`
+    }))
+  }
+  return [{ value: cat.value, label: cat.label }]
+})
 
 interface ProductFormProps {
   product?: Product
@@ -303,7 +313,7 @@ export function ProductForm({ product }: ProductFormProps) {
                   <SelectValue placeholder="Select category" />
                 </SelectTrigger>
                 <SelectContent>
-                  {CATEGORIES.map((cat) => (
+                  {SELECTABLE_CATEGORIES.map((cat) => (
                     <SelectItem key={cat.value} value={cat.value}>
                       {cat.label}
                     </SelectItem>
