@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { useState, useEffect } from 'react'
+import { usePathname } from 'next/navigation'
 import { Menu, X, Phone, Mail, ChevronRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
@@ -17,6 +18,7 @@ const navigation = [
 export function SiteHeader() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const pathname = usePathname()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -75,15 +77,29 @@ export function SiteHeader() {
 
         {/* Desktop navigation */}
         <div className="hidden items-center gap-1 lg:flex">
-          {navigation.map((item) => (
-            <Link
-              key={item.name}
-              href={item.href}
-              className="relative px-4 py-2 text-sm font-semibold text-slate-600 transition-colors hover:text-blue-600 rounded-lg hover:bg-slate-50"
-            >
-              {item.name}
-            </Link>
-          ))}
+          {navigation.map((item) => {
+            const isActive = pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href))
+            return (
+              <Link
+                key={item.name}
+                href={item.href}
+                className={cn(
+                  "relative group px-4 py-2.5 text-sm font-semibold transition-all duration-300",
+                  isActive 
+                    ? "text-blue-600 font-bold" 
+                    : "text-slate-600 hover:text-blue-600"
+                )}
+              >
+                <span>{item.name}</span>
+                <span className={cn(
+                  "absolute bottom-1 left-4 right-4 h-[2px] bg-blue-600 transition-transform duration-300 rounded-full",
+                  isActive 
+                    ? "scale-x-100" 
+                    : "scale-x-0 group-hover:scale-x-100 origin-left"
+                )} />
+              </Link>
+            )
+          })}
           <Button asChild className="ml-4 bg-blue-600 text-white hover:bg-blue-700 shadow-md hover:shadow-blue-500/10 transition-all duration-300 hover:-translate-y-0.5 font-bold">
             <Link href="/contact">
               Request B2B Quote
