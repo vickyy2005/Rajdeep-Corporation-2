@@ -267,3 +267,98 @@ html {
   outline: 2px solid var(--ring);
   outline-offset: 2px;
 }
+
+/* Neumorphic UI styles */
+.neumorphic-card {
+  background: var(--card) !important;
+  border: none !important;
+  box-shadow: 
+    8px 8px 20px oklch(0.9 0.01 250), 
+    -8px -8px 20px oklch(1 0 0) !important;
+}
+.neumorphic-card-hover {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.neumorphic-card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 
+    12px 12px 28px oklch(0.85 0.01 250), 
+    -12px -12px 28px oklch(1 0 0) !important;
+}
+.neumorphic-input {
+  background: oklch(0.985 0.002 247) !important;
+  border: 1px solid oklch(0.92 0.01 250) !important;
+  box-shadow: 
+    inset 2px 2px 5px oklch(0.9 0.01 250), 
+    inset -2px -2px 5px oklch(1 0 0) !important;
+  transition: all 0.3s ease;
+}
+.neumorphic-input:focus {
+  box-shadow: 
+    inset 1px 1px 3px oklch(0.9 0.01 250), 
+    inset -1px -1px 3px oklch(1 0 0),
+    0 0 12px oklch(0.45 0.12 250 / 0.15) !important;
+  border-color: var(--primary) !important;
+  outline: none !important;
+}
+.neumorphic-btn {
+  background: var(--primary) !important;
+  color: var(--primary-foreground) !important;
+  box-shadow: 
+    4px 4px 10px oklch(0.85 0.01 250), 
+    -4px -4px 10px oklch(1 0 0) !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.neumorphic-btn:hover {
+  transform: translateY(-1px);
+  background: oklch(0.3 0.12 250) !important;
+  box-shadow: 
+    5px 5px 12px oklch(0.85 0.01 250), 
+    -5px -5px 12px oklch(1 0 0) !important;
+}
+.neumorphic-btn:active {
+  transform: translateY(1px);
+  box-shadow: 
+    inset 2px 2px 5px oklch(0.85 0.01 250), 
+    inset -2px -2px 5px oklch(1 0 0) !important;
+}
+
+/* Floating Particles and Blob animations */
+@keyframes float-particle-up {
+  0% {
+    transform: translateY(50px) translateX(0) scale(0.85);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.65;
+  }
+  85% {
+    opacity: 0.65;
+  }
+  100% {
+    transform: translateY(-290px) translateX(45px) scale(1.2);
+    opacity: 0;
+  }
+}
+
+@keyframes blob-drift {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(40px, -60px) scale(1.15);
+  }
+  66% {
+    transform: translate(-30px, 30px) scale(0.9);
+  }
+}
+
+.animate-particle {
+  animation: float-particle-up 14s linear infinite;
+}
+
+.animate-blob {
+  animation: blob-drift 24s ease-in-out infinite;
+}
+
+

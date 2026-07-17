@@ -10,6 +10,7 @@ import { Package } from 'lucide-react'
 import { MOCK_PRODUCTS } from '@/lib/mock-products'
 import type { Product, Category } from '@/lib/types'
 import type { Metadata } from 'next'
+import { ParticleBackground } from '@/components/particle-background'
 
 export const metadata: Metadata = {
   title: 'Products | Rajdeep Corporation',
@@ -137,6 +138,7 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
           <div className="absolute inset-0 opacity-5">
             <div className="products-hero-pattern absolute inset-0" />
           </div>
+          <ParticleBackground density={25} speedMultiplier={0.25} />
           
           <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <h1 className="text-3xl font-bold tracking-tight text-white animate-fade-up">

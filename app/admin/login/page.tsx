@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
+import Image from 'next/image'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
@@ -74,9 +75,13 @@ export default function AdminLoginPage() {
     <div className="flex min-h-screen items-center justify-center bg-slate-50 px-4">
       <Card className="w-full max-w-md bg-white border-slate-200 shadow-xl">
         <CardHeader className="text-center">
-          <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-blue-600 to-indigo-700 text-white font-bold text-lg">
-            RC
-          </div>
+          <Image
+            src="/logo.png"
+            alt="Rajdeep Corporation Logo"
+            width={64}
+            height={64}
+            className="mx-auto mb-4 h-16 w-16 shrink-0 object-contain"
+          />
           <CardTitle className="text-2xl text-slate-900">{mode === 'signin' ? 'Admin Login' : 'Create Admin Account'}</CardTitle>
           <CardDescription className="text-slate-500 font-medium">
             {mode === 'signin'

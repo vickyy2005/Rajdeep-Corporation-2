@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { ArrowRight, Award, Users, Package, Clock, ShieldCheck, Heart, ThumbsUp, TrendingUp } from 'lucide-react'
 import { SiteHeader } from '@/components/site-header'
 import { SiteFooter } from '@/components/site-footer'
@@ -7,6 +8,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { cn } from '@/lib/utils'
 import type { Metadata } from 'next'
+import { ParticleBackground } from '@/components/particle-background'
 
 export const metadata: Metadata = {
   title: 'About Us | Rajdeep Corporation',
@@ -83,30 +85,49 @@ export default function AboutPage() {
     <div className="flex min-h-screen flex-col bg-slate-50 text-slate-800">
       <SiteHeader />
       <main className="flex-1">
-        {/* Page header */}
-        <section className="relative overflow-hidden bg-gradient-to-r from-slate-900 via-slate-850 to-slate-900 py-16 sm:py-20 border-b border-slate-950">
-          <div className="absolute inset-0 opacity-5">
-            <div className="products-hero-pattern absolute inset-0" />
-          </div>
-          <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center lg:text-left">
+        {/* Page header with floating particles and glassmorphic backdrop */}
+        <section className="relative overflow-hidden bg-[#0a0f1d] py-24 border-b border-slate-800/80">
+          {/* Animated Background Blobs */}
+          <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[400px] h-[400px] rounded-full bg-blue-600/25 blur-[120px] animate-blob pointer-events-none" />
+          <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-[400px] h-[400px] rounded-full bg-indigo-600/25 blur-[120px] animate-blob pointer-events-none" style={{ animationDelay: '-12s' }} />
+
+          {/* Glassmorphic overlay */}
+          <div className="absolute inset-0 bg-[#0a0f1d]/40 backdrop-blur-[10px] pointer-events-none" />
+
+          {/* Floating Particles */}
+          <ParticleBackground density={30} speedMultiplier={0.3} />
+
+          {/* Centered Content */}
+          <div className="relative mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center justify-center z-10">
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white animate-fade-down">
               About Rajdeep Corporation
             </h1>
-            <p className="mt-4 text-base sm:text-lg text-slate-300 max-w-2xl animate-fade-up">
+            <p className="mt-4 text-base sm:text-lg text-slate-200 max-w-2xl animate-fade-up stagger-1 font-medium leading-relaxed">
               Connecting Indian industries with high-performance piping solutions, fittings, and control valves.
             </p>
           </div>
         </section>
 
         {/* Story section */}
-        <section className="py-16 sm:py-24 bg-white">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="grid gap-12 lg:grid-cols-2 items-center">
-              <div className="animate-slide-in-left">
-                <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900">
-                  Our Legacy of Trust & Quality
-                </h2>
-                <div className="mt-6 space-y-4 text-slate-600 leading-relaxed text-sm sm:text-base font-medium">
+        <section className="py-16 sm:py-24 bg-white relative overflow-hidden">
+          {/* Subtle background graphic for simple styling */}
+          <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-50/20 rounded-full blur-3xl pointer-events-none" />
+          
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
+            <div className="grid gap-16 lg:grid-cols-12 items-center">
+              
+              {/* Left Column (Text & CTA) */}
+              <div className="lg:col-span-7 space-y-6">
+                <div className="space-y-3">
+                  <span className="inline-block text-xs font-bold text-blue-600 tracking-widest uppercase bg-blue-50 border border-blue-100/80 px-3 py-1 rounded-full animate-fade-down">
+                    Our History
+                  </span>
+                  <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 leading-tight animate-fade-up">
+                    Our Legacy of Trust & Quality
+                  </h2>
+                </div>
+                
+                <div className="space-y-5 text-slate-600 leading-relaxed text-sm sm:text-base font-medium animate-fade-up stagger-1">
                   <p>
                     Founded in 2005, Rajdeep Corporation began with a simple mission: to supply 
                     industrial piping products of uncompromised quality at competitive trade prices.
@@ -122,57 +143,68 @@ export default function AboutPage() {
                     proper specification alignment, complete certification documentation, and reliable scheduling.
                   </p>
                 </div>
-                <Button asChild className="mt-8 bg-blue-600 text-white hover:bg-blue-700 shadow-lg hover:shadow-blue-500/20 hover:-translate-y-0.5 transition-all duration-300 font-bold">
-                  <Link href="/contact">
-                    Work With Us
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </Link>
-                </Button>
-              </div>
-
-              {/* Graphical Card */}
-              <div className="animate-slide-in-right relative overflow-hidden rounded-3xl border border-slate-200/85 bg-white/80 p-8 shadow-2xl backdrop-blur-md flex flex-col gap-6 justify-between group hover:border-blue-400/30 transition-all duration-500">
-                {/* Background glowing effects */}
-                <div className="absolute top-0 right-0 -mr-16 -mt-16 w-48 h-48 rounded-full bg-blue-500/10 blur-3xl opacity-60 group-hover:opacity-100 transition-opacity duration-500" />
-                <div className="absolute bottom-0 left-0 -ml-16 -mb-16 w-48 h-48 rounded-full bg-indigo-500/10 blur-3xl opacity-60 group-hover:opacity-100 transition-opacity duration-500" />
                 
-                {/* Shield Header */}
-                <div className="flex items-center gap-4 relative z-10">
-                  <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-600 to-indigo-700 text-white font-extrabold text-2xl shadow-lg shadow-blue-500/20">
-                    RC
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-slate-900 text-lg">Rajdeep Corporation</h3>
-                    <p className="text-xs font-semibold text-blue-600 tracking-wider uppercase mt-0.5">ESTD. 2005</p>
-                  </div>
-                </div>
-
-                {/* Core trust tags */}
-                <div className="grid gap-3 grid-cols-1 sm:grid-cols-2 mt-4 relative z-10">
-                  <div className="flex items-center gap-3 p-3 rounded-xl border border-slate-100 bg-slate-50/50 hover:bg-white hover:shadow-md transition-all duration-300">
-                    <ShieldCheck className="h-5 w-5 text-emerald-500 shrink-0" />
-                    <span className="text-xs font-bold text-slate-700">ISO 9001:2015 Certified</span>
-                  </div>
-                  <div className="flex items-center gap-3 p-3 rounded-xl border border-slate-100 bg-slate-50/50 hover:bg-white hover:shadow-md transition-all duration-300">
-                    <Award className="h-5 w-5 text-blue-500 shrink-0" />
-                    <span className="text-xs font-bold text-slate-700">Top Industrial Brand</span>
-                  </div>
-                  <div className="flex items-center gap-3 p-3 rounded-xl border border-slate-100 bg-slate-50/50 hover:bg-white hover:shadow-md transition-all duration-300">
-                    <Package className="h-5 w-5 text-indigo-500 shrink-0" />
-                    <span className="text-xs font-bold text-slate-700">500+ Active SKUs</span>
-                  </div>
-                  <div className="flex items-center gap-3 p-3 rounded-xl border border-slate-100 bg-slate-50/50 hover:bg-white hover:shadow-md transition-all duration-300">
-                    <Users className="h-5 w-5 text-amber-500 shrink-0" />
-                    <span className="text-xs font-bold text-slate-700">1000+ B2B Clients</span>
-                  </div>
-                </div>
-
-                <div className="border-t border-slate-100 pt-4 mt-2 relative z-10">
-                  <p className="text-xs text-slate-500 leading-relaxed font-semibold italic text-center">
-                    "Delivering engineering compliance and high-durability products to India's major infrastructure initiatives."
-                  </p>
+                <div className="animate-fade-up stagger-2 pt-2">
+                  <Button asChild className="bg-blue-600 text-white hover:bg-blue-700 shadow-md hover:shadow-blue-500/10 hover:-translate-y-0.5 transition-all duration-300 font-bold px-6 py-5 rounded-xl">
+                    <Link href="/contact">
+                      Work With Us
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </Link>
+                  </Button>
                 </div>
               </div>
+
+              {/* Right Column (Minimalist Trust Card) */}
+              <div className="lg:col-span-5">
+                <div className="animate-scale-in relative overflow-hidden rounded-3xl border border-slate-100 bg-white p-8 shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-500 flex flex-col gap-6 justify-between group">
+                  {/* Background glowing effects */}
+                  <div className="absolute top-0 right-0 -mr-16 -mt-16 w-48 h-48 rounded-full bg-blue-500/5 blur-3xl opacity-60 group-hover:opacity-100 transition-opacity duration-500" />
+                  
+                  {/* Logo Header */}
+                  <div className="flex items-center gap-4 relative z-10 animate-fade-down" style={{ animationDelay: '300ms' }}>
+                    <Image
+                      src="/logo.png"
+                      alt="Rajdeep Corporation Logo"
+                      width={56}
+                      height={56}
+                      className="h-14 w-14 shrink-0 object-contain group-hover:scale-105 transition-transform duration-300"
+                    />
+                    <div>
+                      <h3 className="font-extrabold text-slate-900 text-base">Rajdeep Corporation</h3>
+                      <p className="text-[10px] font-bold text-blue-600 tracking-wider uppercase mt-0.5">ESTD. 2005</p>
+                    </div>
+                  </div>
+
+                  {/* Core trust tags */}
+                  <div className="grid gap-3 grid-cols-1 sm:grid-cols-2 mt-2 relative z-10">
+                    {[
+                      { icon: ShieldCheck, text: 'ISO 9001:2015 Certified', color: 'text-emerald-500 bg-emerald-50/50 border-emerald-100/30' },
+                      { icon: Award, text: 'Top Industrial Brand', color: 'text-blue-500 bg-blue-50/50 border-blue-100/30' },
+                      { icon: Package, text: '500+ Active SKUs', color: 'text-indigo-500 bg-indigo-50/50 border-indigo-100/30' },
+                      { icon: Users, text: '1000+ B2B Clients', color: 'text-amber-500 bg-amber-50/50 border-amber-100/30' }
+                    ].map((tag, idx) => {
+                      const IconComponent = tag.icon;
+                      return (
+                        <div 
+                          key={idx} 
+                          className={`flex items-center gap-3 p-3.5 rounded-2xl border ${tag.color} hover:bg-white hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 animate-fade-up`}
+                          style={{ animationDelay: `${500 + idx * 100}ms` }}
+                        >
+                          <IconComponent className="h-5 w-5 shrink-0" />
+                          <span className="text-xs font-bold text-slate-700">{tag.text}</span>
+                        </div>
+                      )
+                    })}
+                  </div>
+
+                  <div className="border-t border-slate-100 pt-5 mt-1 relative z-10 animate-fade-up" style={{ animationDelay: '900ms' }}>
+                    <p className="text-xs text-slate-500 leading-relaxed font-semibold italic text-center px-2">
+                      "Delivering engineering compliance and high-durability products to India's major infrastructure initiatives."
+                    </p>
+                  </div>
+                </div>
+              </div>
+              
             </div>
           </div>
         </section>

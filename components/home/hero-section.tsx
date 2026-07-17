@@ -1,8 +1,9 @@
 'use client'
 
 import Link from 'next/link'
-import { ArrowRight, CheckCircle, Sparkles, ShieldCheck, Truck } from 'lucide-react'
+import { ArrowRight, CheckCircle, Sparkles, ShieldCheck, Truck, Cpu, Award } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { ParticleBackground } from '@/components/particle-background'
 
 const features = [
   'Premium Quality Products',
@@ -12,118 +13,100 @@ const features = [
 ]
 
 const stats = [
-  { value: '500+', label: 'Products Catalog' },
-  { value: '18+', label: 'Years of Trust' },
-  { value: '1000+', label: 'Happy Clients' },
-  { value: '24/7', label: 'Inquiry Support' },
+  { value: '500+', label: 'Products Catalog', detail: 'ANSI/ASME standard stock' },
+  { value: '18+', label: 'Years of Trust', detail: 'Serving India since 2005' },
+  { value: '1000+', label: 'Happy Clients', detail: 'Enterprise trust' },
+  { value: '24/7', label: 'Inquiry Support', detail: 'Instant quote estimates' },
 ]
 
 export function HeroSection() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-blue-50 via-slate-50 to-slate-100 py-16 sm:py-24 lg:py-32 border-b border-slate-200/60">
-      {/* Animated background elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -left-10 top-10 h-72 w-72 rounded-full bg-blue-200/30 blur-3xl animate-float" />
-        <div className="absolute -right-10 bottom-10 h-96 w-96 rounded-full bg-indigo-200/20 blur-3xl animate-float stagger-3" />
+    <section className="relative overflow-hidden w-full min-h-[650px] lg:min-h-[750px] flex items-center justify-center py-16 sm:py-20 border-b border-slate-900/50">
+      {/* Background Image with Dark Overlay */}
+      <div className="absolute inset-0 z-0">
+        <img 
+          src="/images/hero-pipes-valves.png" 
+          alt="Industrial Pipes and Valves Background" 
+          className="h-full w-full object-cover"
+        />
+        {/* Dark overlay with slight blur for high contrast */}
+        <div className="absolute inset-0 bg-slate-950/75 backdrop-blur-[1px]" />
+        <ParticleBackground density={35} speedMultiplier={0.35} />
       </div>
-
-      {/* Grid pattern */}
-      <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
+      
+      {/* Dynamic Grid Background overlay */}
+      <div className="absolute inset-0 opacity-[0.03] pointer-events-none z-1">
         <div className="absolute inset-0" style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M54 48c-2 0-3 1-3 3s1 3 3 3 3-1 3-3-1-3-3-3zm-24 0c-2 0-3 1-3 3s1 3 3 3 3-1 3-3-1-3-3-3zm-24 0c-2 0-3 1-3 3s1 3 3 3 3-1 3-3-1-3-3-3zm0-24c-2 0-3 1-3 3s1 3 3 3 3-1 3-3-1-3-3-3zm24 0c-2 0-3 1-3 3s1 3 3 3 3-1 3-3-1-3-3-3zm24 0c-2 0-3 1-3 3s1 3 3 3 3-1 3-3-1-3-3-3zm0-24c-2 0-3 1-3 3s1 3 3 3 3-1 3-3-1-3-3-3zm-24 0c-2 0-3 1-3 3s1 3 3 3 3-1 3-3-1-3-3-3zm-24 0c-2 0-3 1-3 3s1 3 3 3 3-1 3-3-1-3-3-3z' fill='%23000000' fill-opacity='0.3' fill-rule='evenodd'/%3E%3C/svg%3E")`,
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M80 0v80h-80v-80h80zm-10 10h-60v60h60v-60z' fill='%23ffffff' fill-opacity='0.1'/%3E%3C/svg%3E")`,
         }} />
       </div>
 
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
-          {/* Left copy */}
-          <div className="text-center lg:text-left lg:col-span-7">
-            <div className="animate-fade-down inline-flex items-center gap-2 rounded-full bg-blue-50 border border-blue-100 px-4 py-1.5 text-xs font-semibold text-blue-600 mb-6 shadow-sm">
-              <Sparkles className="h-4 w-4 text-blue-600" />
-              <span>Leading industrial distributor in India</span>
-            </div>
-
-            <h1 className="animate-fade-up text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl md:text-6xl leading-tight">
-              Premium Quality
-              <span className="block text-blue-600 mt-1">Industrial Piping Solutions</span>
-            </h1>
-            
-            <p className="animate-fade-up stagger-1 mx-auto mt-6 max-w-xl text-base sm:text-lg text-slate-600 lg:mx-0 leading-relaxed font-medium">
-              Rajdeep Corporation is your trusted partner for high-grade industrial pipes, fittings, valves, and flanges. Sourcing from certified manufacturers to deliver quality, durability, and performance.
-            </p>
-
-            <div className="animate-fade-up stagger-2 mt-8 flex flex-col sm:flex-row flex-wrap justify-center gap-4 lg:justify-start">
-              <Button asChild size="lg" className="bg-blue-600 text-white hover:bg-blue-700 shadow-lg hover:shadow-blue-500/20 transition-all duration-300 hover:-translate-y-0.5 w-full sm:w-auto font-bold">
-                <Link href="/products">
-                  Explore Products Catalog
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Link>
-              </Button>
-              <Button asChild size="lg" variant="outline" className="border-slate-300 text-slate-700 hover:bg-slate-50 w-full sm:w-auto font-semibold">
-                <Link href="/contact">
-                  Request Instant Quote
-                </Link>
-              </Button>
-            </div>
-
-            <div className="animate-fade-up stagger-3 mt-10 grid grid-cols-2 gap-4 lg:flex lg:flex-wrap lg:justify-start">
-              {features.map((feature, index) => (
-                <div 
-                  key={feature} 
-                  className={`flex items-center gap-2.5 text-slate-600 stagger-${index + 4}`}
-                >
-                  <CheckCircle className="h-5 w-5 text-blue-600 shrink-0" />
-                  <span className="text-sm font-semibold">{feature}</span>
-                </div>
-              ))}
-            </div>
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 z-10 flex flex-col items-center justify-center w-full my-auto">
+        {/* Main centered content */}
+        <div className="flex flex-col items-center text-center max-w-3xl">
+          <div className="inline-flex items-center gap-2 rounded-full border border-blue-500/30 bg-blue-950/60 px-4 py-1.5 text-xs font-semibold text-blue-300 mb-6 shadow-md hover:border-blue-400/40 transition-all duration-300 animate-fade-down">
+            <Sparkles className="h-3.5 w-3.5 text-blue-400 animate-spin-slow" />
+            <span>India's Leading Industrial Piping Supplier</span>
           </div>
 
-          {/* Right graphics */}
-          <div className="animate-scale-in stagger-2 lg:col-span-5 relative mt-10 lg:mt-0">
-            <div className="relative mx-auto max-w-md lg:max-w-none">
-              {/* Main Image Container */}
-              <div className="relative overflow-hidden rounded-2xl border border-slate-200 bg-white/80 p-2 shadow-2xl backdrop-blur-sm">
-                <img 
-                  src="/images/hero-pipes-valves.png" 
-                  alt="Industrial Pipes and Valves" 
-                  className="rounded-xl w-full object-cover aspect-[4/3] sm:aspect-square md:aspect-[4/3] lg:aspect-square shadow-sm"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-200/10 via-transparent to-transparent rounded-xl" />
-              </div>
+          <h1 className="text-4xl font-extrabold tracking-tight text-white sm:text-5xl md:text-6xl leading-tight animate-fade-up">
+            High-Precision
+            <span className="block bg-gradient-to-r from-blue-400 via-teal-300 to-blue-300 bg-clip-text text-transparent mt-1.5 font-black">
+              Industrial Piping Solutions
+            </span>
+          </h1>
+          
+          <p className="mt-6 max-w-2xl text-base sm:text-lg text-slate-300 leading-relaxed font-medium animate-fade-up stagger-1">
+            Rajdeep Corporation provides heavy-duty pipes, valves, fittings, and flanges certified for high-pressure systems, chemical processing, oil & gas, and infrastructure.
+          </p>
 
-              {/* Floating Badge 1 */}
-              <div className="absolute -left-6 top-8 animate-float hidden sm:flex items-center gap-3 rounded-xl border border-slate-200 bg-white/95 p-3 shadow-lg backdrop-blur-md">
-                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-50 text-blue-600 border border-blue-100">
-                  <ShieldCheck className="h-6 w-6" />
-                </div>
-                <div>
-                  <p className="text-xs font-bold text-slate-900">ISO Certified</p>
-                  <p className="text-[10px] text-slate-500 font-medium">100% Quality Assured</p>
-                </div>
-              </div>
+          {/* Centered CTAs */}
+          <div className="mt-8 flex flex-col sm:flex-row justify-center gap-4 w-full sm:w-auto animate-fade-up stagger-2">
+            <Button asChild size="lg" className="bg-blue-600 text-white hover:bg-blue-700 shadow-lg shadow-blue-500/20 transition-all duration-300 hover:-translate-y-1 hover:shadow-blue-500/30 font-bold px-8 rounded-xl h-14">
+              <Link href="/products">
+                Explore Products
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Link>
+            </Button>
+            <Button asChild size="lg" variant="outline" className="border-slate-700 text-slate-200 bg-transparent hover:bg-white/10 hover:text-white backdrop-blur-sm px-8 rounded-xl h-14 font-semibold transition-all shadow-sm">
+              <Link href="/contact">
+                Request B2B Quote
+              </Link>
+            </Button>
+          </div>
 
-              {/* Floating Badge 2 */}
-              <div className="absolute -right-6 bottom-8 animate-float stagger-3 hidden sm:flex items-center gap-3 rounded-xl border border-slate-200 bg-white/95 p-3 shadow-lg backdrop-blur-md">
-                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-amber-50 text-amber-600 border border-amber-100">
-                  <Truck className="h-6 w-6" />
-                </div>
-                <div>
-                  <p className="text-xs font-bold text-slate-900">Pan-India Delivery</p>
-                  <p className="text-[10px] text-slate-500 font-medium">Fast & Secure Logistics</p>
-                </div>
+          {/* Centered Features horizontal layout */}
+          <div className="mt-12 flex flex-wrap justify-center gap-x-8 gap-y-4 w-full border-t border-white/10 pt-8 animate-fade-up stagger-3">
+            {features.map((feature) => (
+              <div 
+                key={feature} 
+                className="flex items-center gap-2.5 text-slate-300 group cursor-default"
+              >
+                <CheckCircle className="h-4.5 w-4.5 text-blue-400 shrink-0 group-hover:scale-110 transition-transform" />
+                <span className="text-sm font-semibold group-hover:text-slate-100 transition-colors">{feature}</span>
               </div>
-            </div>
+            ))}
           </div>
         </div>
 
-        {/* Stats banner at the bottom of hero */}
-        <div className="animate-fade-up stagger-4 mt-16 sm:mt-24 border-t border-slate-200/80 pt-10">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+        {/* Technical Stats Section at the bottom */}
+        <div className="mt-16 sm:mt-24 border-t border-white/10 pt-10 w-full max-w-5xl">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {stats.map((stat, idx) => (
-              <div key={idx} className="space-y-1">
-                <p className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900">{stat.value}</p>
-                <p className="text-xs sm:text-sm font-semibold text-slate-500">{stat.label}</p>
+              <div 
+                key={idx} 
+                className="flex flex-col items-center p-4 rounded-xl border border-white/5 bg-white/5 backdrop-blur-xs hover:border-white/10 hover:bg-white/10 hover:shadow-lg transition-all duration-300 group cursor-default animate-scale-in"
+                style={{ animationDelay: `${(idx * 100) + 400}ms` }}
+              >
+                <p className="text-3xl sm:text-4xl font-black tracking-tight bg-gradient-to-r from-white to-slate-300 bg-clip-text text-transparent group-hover:from-blue-400 group-hover:to-teal-300 transition-all duration-300">
+                  {stat.value}
+                </p>
+                <p className="text-[11px] font-extrabold text-slate-400 group-hover:text-slate-200 tracking-wider uppercase mt-1 transition-colors">
+                  {stat.label}
+                </p>
+                <p className="text-[10px] text-slate-500 mt-1 font-semibold text-center leading-normal">
+                  {stat.detail}
+                </p>
               </div>
             ))}
           </div>

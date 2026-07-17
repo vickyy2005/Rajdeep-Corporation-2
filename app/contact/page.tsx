@@ -5,6 +5,7 @@ import { WhatsAppButton } from '@/components/whatsapp-button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { QuoteRequestForm } from '@/components/products/quote-request-form'
 import type { Metadata } from 'next'
+import { ParticleBackground } from '@/components/particle-background'
 
 export const metadata: Metadata = {
   title: 'Contact Us | Rajdeep Corporation',
@@ -50,6 +51,7 @@ export default function ContactPage() {
           <div className="absolute inset-0 opacity-5">
             <div className="products-hero-pattern absolute inset-0" />
           </div>
+          <ParticleBackground density={25} speedMultiplier={0.25} />
           <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center lg:text-left">
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white animate-fade-down">
               Contact Our Sales Team
@@ -73,26 +75,30 @@ export default function ContactPage() {
                   </p>
                 </div>
 
-                <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
+                <div className="space-y-2">
                   {contactInfo.map((item, idx) => (
-                    <div key={idx} className="flex gap-4 p-5 rounded-xl border border-slate-200 bg-white/80 backdrop-blur-sm hover:border-slate-300 shadow-md transition-all duration-300 group">
-                      <div className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-lg ${item.color} group-hover:scale-105 transition-transform duration-300`}>
-                        <item.icon className="h-6 w-6" />
+                    <div
+                      key={idx}
+                      className="flex gap-5 items-start p-4 rounded-2xl hover:bg-slate-100/70 transition-all duration-300 group animate-fade-up"
+                      style={{ animationDelay: `${(idx + 1) * 150}ms` }}
+                    >
+                      <div className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl ${item.color} group-hover:scale-110 group-hover:rotate-3 transition-all duration-300`}>
+                        <item.icon className="h-5.5 w-5.5" />
                       </div>
-                      <div>
-                        <h3 className="font-bold text-sm text-slate-900">{item.title}</h3>
-                        <div className="mt-2 space-y-1">
+                      <div className="space-y-1">
+                        <h3 className="font-semibold text-sm text-slate-800 tracking-wide group-hover:text-slate-900 transition-colors">{item.title}</h3>
+                        <div className="space-y-1">
                           {item.details.map((detail, index) => (
                             item.href ? (
                               <a
                                 key={index}
                                 href={item.href}
-                                className="block text-xs sm:text-sm text-slate-500 hover:text-blue-600 transition-colors font-semibold"
+                                className="block text-xs sm:text-sm text-slate-500 hover:text-blue-600 transition-colors font-medium"
                               >
                                 {detail}
                               </a>
                             ) : (
-                              <p key={index} className="text-xs sm:text-sm text-slate-500 leading-normal font-medium">
+                              <p key={index} className="text-xs sm:text-sm text-slate-500 leading-relaxed font-medium">
                                 {detail}
                               </p>
                             )
@@ -106,10 +112,10 @@ export default function ContactPage() {
 
               {/* Quote request form */}
               <div className="lg:col-span-7 animate-slide-in-right">
-                <Card className="bg-white border-slate-200 shadow-xl backdrop-blur-sm">
+                <Card className="neumorphic-card neumorphic-card-hover border-none p-1 sm:p-2 rounded-3xl">
                   <CardHeader>
-                    <CardTitle className="text-2xl text-slate-900 tracking-wide">Request a B2B Quote</CardTitle>
-                    <p className="text-xs sm:text-sm text-slate-500 font-medium">
+                    <CardTitle className="text-2xl text-slate-900 tracking-wide font-extrabold bg-gradient-to-r from-blue-500 to-indigo-600 bg-clip-text text-transparent">Request a B2B Quote</CardTitle>
+                    <p className="text-xs sm:text-sm text-slate-500 font-medium mt-1">
                       Provide your project details and specifications, and we will get back to you with pricing details within 24 hours.
                     </p>
                   </CardHeader>

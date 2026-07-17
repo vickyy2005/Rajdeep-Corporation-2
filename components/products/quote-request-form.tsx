@@ -91,10 +91,11 @@ export function QuoteRequestForm({ productId, productName }: QuoteRequestFormPro
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
       <div className="grid gap-6 sm:grid-cols-2">
         <div className="space-y-2">
-          <Label htmlFor="customer_name">Full Name *</Label>
+          <Label htmlFor="customer_name" className="text-slate-700 font-semibold">Full Name *</Label>
           <Input
             id="customer_name"
             placeholder="John Doe"
+            className="neumorphic-input h-11 rounded-xl"
             {...register('customer_name')}
             aria-invalid={errors.customer_name ? 'true' : 'false'}
           />
@@ -104,11 +105,12 @@ export function QuoteRequestForm({ productId, productName }: QuoteRequestFormPro
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="customer_email">Email Address *</Label>
+          <Label htmlFor="customer_email" className="text-slate-700 font-semibold">Email Address *</Label>
           <Input
             id="customer_email"
             type="email"
             placeholder="john@company.com"
+            className="neumorphic-input h-11 rounded-xl"
             {...register('customer_email')}
             aria-invalid={errors.customer_email ? 'true' : 'false'}
           />
@@ -118,11 +120,12 @@ export function QuoteRequestForm({ productId, productName }: QuoteRequestFormPro
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="customer_phone">Phone Number *</Label>
+          <Label htmlFor="customer_phone" className="text-slate-700 font-semibold">Phone Number *</Label>
           <Input
             id="customer_phone"
             type="tel"
             placeholder="+91 98765 43210"
+            className="neumorphic-input h-11 rounded-xl"
             {...register('customer_phone')}
             aria-invalid={errors.customer_phone ? 'true' : 'false'}
           />
@@ -132,30 +135,33 @@ export function QuoteRequestForm({ productId, productName }: QuoteRequestFormPro
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="company_name">Company Name</Label>
+          <Label htmlFor="company_name" className="text-slate-700 font-semibold">Company Name</Label>
           <Input
             id="company_name"
             placeholder="ABC Industries"
+            className="neumorphic-input h-11 rounded-xl"
             {...register('company_name')}
           />
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="quantity">Quantity Required</Label>
+          <Label htmlFor="quantity" className="text-slate-700 font-semibold">Quantity Required</Label>
           <Input
             id="quantity"
             placeholder="e.g., 100 pieces, 500 meters"
+            className="neumorphic-input h-11 rounded-xl"
             {...register('quantity')}
           />
         </div>
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="message">Message *</Label>
+        <Label htmlFor="message" className="text-slate-700 font-semibold">Message *</Label>
         <Textarea
           id="message"
           placeholder="Please describe your requirements..."
           rows={4}
+          className="neumorphic-input rounded-xl py-3"
           {...register('message')}
           aria-invalid={errors.message ? 'true' : 'false'}
         />
@@ -164,7 +170,7 @@ export function QuoteRequestForm({ productId, productName }: QuoteRequestFormPro
         )}
       </div>
 
-      <Button type="submit" size="lg" disabled={isSubmitting} className="w-full sm:w-auto">
+      <Button type="submit" size="lg" disabled={isSubmitting} className="neumorphic-btn w-full sm:w-auto font-bold h-12 rounded-xl">
         {isSubmitting ? (
           <>
             <Spinner className="mr-2 h-4 w-4" />

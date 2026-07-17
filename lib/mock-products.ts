@@ -128,5 +128,159 @@ export const MOCK_PRODUCTS: Product[] = [
     is_active: true,
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString()
+  },
+  {
+    id: 'all-flange-cross-tee',
+    name: 'All Flange Cross Tee',
+    description: 'High-quality Cast Iron fitting designed for industrial and B2B piping networks.',
+    category: 'fittings',
+    specifications: {
+      "material": "Cast Iron",
+      "type": "CI Fitting"
+    },
+    image_url: '/images/All Flange Cross Tee.jpeg',
+    is_active: true,
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString()
+  },
+  {
+    id: 'all-socket-cross-tee',
+    name: 'All Socket Cross Tee',
+    description: 'High-quality Cast Iron fitting designed for industrial and B2B piping networks.',
+    category: 'fittings',
+    specifications: {
+      "material": "Cast Iron",
+      "type": "CI Fitting"
+    },
+    image_url: '/images/All Socket Cross Tee.jpg',
+    is_active: true,
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString()
+  },
+  {
+    id: 'ci-duckfoot-bend',
+    name: 'CI Duckfoot Bend',
+    description: 'High-quality Cast Iron fitting designed for industrial and B2B piping networks.',
+    category: 'fittings',
+    specifications: {
+      "material": "Cast Iron",
+      "type": "CI Fitting"
+    },
+    image_url: '/images/CI Duckfoot Bend.jpg',
+    is_active: true,
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString()
+  },
+  {
+    id: 'ci-mj-hydrant-tee-1',
+    name: 'CI MJ Hydrant Tee 1',
+    description: 'High-quality Cast Iron fitting designed for industrial and B2B piping networks.',
+    category: 'fittings',
+    specifications: {
+      "material": "Cast Iron",
+      "type": "CI Fitting"
+    },
+    image_url: '/images/CI MJ Hyadrant Tee-1.jpeg',
+    is_active: true,
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString()
+  },
+  {
+    id: 'ci-mj-hydrant-tee-2',
+    name: 'CI MJ Hydrant Tee 2',
+    description: 'High-quality Cast Iron fitting designed for industrial and B2B piping networks.',
+    category: 'fittings',
+    specifications: {
+      "material": "Cast Iron",
+      "type": "CI Fitting"
+    },
+    image_url: '/images/CI MJ Hyadrant Tee-2.jpg',
+    is_active: true,
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString()
+  },
+  {
+    id: 'cid-joint',
+    name: 'CID Joint',
+    description: 'High-quality Cast Iron fitting designed for industrial and B2B piping networks.',
+    category: 'fittings',
+    specifications: {
+      "material": "Cast Iron",
+      "type": "CI Fitting"
+    },
+    image_url: '/images/CID Joint.jpg',
+    is_active: true,
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString()
+  },
+  {
+    id: 'collar-coupling',
+    name: 'Collar Coupling',
+    description: 'High-quality Cast Iron fitting designed for industrial and B2B piping networks.',
+    category: 'fittings',
+    specifications: {
+      "material": "Cast Iron",
+      "type": "CI Fitting"
+    },
+    image_url: '/images/Collar Coupling.jpg',
+    is_active: true,
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString()
+  },
+  {
+    id: 'flange-adaptor',
+    name: 'Flange Adaptor',
+    description: 'High-quality Cast Iron fitting designed for industrial and B2B piping networks.',
+    category: 'fittings',
+    specifications: {
+      "material": "Cast Iron",
+      "type": "CI Fitting"
+    },
+    image_url: '/images/Flange Adaptor.jpeg',
+    is_active: true,
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString()
+  },
+  {
+    id: 'mj-bend',
+    name: 'MJ Bend',
+    description: 'High-quality Cast Iron fitting designed for industrial and B2B piping networks.',
+    category: 'fittings',
+    specifications: {
+      "material": "Cast Iron",
+      "type": "CI Fitting"
+    },
+    image_url: '/images/MJ Bend.jpg',
+    is_active: true,
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString()
+  },
+  {
+    id: 'mj-end-cap',
+    name: 'MJ End Cap',
+    description: 'High-quality Cast Iron fitting designed for industrial and B2B piping networks.',
+    category: 'fittings',
+    specifications: {
+      "material": "Cast Iron",
+      "type": "CI Fitting"
+    },
+    image_url: '/images/MJ End Cap.jpeg',
+    is_active: true,
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString()
+  },
+  {
+    id: 'mj-reducer',
+    name: 'MJ Reducer',
+    description: 'High-quality Cast Iron fitting designed for industrial and B2B piping networks.',
+    category: 'fittings',
+    specifications: {
+      "material": "Cast Iron",
+      "type": "CI Fitting"
+    },
+    image_url: '/images/MJ Reducer.jpg',
+    is_active: true,
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString()
   }
 ]

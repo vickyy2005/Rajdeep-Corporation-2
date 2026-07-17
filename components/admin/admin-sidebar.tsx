@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname, useRouter } from 'next/navigation'
 import { LayoutDashboard, Package, FileText, LogOut, ExternalLink } from 'lucide-react'
 import { createClient } from '@/utils/supabase/client'
@@ -34,9 +35,13 @@ export function AdminSidebar({ user, isSuper }: AdminSidebarProps) {
     <aside className="flex w-64 flex-col border-r border-slate-200 bg-white">
       {/* Logo */}
       <div className="flex h-16 items-center gap-2 border-b border-slate-150 px-4">
-        <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-blue-600 to-indigo-700 text-white font-bold">
-          RC
-        </div>
+        <Image
+          src="/logo.png"
+          alt="Rajdeep Corporation Logo"
+          width={44}
+          height={44}
+          className="h-11 w-11 shrink-0 object-contain"
+        />
         <div>
           <div className="text-sm font-bold text-slate-900">Rajdeep Corp</div>
           <div className="text-xs text-slate-500 font-semibold">Admin Panel</div>

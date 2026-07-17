@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { useState, useEffect } from 'react'
 import { Menu, X, Phone, Mail, ChevronRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -54,9 +55,14 @@ export function SiteHeader() {
       {/* Main navigation */}
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 py-3.5">
         <Link href="/" className="flex items-center gap-3 group">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-blue-600 to-indigo-700 text-white font-extrabold text-lg shadow-md transition-transform duration-300 group-hover:scale-105">
-            RC
-          </div>
+          <Image
+            src="/logo.png"
+            alt="Rajdeep Corporation Logo"
+            width={48}
+            height={48}
+            className="h-12 w-12 shrink-0 object-contain transition-transform duration-300 group-hover:scale-105"
+            priority
+          />
           <div>
             <div className="text-sm sm:text-base font-bold text-slate-900 tracking-wide leading-tight group-hover:text-blue-600 transition-colors">Rajdeep Corporation</div>
             <div className="text-[10px] sm:text-xs text-slate-500 font-medium">Industrial Piping Solutions</div>

@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { Phone, Mail, MapPin, ArrowRight } from 'lucide-react'
 
 const footerLinks = {
@@ -23,9 +24,13 @@ export function SiteFooter() {
           {/* Company info */}
           <div className="sm:col-span-2 lg:col-span-1">
             <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-accent to-orange-600 text-white font-extrabold text-lg shadow-md transition-transform hover:scale-105">
-                RC
-              </div>
+              <Image
+                src="/logo.png"
+                alt="Rajdeep Corporation Logo"
+                width={48}
+                height={48}
+                className="h-12 w-12 shrink-0 object-contain transition-transform hover:scale-105"
+              />
               <div>
                 <div className="text-base font-bold text-white tracking-wide">Rajdeep Corporation</div>
                 <div className="text-xs text-slate-400 font-medium">Industrial Piping Solutions</div>

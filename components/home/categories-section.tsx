@@ -1,82 +1,102 @@
 'use client'
 
 import Link from 'next/link'
-import { ArrowRight, Cylinder, Wrench, Gauge, CircleDot } from 'lucide-react'
+import { ArrowRight, Cylinder, Wrench, Gauge, CircleDot, Layers } from 'lucide-react'
 import { Card, CardContent } from '@/components/ui/card'
 
 const categories = [
   {
-    name: 'Pipes',
+    name: 'Industrial Pipes',
     slug: 'pipes',
-    description: 'High-grade mild steel, stainless steel, and galvanized iron pipes for critical industrial projects.',
+    description: 'High-grade mild steel, stainless steel, and galvanized iron pipes engineered for high pressure and chemical resistance.',
     icon: Cylinder,
-    gradient: 'from-blue-500/5 via-blue-500/2 to-transparent',
+    spec: 'ASTM / ASME standards',
+    iconBg: 'bg-cyan-50 text-cyan-600 border border-cyan-100',
+    hoverBorder: 'hover:border-cyan-300 hover:shadow-cyan-500/5',
+  },
+  {
+    name: 'Precision Fittings',
+    slug: 'fittings',
+    description: 'Forged butt-weld, socket-weld, and threaded fittings. Elbows, tees, couplings, and reducers for leak-proof joints.',
+    icon: Wrench,
+    spec: 'Size 1/2" to 48" IPS',
+    iconBg: 'bg-teal-50 text-teal-600 border border-teal-100',
+    hoverBorder: 'hover:border-teal-300 hover:shadow-teal-500/5',
+  },
+  {
+    name: 'Flow Control Valves',
+    slug: 'valves',
+    description: 'Heavy-duty flow isolation and control gate, globe, ball, butterfly, and check valves built to withstand extreme temperatures.',
+    icon: Gauge,
+    spec: 'Class 150 to 2500 pressure',
     iconBg: 'bg-blue-50 text-blue-600 border border-blue-100',
     hoverBorder: 'hover:border-blue-300 hover:shadow-blue-500/5',
   },
   {
-    name: 'Fittings',
-    slug: 'fittings',
-    description: 'Butt-weld, socket-weld, and threaded elbow, tee, and reducer connections.',
-    icon: Wrench,
-    gradient: 'from-emerald-500/5 via-emerald-500/2 to-transparent',
-    iconBg: 'bg-emerald-50 text-emerald-600 border border-emerald-100',
-    hoverBorder: 'hover:border-emerald-300 hover:shadow-emerald-500/5',
-  },
-  {
-    name: 'Valves',
-    slug: 'valves',
-    description: 'Heavy-duty gate, ball, butterfly, and check flow-control assemblies.',
-    icon: Gauge,
-    gradient: 'from-amber-500/5 via-amber-500/2 to-transparent',
-    iconBg: 'bg-amber-50 text-amber-600 border border-amber-100',
-    hoverBorder: 'hover:border-amber-300 hover:shadow-amber-500/5',
-  },
-  {
-    name: 'Flanges',
+    name: 'Standard Flanges',
     slug: 'flanges',
-    description: 'Ansi/Asme blind, slip-on, and weld-neck flanges for pressure systems.',
+    description: 'ASME/ANSI blind, slip-on, weld-neck, and threaded flanges designed for robust flange joints and easy line maintenance.',
     icon: CircleDot,
-    gradient: 'from-violet-500/5 via-violet-500/2 to-transparent',
-    iconBg: 'bg-violet-50 text-violet-600 border border-violet-100',
-    hoverBorder: 'hover:border-violet-300 hover:shadow-violet-500/5',
+    spec: 'FF, RF, RTJ faces available',
+    iconBg: 'bg-indigo-50 text-indigo-600 border border-indigo-100',
+    hoverBorder: 'hover:border-indigo-300 hover:shadow-indigo-500/5',
   },
 ]
 
 export function CategoriesSection() {
   return (
-    <section className="py-16 sm:py-24 bg-white border-t border-slate-200/80 overflow-hidden">
+    <section className="py-20 sm:py-28 bg-white border-t border-slate-100 overflow-hidden">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="text-center animate-fade-up">
+        {/* Header Block */}
+        <div className="flex flex-col items-center text-center animate-fade-up">
+          <div className="inline-flex items-center gap-2 rounded-full border border-indigo-200 bg-indigo-50 px-3.5 py-1 text-[11px] font-extrabold text-indigo-700 tracking-wider uppercase mb-4">
+            <Layers className="h-3.5 w-3.5 text-indigo-600" />
+            <span>Industrial Inventory</span>
+          </div>
           <h2 className="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">
-            Our Product Categories
+            Our Core Product Categories
           </h2>
-          <p className="mx-auto mt-4 max-w-xl text-sm sm:text-base text-slate-500 font-medium">
-            Browse our comprehensive selection of industrial materials, built for reliability and certified standards.
+          <p className="mx-auto mt-4 max-w-xl text-xs sm:text-sm text-slate-600 font-medium leading-relaxed">
+            Discover our robust selection of materials and piping connections designed for absolute reliability and engineering accuracy.
           </p>
         </div>
 
-        <div className="mt-12 grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+        {/* Categories Grid */}
+        <div className="mt-16 grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
           {categories.map((category, index) => (
             <Link 
               key={category.slug} 
               href={`/products?category=${category.slug}`}
-              className={`animate-fade-up stagger-${index + 1}`}
+              className="group animate-fade-up"
+              style={{ animationDelay: `${index * 100}ms` }}
             >
-              <Card className={`group h-full transition-all duration-300 hover:shadow-xl hover:-translate-y-1.5 bg-white/80 border-slate-200/80 hover:bg-white hover:border-slate-300 backdrop-blur-sm ${category.hoverBorder} border-2`}>
+              <Card className={`h-full rounded-2xl transition-all duration-500 hover:-translate-y-2 border border-slate-200 bg-white hover:bg-slate-50/50 hover:shadow-xl ${category.hoverBorder}`}>
                 <CardContent className="p-6 flex flex-col h-full justify-between">
                   <div>
-                    <div className={`inline-flex h-12 w-12 items-center justify-center rounded-xl ${category.iconBg} transition-transform duration-300 group-hover:scale-105`}>
-                      <category.icon className="h-6 w-6" />
+                    {/* Floating Icon Box */}
+                    <div className="flex items-center justify-between">
+                      <div className={`inline-flex h-12 w-12 items-center justify-center rounded-xl ${category.iconBg} transition-all duration-500 group-hover:scale-110 group-hover:rotate-6`}>
+                        <category.icon className="h-5.5 w-5.5" />
+                      </div>
+                      <span className="text-[9px] font-bold tracking-widest text-slate-500 group-hover:text-blue-600 transition-colors uppercase bg-slate-50 px-2 py-0.5 rounded-md border border-slate-200">
+                        {category.spec}
+                      </span>
                     </div>
-                    <h3 className="mt-5 text-lg font-bold text-slate-900 tracking-wide">{category.name}</h3>
-                    <p className="mt-3 text-xs sm:text-sm text-slate-500 leading-relaxed font-medium">
+                    
+                    <h3 className="mt-6 text-lg font-black text-slate-900 tracking-wide group-hover:text-blue-600 transition-colors">
+                      {category.name}
+                    </h3>
+                    <p className="mt-3.5 text-xs text-slate-600 leading-relaxed font-semibold">
                       {category.description}
                     </p>
                   </div>
-                  <div className="mt-5 flex items-center text-xs font-semibold text-slate-600 group-hover:text-blue-600 transition-colors">
-                    View Products
-                    <ArrowRight className="ml-1 h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
+                  
+                  {/* Footer view link */}
+                  <div className="mt-6 flex items-center justify-between border-t border-slate-100 pt-4 text-xs font-bold text-slate-500 group-hover:text-blue-600 transition-all duration-300">
+                    <span>View Specifications</span>
+                    <div className="flex h-6 w-6 items-center justify-center rounded-full bg-slate-50 border border-slate-200 transition-all duration-300 group-hover:bg-blue-600 group-hover:text-white group-hover:border-blue-600 group-hover:translate-x-0.5">
+                      <ArrowRight className="h-3.5 w-3.5" />
+                    </div>
                   </div>
                 </CardContent>
               </Card>
