@@ -12,6 +12,7 @@ import { QuoteRequestForm } from '@/components/products/quote-request-form'
 import { MOCK_PRODUCTS } from '@/lib/mock-products'
 import type { Product } from '@/lib/types'
 import type { Metadata } from 'next'
+import { ScrollReveal } from '@/components/scroll-reveal'
 
 interface ProductPageProps {
   params: Promise<{ id: string }>
@@ -122,85 +123,91 @@ export default async function ProductPage({ params }: ProductPageProps) {
           <div className="mx-auto max-w-7xl px-4">
             <div className="grid gap-12 lg:grid-cols-2">
               {/* Product image */}
-              <div className="relative aspect-square overflow-hidden rounded-2xl border border-slate-200 bg-white p-1 shadow-md">
-                {typedProduct.image_url ? (
-                  <img
-                    src={typedProduct.image_url}
-                    alt={typedProduct.name}
-                    className="h-full w-full object-cover rounded-xl"
-                  />
-                ) : (
-                  <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-slate-50 via-slate-100 to-slate-50 rounded-xl relative">
-                    <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/5 to-indigo-500/5 opacity-30" />
-                    <span className="text-8xl font-extrabold text-slate-300 tracking-wider select-none">
-                      {typedProduct.name.split(' ').map(word => word[0]).slice(0, 2).join('')}
-                    </span>
-                  </div>
-                )}
-              </div>
+              <ScrollReveal animation="slide-left" duration={800}>
+                <div className="relative aspect-square overflow-hidden rounded-2xl border border-slate-200 bg-white p-1 shadow-md">
+                  {typedProduct.image_url ? (
+                    <img
+                      src={typedProduct.image_url}
+                      alt={typedProduct.name}
+                      className="h-full w-full object-cover rounded-xl"
+                    />
+                  ) : (
+                    <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-slate-50 via-slate-100 to-slate-50 rounded-xl relative">
+                      <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/5 to-indigo-500/5 opacity-30" />
+                      <span className="text-8xl font-extrabold text-slate-300 tracking-wider select-none">
+                        {typedProduct.name.split(' ').map(word => word[0]).slice(0, 2).join('')}
+                      </span>
+                    </div>
+                  )}
+                </div>
+              </ScrollReveal>
 
               {/* Product info */}
-              <div>
-                <Badge className={categoryColors[typedProduct.category]}>
-                  {typedProduct.category.charAt(0).toUpperCase() + typedProduct.category.slice(1)}
-                </Badge>
-                <h1 className="mt-4 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-                  {typedProduct.name}
-                </h1>
-                <p className="mt-4 text-sm sm:text-base text-slate-600 leading-relaxed font-medium">
-                  {typedProduct.description}
-                </p>
+              <ScrollReveal animation="slide-right" duration={800}>
+                <div>
+                  <Badge className={categoryColors[typedProduct.category]}>
+                    {typedProduct.category.charAt(0).toUpperCase() + typedProduct.category.slice(1)}
+                  </Badge>
+                  <h1 className="mt-4 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+                    {typedProduct.name}
+                  </h1>
+                  <p className="mt-4 text-sm sm:text-base text-slate-600 leading-relaxed font-medium">
+                    {typedProduct.description}
+                  </p>
 
-                {/* Specifications */}
-                {typedProduct.specifications && Object.keys(typedProduct.specifications).length > 0 && (
-                  <Card className="mt-8 bg-white border-slate-200 shadow-md backdrop-blur-sm">
-                    <CardHeader className="pb-3">
-                      <CardTitle className="text-lg text-slate-900">Technical Specifications</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <dl className="divide-y divide-slate-100">
-                        {Object.entries(typedProduct.specifications).map(([key, value]) => (
-                          <div key={key} className="flex justify-between py-3">
-                            <dt className="text-sm font-semibold text-slate-500">{key}</dt>
-                            <dd className="text-sm text-slate-800 font-medium">{value}</dd>
-                          </div>
-                        ))}
-                      </dl>
-                    </CardContent>
-                  </Card>
-                )}
+                  {/* Specifications */}
+                  {typedProduct.specifications && Object.keys(typedProduct.specifications).length > 0 && (
+                    <Card className="mt-8 bg-white border-slate-200 shadow-md backdrop-blur-sm">
+                      <CardHeader className="pb-3">
+                        <CardTitle className="text-lg text-slate-900">Technical Specifications</CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <dl className="divide-y divide-slate-100">
+                          {Object.entries(typedProduct.specifications).map(([key, value]) => (
+                            <div key={key} className="flex justify-between py-3">
+                              <dt className="text-sm font-semibold text-slate-500">{key}</dt>
+                              <dd className="text-sm text-slate-800 font-medium">{value}</dd>
+                            </div>
+                          ))}
+                        </dl>
+                      </CardContent>
+                    </Card>
+                  )}
 
-                {/* Action buttons */}
-                <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-                  <Button asChild size="lg" className="bg-emerald-600 text-white hover:bg-emerald-700 shadow-lg hover:shadow-emerald-500/20 hover:-translate-y-0.5 transition-all duration-300 font-bold">
-                    <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
-                      <MessageCircle className="mr-2 h-5 w-5" />
-                      Enquire on WhatsApp
-                    </a>
-                  </Button>
-                  <Button asChild size="lg" variant="outline" className="border-slate-300 hover:bg-slate-100 text-slate-705 font-semibold">
-                    <Link href="#quote-form">
-                      Request B2B Quote
-                    </Link>
-                  </Button>
+                  {/* Action buttons */}
+                  <div className="mt-8 flex flex-col gap-4 sm:flex-row">
+                    <Button asChild size="lg" className="bg-emerald-600 text-white hover:bg-emerald-700 shadow-lg hover:shadow-emerald-500/20 hover:-translate-y-0.5 transition-all duration-300 font-bold">
+                      <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
+                        <MessageCircle className="mr-2 h-5 w-5" />
+                        Enquire on WhatsApp
+                      </a>
+                    </Button>
+                    <Button asChild size="lg" variant="outline" className="border-slate-300 hover:bg-slate-100 text-slate-705 font-semibold">
+                      <Link href="#quote-form">
+                        Request B2B Quote
+                      </Link>
+                    </Button>
+                  </div>
                 </div>
-              </div>
+              </ScrollReveal>
             </div>
 
             {/* Quote request form */}
-            <div id="quote-form" className="mt-16 scroll-mt-24 animate-fade-up">
-              <Card className="bg-white border-slate-200 shadow-xl backdrop-blur-sm">
-                <CardHeader>
-                  <CardTitle className="text-2xl text-slate-900">Request a B2B Quote for {typedProduct.name}</CardTitle>
-                  <p className="text-xs sm:text-sm text-slate-500 font-medium">
-                    Submit your sizing, material grade, and quantity requirements to receive a fast commercial quote.
-                  </p>
-                </CardHeader>
-                <CardContent>
-                  <QuoteRequestForm productId={typedProduct.id} productName={typedProduct.name} />
-                </CardContent>
-              </Card>
-            </div>
+            <ScrollReveal animation="fade-up" duration={800}>
+              <div id="quote-form" className="mt-16 scroll-mt-24">
+                <Card className="bg-white border-slate-200 shadow-xl backdrop-blur-sm">
+                  <CardHeader>
+                    <CardTitle className="text-2xl text-slate-900">Request a B2B Quote for {typedProduct.name}</CardTitle>
+                    <p className="text-xs sm:text-sm text-slate-500 font-medium">
+                      Submit your sizing, material grade, and quantity requirements to receive a fast commercial quote.
+                    </p>
+                  </CardHeader>
+                  <CardContent>
+                    <QuoteRequestForm productId={typedProduct.id} productName={typedProduct.name} />
+                  </CardContent>
+                </Card>
+              </div>
+            </ScrollReveal>
           </div>
         </section>
       </main>

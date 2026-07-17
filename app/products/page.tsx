@@ -11,6 +11,7 @@ import { MOCK_PRODUCTS } from '@/lib/mock-products'
 import type { Product, Category } from '@/lib/types'
 import type { Metadata } from 'next'
 import { ParticleBackground } from '@/components/particle-background'
+import { ScrollReveal } from '@/components/scroll-reveal'
 
 export const metadata: Metadata = {
   title: 'Products | Rajdeep Corporation',
@@ -49,37 +50,29 @@ async function ProductGrid({ category, search }: { category?: string; search?: s
       products = data as Product[]
     }
   } catch (error) {
-    console.warn('Failed to query products from Supabase, using mock fallback:', error)
+    console.warn('Failed to fetch products from Supabase, falling back to mock data:', error)
     hasError = true
   }
 
-  // Fallback to local mock data if query failed or returned empty
+  // Fallback to mock products if database is empty or failed
   if (hasError || !products || products.length === 0) {
-    let localProducts = [...MOCK_PRODUCTS]
+    let mockProducts = MOCK_PRODUCTS
     if (category && ['pipes', 'fittings', 'valves', 'flanges'].includes(category)) {
-      localProducts = localProducts.filter(p => p.category === category)
+      mockProducts = mockProducts.filter(p => p.category === category)
     }
     if (search) {
-      const searchLower = search.toLowerCase()
-      localProducts = localProducts.filter(p => p.name.toLowerCase().includes(searchLower))
+      mockProducts = mockProducts.filter(p => p.name.toLowerCase().includes(search.toLowerCase()))
     }
-    products = localProducts
+    products = mockProducts
   }
 
-  if (!products || products.length === 0) {
+  if (products.length === 0) {
     return (
-      <div className="rounded-2xl border-2 border-dashed border-border bg-muted/30 p-8 sm:p-12 text-center animate-fade-up">
-        <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-muted mb-4">
-          <Package className="h-6 w-6 text-muted-foreground" />
-        </div>
-        <h3 className="text-lg font-semibold text-foreground">No products found</h3>
-        <p className="mt-2 text-muted-foreground max-w-md mx-auto">
-          {search 
-            ? `No products matching "${search}" were found. Try a different search term.`
-            : category 
-              ? `No products in the ${category} category yet. Check back soon!`
-              : 'No products available at the moment. Please check back later.'
-          }
+      <div className="text-center py-12 rounded-2xl border-2 border-dashed border-slate-200 bg-slate-50/50 max-w-md mx-auto animate-fade-in">
+        <Package className="mx-auto h-12 w-12 text-slate-400" />
+        <h3 className="mt-4 text-sm font-bold text-slate-900">No products found</h3>
+        <p className="mt-1.5 text-xs text-slate-500 font-medium">
+          Try adjusting your search terms or category filter.
         </p>
       </div>
     )
@@ -94,9 +87,14 @@ async function ProductGrid({ category, search }: { category?: string; search?: s
       </p>
       <div className="grid gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {(products as Product[]).map((product, index) => (
-          <div key={product.id} className={`animate-fade-up stagger-${Math.min(index + 1, 8)}`}>
+          <ScrollReveal 
+            key={product.id} 
+            animation="fade-up" 
+            delay={(index % 4) * 100}
+            duration={600}
+          >
             <ProductCard product={product} />
-          </div>
+          </ScrollReveal>
         ))}
       </div>
     </>

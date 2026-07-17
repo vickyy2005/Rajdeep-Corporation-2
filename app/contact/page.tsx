@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { QuoteRequestForm } from '@/components/products/quote-request-form'
 import type { Metadata } from 'next'
 import { ParticleBackground } from '@/components/particle-background'
+import { ScrollReveal } from '@/components/scroll-reveal'
 
 export const metadata: Metadata = {
   title: 'Contact Us | Rajdeep Corporation',
@@ -43,11 +44,11 @@ const contactInfo = [
 
 export default function ContactPage() {
   return (
-    <div className="flex min-h-screen flex-col bg-transparent text-slate-850">
+    <div className="flex min-h-screen flex-col bg-transparent text-slate-855">
       <SiteHeader />
       <main className="flex-1">
         {/* Page header */}
-        <section className="relative overflow-hidden bg-gradient-to-r from-slate-900 via-slate-850 to-slate-900 py-16 sm:py-20 border-b border-slate-950">
+        <section className="relative overflow-hidden bg-gradient-to-r from-slate-900 via-slate-850 to-slate-900 py-16 sm:py-20 border-b border-slate-955">
           <div className="absolute inset-0 opacity-5">
             <div className="products-hero-pattern absolute inset-0" />
           </div>
@@ -56,7 +57,7 @@ export default function ContactPage() {
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white animate-fade-down">
               Contact Our Sales Team
             </h1>
-            <p className="mt-4 text-base sm:text-lg text-slate-300 max-w-2xl animate-fade-up">
+            <p className="mt-4 text-base sm:text-lg text-slate-300 max-w-2xl animate-fade-up font-medium">
               Ready to supply your next project. Request pricing, catalogs, or technical details instantly.
             </p>
           </div>
@@ -67,62 +68,67 @@ export default function ContactPage() {
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="grid gap-12 lg:grid-cols-12 items-start">
               {/* Contact info */}
-              <div className="lg:col-span-5 space-y-8 animate-slide-in-left">
-                <div>
-                  <h2 className="text-2xl font-extrabold text-slate-900 tracking-wide">Connect Instantly</h2>
-                  <p className="mt-3 text-sm text-slate-500 leading-relaxed font-medium">
-                    Have a detailed bill of materials? Send it over to our sales staff, or give us a call for immediate assistance on stock levels.
-                  </p>
-                </div>
-
-                <div className="space-y-2">
-                  {contactInfo.map((item, idx) => (
-                    <div
-                      key={idx}
-                      className="flex gap-5 items-start p-4 rounded-2xl hover:bg-slate-100/70 transition-all duration-300 group animate-fade-up"
-                      style={{ animationDelay: `${(idx + 1) * 150}ms` }}
-                    >
-                      <div className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl ${item.color} group-hover:scale-110 group-hover:rotate-3 transition-all duration-300`}>
-                        <item.icon className="h-5.5 w-5.5" />
-                      </div>
-                      <div className="space-y-1">
-                        <h3 className="font-semibold text-sm text-slate-800 tracking-wide group-hover:text-slate-900 transition-colors">{item.title}</h3>
-                        <div className="space-y-1">
-                          {item.details.map((detail, index) => (
-                            item.href ? (
-                              <a
-                                key={index}
-                                href={item.href}
-                                className="block text-xs sm:text-sm text-slate-500 hover:text-blue-600 transition-colors font-medium"
-                              >
-                                {detail}
-                              </a>
-                            ) : (
-                              <p key={index} className="text-xs sm:text-sm text-slate-500 leading-relaxed font-medium">
-                                {detail}
-                              </p>
-                            )
-                          ))}
-                        </div>
-                      </div>
+              <div className="lg:col-span-5">
+                <ScrollReveal animation="slide-left" duration={700}>
+                  <div className="space-y-8">
+                    <div>
+                      <h2 className="text-2xl font-extrabold text-slate-900 tracking-wide">Connect Instantly</h2>
+                      <p className="mt-3 text-sm text-slate-500 leading-relaxed font-medium">
+                        Have a detailed bill of materials? Send it over to our sales staff, or give us a call for immediate assistance on stock levels.
+                      </p>
                     </div>
-                  ))}
-                </div>
+
+                    <div className="space-y-2">
+                      {contactInfo.map((item, idx) => (
+                        <div
+                          key={idx}
+                          className="flex gap-5 items-start p-4 rounded-2xl hover:bg-slate-100/70 transition-all duration-300 group"
+                        >
+                          <div className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl ${item.color} group-hover:scale-110 group-hover:rotate-3 transition-all duration-300`}>
+                            <item.icon className="h-5.5 w-5.5" />
+                          </div>
+                          <div className="space-y-1">
+                            <h3 className="font-semibold text-sm text-slate-800 tracking-wide group-hover:text-slate-900 transition-colors">{item.title}</h3>
+                            <div className="space-y-1">
+                              {item.details.map((detail, index) => (
+                                item.href ? (
+                                  <a
+                                    key={index}
+                                    href={item.href}
+                                    className="block text-xs sm:text-sm text-slate-500 hover:text-blue-600 transition-colors font-medium"
+                                  >
+                                    {detail}
+                                  </a>
+                                ) : (
+                                  <p key={index} className="text-xs sm:text-sm text-slate-500 leading-relaxed font-medium">
+                                    {detail}
+                                  </p>
+                                )
+                              ))}
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </ScrollReveal>
               </div>
 
               {/* Quote request form */}
-              <div className="lg:col-span-7 animate-slide-in-right">
-                <Card className="neumorphic-card neumorphic-card-hover border-none p-1 sm:p-2 rounded-3xl">
-                  <CardHeader>
-                    <CardTitle className="text-2xl text-slate-900 tracking-wide font-extrabold bg-gradient-to-r from-blue-500 to-indigo-600 bg-clip-text text-transparent">Request a B2B Quote</CardTitle>
-                    <p className="text-xs sm:text-sm text-slate-500 font-medium mt-1">
-                      Provide your project details and specifications, and we will get back to you with pricing details within 24 hours.
-                    </p>
-                  </CardHeader>
-                  <CardContent>
-                    <QuoteRequestForm />
-                  </CardContent>
-                </Card>
+              <div className="lg:col-span-7">
+                <ScrollReveal animation="slide-right" duration={700}>
+                  <Card className="neumorphic-card neumorphic-card-hover border-none p-1 sm:p-2 rounded-3xl">
+                    <CardHeader>
+                      <CardTitle className="text-2xl text-slate-900 tracking-wide font-extrabold bg-gradient-to-r from-blue-500 to-indigo-600 bg-clip-text text-transparent">Request a B2B Quote</CardTitle>
+                      <p className="text-xs sm:text-sm text-slate-500 font-medium mt-1">
+                        Provide your project details and specifications, and we will get back to you with pricing details within 24 hours.
+                      </p>
+                    </CardHeader>
+                    <CardContent>
+                      <QuoteRequestForm />
+                    </CardContent>
+                  </Card>
+                </ScrollReveal>
               </div>
             </div>
           </div>
@@ -131,33 +137,35 @@ export default function ContactPage() {
         {/* Map section */}
         <section className="py-12 border-t border-slate-200 bg-slate-100/50">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white/80 p-1 shadow-2xl">
-              <div className="relative aspect-[21/9] w-full min-h-[300px] overflow-hidden rounded-xl bg-slate-200">
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3772.6685718712754!2d73.10091331538356!3d19.00125798713175!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c1e555555555%3A0xe54ef92c10c1409f!2sKalamboli%20Steel%20Market!5e0!3m2!1sen!2sin!4v1657891234567!5m2!1sen!2sin"
-                  className="absolute inset-0 h-full w-full border-0 filter grayscale opacity-80 hover:grayscale-0 transition-all duration-300"
-                  allowFullScreen
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                />
-                <div className="absolute inset-0 bg-slate-200/10 pointer-events-none" />
-                
-                {/* Map Overlay Card */}
-                <div className="absolute bottom-6 left-6 hidden sm:block max-w-xs rounded-xl border border-slate-200 bg-white/95 p-4 shadow-xl backdrop-blur-md">
-                  <div className="flex gap-3">
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-blue-50 text-blue-605 border border-blue-100">
-                      <MapPin className="h-5 w-5" />
-                    </div>
-                    <div>
-                      <p className="text-xs font-bold text-slate-900">Kalamboli Steel Market</p>
-                      <p className="mt-1 text-[10px] text-slate-500 leading-normal font-medium">
-                        Office 302, Steel Market Chamber, Navi Mumbai, MH 410218
-                      </p>
+            <ScrollReveal animation="fade-up" duration={800}>
+              <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white/80 p-1 shadow-2xl">
+                <div className="relative aspect-[21/9] w-full min-h-[300px] overflow-hidden rounded-xl bg-slate-200">
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3772.6685718712754!2d73.10091331538356!3d19.00125798713175!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c1e555555555%3A0xe54ef92c10c1409f!2sKalamboli%20Steel%20Market!5e0!3m2!1sen!2sin!4v1657891234567!5m2!1sen!2sin"
+                    className="absolute inset-0 h-full w-full border-0 filter grayscale opacity-80 hover:grayscale-0 transition-all duration-300"
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                  />
+                  <div className="absolute inset-0 bg-slate-200/10 pointer-events-none" />
+                  
+                  {/* Map Overlay Card */}
+                  <div className="absolute bottom-6 left-6 hidden sm:block max-w-xs rounded-xl border border-slate-200 bg-white/95 p-4 shadow-xl backdrop-blur-md">
+                    <div className="flex gap-3">
+                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-blue-50 text-blue-605 border border-blue-100">
+                        <MapPin className="h-5 w-5" />
+                      </div>
+                      <div>
+                        <p className="text-xs font-bold text-slate-900">Kalamboli Steel Market</p>
+                        <p className="mt-1 text-[10px] text-slate-500 leading-normal font-medium">
+                          Office 302, Steel Market Chamber, Navi Mumbai, MH 410218
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </ScrollReveal>
           </div>
         </section>
       </main>

@@ -9,6 +9,7 @@ import { Card, CardContent } from '@/components/ui/card'
 import { cn } from '@/lib/utils'
 import type { Metadata } from 'next'
 import { ParticleBackground } from '@/components/particle-background'
+import { ScrollReveal } from '@/components/scroll-reveal'
 
 export const metadata: Metadata = {
   title: 'About Us | Rajdeep Corporation',
@@ -109,7 +110,7 @@ export default function AboutPage() {
         </section>
 
         {/* Story section */}
-        <section className="py-16 sm:py-24 bg-white relative overflow-hidden">
+        <section className="py-16 sm:py-24 bg-transparent relative overflow-hidden">
           {/* Subtle background graphic for simple styling */}
           <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-50/20 rounded-full blur-3xl pointer-events-none" />
           
@@ -118,91 +119,98 @@ export default function AboutPage() {
               
               {/* Left Column (Text & CTA) */}
               <div className="lg:col-span-7 space-y-6">
-                <div className="space-y-3">
-                  <span className="inline-block text-xs font-bold text-blue-600 tracking-widest uppercase bg-blue-50 border border-blue-100/80 px-3 py-1 rounded-full animate-fade-down">
-                    Our History
-                  </span>
-                  <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 leading-tight animate-fade-up">
-                    Our Legacy of Trust & Quality
-                  </h2>
-                </div>
+                <ScrollReveal animation="fade-up" duration={700}>
+                  <div className="space-y-3">
+                    <span className="inline-block text-xs font-bold text-blue-600 tracking-widest uppercase bg-blue-50 border border-blue-100/80 px-3 py-1 rounded-full">
+                      Our History
+                    </span>
+                    <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 leading-tight">
+                      Our Legacy of Trust & Quality
+                    </h2>
+                  </div>
+                </ScrollReveal>
                 
-                <div className="space-y-5 text-slate-600 leading-relaxed text-sm sm:text-base font-medium animate-fade-up stagger-1">
-                  <p>
-                    Founded in 2005, Rajdeep Corporation began with a simple mission: to supply 
-                    industrial piping products of uncompromised quality at competitive trade prices.
-                  </p>
-                  <p>
-                    Over nearly two decades, we have evolved from a regional trading company to a prominent 
-                    B2B supplier. Our commitment to strict material verification and customer-first service 
-                    has earned us the trust of manufacturing plants, petrochemical facilities, power plants, 
-                    and construction companies nationwide.
-                  </p>
-                  <p>
-                    We act not just as a distributor, but as an extension of your procurement team, ensuring 
-                    proper specification alignment, complete certification documentation, and reliable scheduling.
-                  </p>
-                </div>
+                <ScrollReveal animation="fade-up" duration={700} delay={150}>
+                  <div className="space-y-5 text-slate-600 leading-relaxed text-sm sm:text-base font-medium">
+                    <p>
+                      Founded in 2005, Rajdeep Corporation began with a simple mission: to supply 
+                      industrial piping products of uncompromised quality at competitive trade prices.
+                    </p>
+                    <p>
+                      Over nearly two decades, we have evolved from a regional trading company to a prominent 
+                      B2B supplier. Our commitment to strict material verification and customer-first service 
+                      has earned us the trust of manufacturing plants, petrochemical facilities, power plants, 
+                      and construction companies nationwide.
+                    </p>
+                    <p>
+                      We act not just as a distributor, but as an extension of your procurement team, ensuring 
+                      proper specification alignment, complete certification documentation, and reliable scheduling.
+                    </p>
+                  </div>
+                </ScrollReveal>
                 
-                <div className="animate-fade-up stagger-2 pt-2">
-                  <Button asChild className="bg-blue-600 text-white hover:bg-blue-700 shadow-md hover:shadow-blue-500/10 hover:-translate-y-0.5 transition-all duration-300 font-bold px-6 py-5 rounded-xl">
-                    <Link href="/contact">
-                      Work With Us
-                      <ArrowRight className="ml-2 h-4 w-4" />
-                    </Link>
-                  </Button>
-                </div>
+                <ScrollReveal animation="fade-up" duration={700} delay={300}>
+                  <div className="pt-2">
+                    <Button asChild className="bg-blue-600 text-white hover:bg-blue-700 shadow-md hover:shadow-blue-500/10 hover:-translate-y-0.5 transition-all duration-300 font-bold px-6 py-5 rounded-xl">
+                      <Link href="/contact">
+                        Work With Us
+                        <ArrowRight className="ml-2 h-4 w-4" />
+                      </Link>
+                    </Button>
+                  </div>
+                </ScrollReveal>
               </div>
 
               {/* Right Column (Minimalist Trust Card) */}
               <div className="lg:col-span-5">
-                <div className="animate-scale-in relative overflow-hidden rounded-3xl border border-slate-100 bg-white p-8 shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-500 flex flex-col gap-6 justify-between group">
-                  {/* Background glowing effects */}
-                  <div className="absolute top-0 right-0 -mr-16 -mt-16 w-48 h-48 rounded-full bg-blue-500/5 blur-3xl opacity-60 group-hover:opacity-100 transition-opacity duration-500" />
-                  
-                  {/* Logo Header */}
-                  <div className="flex items-center gap-4 relative z-10 animate-fade-down" style={{ animationDelay: '300ms' }}>
-                    <Image
-                      src="/logo.png"
-                      alt="Rajdeep Corporation Logo"
-                      width={56}
-                      height={56}
-                      className="h-14 w-14 shrink-0 object-contain group-hover:scale-105 transition-transform duration-300"
-                    />
-                    <div>
-                      <h3 className="font-extrabold text-slate-900 text-base">Rajdeep Corporation</h3>
-                      <p className="text-[10px] font-bold text-blue-600 tracking-wider uppercase mt-0.5">ESTD. 2005</p>
+                <ScrollReveal animation="scale-in" duration={800} delay={200}>
+                  <div className="relative overflow-hidden rounded-3xl border border-slate-100 bg-white p-8 shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-500 flex flex-col gap-6 justify-between group">
+                    {/* Background glowing effects */}
+                    <div className="absolute top-0 right-0 -mr-16 -mt-16 w-48 h-48 rounded-full bg-blue-500/5 blur-3xl opacity-60 group-hover:opacity-100 transition-opacity duration-500" />
+                    
+                    {/* Logo Header */}
+                    <div className="flex items-center gap-4 relative z-10">
+                      <Image
+                        src="/logo.png"
+                        alt="Rajdeep Corporation Logo"
+                        width={56}
+                        height={56}
+                        className="h-14 w-14 shrink-0 object-contain group-hover:scale-105 transition-transform duration-300"
+                      />
+                      <div>
+                        <h3 className="font-extrabold text-slate-900 text-base">Rajdeep Corporation</h3>
+                        <p className="text-[10px] font-bold text-blue-600 tracking-wider uppercase mt-0.5">ESTD. 2005</p>
+                      </div>
+                    </div>
+
+                    {/* Core trust tags */}
+                    <div className="grid gap-3 grid-cols-1 sm:grid-cols-2 mt-2 relative z-10">
+                      {[
+                        { icon: ShieldCheck, text: 'ISO 9001:2015 Certified', color: 'text-emerald-500 bg-emerald-50/50 border-emerald-100/30' },
+                        { icon: Award, text: 'Top Industrial Brand', color: 'text-blue-500 bg-blue-50/50 border-blue-100/30' },
+                        { icon: Package, text: '500+ Active SKUs', color: 'text-indigo-500 bg-indigo-50/50 border-indigo-100/30' },
+                        { icon: Users, text: '1000+ B2B Clients', color: 'text-amber-500 bg-amber-50/50 border-amber-100/30' }
+                      ].map((tag, idx) => {
+                        const IconComponent = tag.icon;
+                        return (
+                          <div 
+                            key={idx} 
+                            className={`flex items-center gap-3 p-3.5 rounded-2xl border ${tag.color} hover:bg-white hover:shadow-md hover:-translate-y-0.5 transition-all duration-300`}
+                          >
+                            <IconComponent className="h-5 w-5 shrink-0" />
+                            <span className="text-xs font-bold text-slate-700">{tag.text}</span>
+                          </div>
+                        )
+                      })}
+                    </div>
+
+                    <div className="border-t border-slate-100 pt-5 mt-1 relative z-10">
+                      <p className="text-xs text-slate-500 leading-relaxed font-semibold italic text-center px-2">
+                        "Delivering engineering compliance and high-durability products to India's major infrastructure initiatives."
+                      </p>
                     </div>
                   </div>
-
-                  {/* Core trust tags */}
-                  <div className="grid gap-3 grid-cols-1 sm:grid-cols-2 mt-2 relative z-10">
-                    {[
-                      { icon: ShieldCheck, text: 'ISO 9001:2015 Certified', color: 'text-emerald-500 bg-emerald-50/50 border-emerald-100/30' },
-                      { icon: Award, text: 'Top Industrial Brand', color: 'text-blue-500 bg-blue-50/50 border-blue-100/30' },
-                      { icon: Package, text: '500+ Active SKUs', color: 'text-indigo-500 bg-indigo-50/50 border-indigo-100/30' },
-                      { icon: Users, text: '1000+ B2B Clients', color: 'text-amber-500 bg-amber-50/50 border-amber-100/30' }
-                    ].map((tag, idx) => {
-                      const IconComponent = tag.icon;
-                      return (
-                        <div 
-                          key={idx} 
-                          className={`flex items-center gap-3 p-3.5 rounded-2xl border ${tag.color} hover:bg-white hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 animate-fade-up`}
-                          style={{ animationDelay: `${500 + idx * 100}ms` }}
-                        >
-                          <IconComponent className="h-5 w-5 shrink-0" />
-                          <span className="text-xs font-bold text-slate-700">{tag.text}</span>
-                        </div>
-                      )
-                    })}
-                  </div>
-
-                  <div className="border-t border-slate-100 pt-5 mt-1 relative z-10 animate-fade-up" style={{ animationDelay: '900ms' }}>
-                    <p className="text-xs text-slate-500 leading-relaxed font-semibold italic text-center px-2">
-                      "Delivering engineering compliance and high-durability products to India's major infrastructure initiatives."
-                    </p>
-                  </div>
-                </div>
+                </ScrollReveal>
               </div>
               
             </div>
@@ -210,117 +218,141 @@ export default function AboutPage() {
         </section>
 
         {/* Stats section */}
-        <section className="bg-slate-50 border-y border-slate-200 py-16">
+        <section className="bg-transparent border-y border-slate-200/80 py-16">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
               {stats.map((stat, idx) => (
-                <div key={idx} className="group text-center p-6 rounded-2xl border border-slate-200 bg-white/85 backdrop-blur-sm hover:border-blue-400/50 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
-                  <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-xl bg-blue-50 text-blue-600 border border-blue-100 mb-4 group-hover:scale-110 transition-transform duration-300">
-                    <stat.icon className="h-7 w-7" />
+                <ScrollReveal 
+                  key={idx} 
+                  animation="fade-up" 
+                  delay={idx * 100}
+                  duration={600}
+                >
+                  <div className="group text-center p-6 rounded-2xl border border-slate-200 bg-white/85 backdrop-blur-sm hover:border-blue-400/50 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 h-full">
+                    <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-xl bg-blue-50 text-blue-600 border border-blue-100 mb-4 group-hover:scale-110 transition-transform duration-300">
+                      <stat.icon className="h-7 w-7" />
+                    </div>
+                    <div className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">{stat.value}</div>
+                    <div className="mt-1 font-bold text-slate-700 text-sm">{stat.label}</div>
+                    <div className="mt-2 text-xs text-slate-500 leading-normal font-medium">{stat.description}</div>
                   </div>
-                  <div className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">{stat.value}</div>
-                  <div className="mt-1 font-bold text-slate-700 text-sm">{stat.label}</div>
-                  <div className="mt-2 text-xs text-slate-500 leading-normal font-medium">{stat.description}</div>
-                </div>
+                </ScrollReveal>
               ))}
             </div>
           </div>
         </section>
 
         {/* Timeline section */}
-        <section className="py-16 sm:py-24 bg-white">
+        <section className="py-16 sm:py-24 bg-transparent">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="text-center max-w-2xl mx-auto">
-              <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900">
-                Our Journey & Milestones
-              </h2>
-              <p className="mt-4 text-sm sm:text-base text-slate-500 font-medium">
-                Key chapters of growth and adaptation that shaped who we are today.
-              </p>
-            </div>
+            <ScrollReveal animation="fade-up" duration={700}>
+              <div className="text-center max-w-2xl mx-auto">
+                <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900">
+                  Our Journey & Milestones
+                </h2>
+                <p className="mt-4 text-sm sm:text-base text-slate-500 font-medium">
+                  Key chapters of growth and adaptation that shaped who we are today.
+                </p>
+              </div>
+            </ScrollReveal>
 
             <div className="mt-16 relative border-l-4 border-slate-100 max-w-3xl mx-auto pl-8 sm:pl-12 space-y-12">
               {/* Pipe connection line representation */}
               <div className="absolute left-[2px] top-4 w-1 bg-gradient-to-b from-blue-500 to-indigo-600 h-[calc(100%-32px)] opacity-85" />
               
               {milestones.map((milestone, idx) => (
-                <div key={idx} className="relative animate-fade-up group">
-                  {/* Timeline joint (glowing valve bullet) */}
-                  <div className="absolute -left-[42px] sm:-left-[58px] top-1.5 flex h-6 w-6 sm:h-8 sm:w-8 items-center justify-center rounded-full bg-white border-4 border-slate-200 group-hover:border-blue-600 group-hover:bg-blue-50 transition-all duration-300 shadow-md">
-                    <div className="h-2 w-2 rounded-full bg-slate-400 group-hover:bg-blue-600 transition-colors duration-300 animate-pulse" />
+                <ScrollReveal 
+                  key={idx} 
+                  animation="fade-up" 
+                  delay={idx * 100}
+                  duration={600}
+                >
+                  <div className="relative group">
+                    {/* Timeline joint (glowing valve bullet) */}
+                    <div className="absolute -left-[42px] sm:-left-[58px] top-1.5 flex h-6 w-6 sm:h-8 sm:w-8 items-center justify-center rounded-full bg-white border-4 border-slate-200 group-hover:border-blue-600 group-hover:bg-blue-50 transition-all duration-300 shadow-md">
+                      <div className="h-2 w-2 rounded-full bg-slate-400 group-hover:bg-blue-600 transition-colors duration-300 animate-pulse" />
+                    </div>
+                    
+                    <div className="bg-white/80 backdrop-blur-sm border border-slate-200/80 rounded-2xl p-6 shadow-md hover:shadow-xl hover:border-blue-400/50 hover:bg-white hover:-translate-y-1 transition-all duration-300">
+                      <span className="inline-block text-blue-605 font-bold text-xs sm:text-sm bg-blue-50 border border-blue-100 px-3 py-1 rounded-full">{milestone.year}</span>
+                      <h3 className="text-lg font-bold text-slate-900 mt-3 group-hover:text-blue-650 transition-colors">{milestone.title}</h3>
+                      <p className="mt-2 text-xs sm:text-sm text-slate-500 leading-relaxed font-medium">{milestone.description}</p>
+                    </div>
                   </div>
-                  
-                  <div className="bg-white/80 backdrop-blur-sm border border-slate-200/80 rounded-2xl p-6 shadow-md hover:shadow-xl hover:border-blue-400/50 hover:bg-white hover:-translate-y-1 transition-all duration-300">
-                    <span className="inline-block text-blue-605 font-bold text-xs sm:text-sm bg-blue-50 border border-blue-100 px-3 py-1 rounded-full">{milestone.year}</span>
-                    <h3 className="text-lg font-bold text-slate-900 mt-3 group-hover:text-blue-605 transition-colors">{milestone.title}</h3>
-                    <p className="mt-2 text-xs sm:text-sm text-slate-500 leading-relaxed font-medium">{milestone.description}</p>
-                  </div>
-                </div>
+                </ScrollReveal>
               ))}
             </div>
           </div>
         </section>
 
         {/* Values section */}
-        <section className="bg-slate-50 py-16 sm:py-24 border-t border-slate-200">
+        <section className="bg-transparent py-16 sm:py-24 border-t border-slate-200/80">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="text-center max-w-2xl mx-auto">
-              <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900">
-                Core Foundations
-              </h2>
-              <p className="mt-4 text-sm sm:text-base text-slate-500 font-medium">
-                The core principles that govern our operations and quality control.
-              </p>
-            </div>
+            <ScrollReveal animation="fade-up" duration={700}>
+              <div className="text-center max-w-2xl mx-auto">
+                <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900">
+                  Core Foundations
+                </h2>
+                <p className="mt-4 text-sm sm:text-base text-slate-500 font-medium">
+                  The core principles that govern our operations and quality control.
+                </p>
+              </div>
+            </ScrollReveal>
 
             <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
               {values.map((value, idx) => (
-                <Card 
+                <ScrollReveal 
                   key={idx} 
-                  className={cn(
-                    "relative overflow-hidden bg-white border-slate-200 transition-all duration-300 shadow-md hover:shadow-xl flex flex-col justify-between group",
-                    value.borderGlow,
-                    value.shadowGlow,
-                    "hover:-translate-y-1.5"
-                  )}
+                  animation="fade-up" 
+                  delay={idx * 100}
+                  duration={600}
                 >
-                  {/* Background gradient fade-in on hover */}
-                  <div className={cn(
-                    "absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-100 transition-opacity duration-500",
-                    value.hoverBg
-                  )} />
-
-                  {/* Animated top custom-colored border indicator */}
-                  <div className={cn(
-                    "absolute top-0 left-0 h-1 w-0 transition-all duration-500 group-hover:w-full bg-gradient-to-r",
-                    value.topBar
-                  )} />
-
-                  <CardContent className="pt-8 pb-6 px-6 relative z-10">
+                  <Card 
+                    className={cn(
+                      "relative overflow-hidden bg-white/80 border-slate-200 transition-all duration-300 shadow-md hover:shadow-xl flex flex-col justify-between group h-full",
+                      value.borderGlow,
+                      value.shadowGlow,
+                      "hover:-translate-y-1.5"
+                    )}
+                  >
+                    {/* Background gradient fade-in on hover */}
                     <div className={cn(
-                      "relative inline-flex h-12 w-12 items-center justify-center rounded-xl transition-all duration-300 mb-6 group-hover:scale-110 shadow-sm border",
-                      value.iconBg,
-                      value.iconColor,
-                      "group-hover:text-white"
-                    )}>
-                      {/* Background fill container */}
+                      "absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-100 transition-opacity duration-500",
+                      value.hoverBg
+                    )} />
+
+                    {/* Animated top custom-colored border indicator */}
+                    <div className={cn(
+                      "absolute top-0 left-0 h-1 w-0 transition-all duration-500 group-hover:w-full bg-gradient-to-r",
+                      value.topBar
+                    )} />
+
+                    <CardContent className="pt-8 pb-6 px-6 relative z-10">
                       <div className={cn(
-                        "absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 bg-gradient-to-br transition-all duration-300 z-[-1]",
-                        value.topBar
-                      )} />
-                      <value.icon className="h-5 w-5 relative z-10" />
-                    </div>
-                    <h3 className={cn(
-                      "text-lg font-bold text-slate-900 tracking-wide transition-colors",
-                      value.hoverText
-                    )}>
-                      {value.title}
-                    </h3>
-                    <p className="mt-3 text-xs sm:text-sm text-slate-500 leading-relaxed font-medium">
-                      {value.description}
-                    </p>
-                  </CardContent>
-                </Card>
+                        "relative inline-flex h-12 w-12 items-center justify-center rounded-xl transition-all duration-300 mb-6 group-hover:scale-110 shadow-sm border",
+                        value.iconBg,
+                        value.iconColor,
+                        "group-hover:text-white"
+                      )}>
+                        {/* Background fill container */}
+                        <div className={cn(
+                          "absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 bg-gradient-to-br transition-all duration-300 z-[-1]",
+                          value.topBar
+                        )} />
+                        <value.icon className="h-5 w-5 relative z-10" />
+                      </div>
+                      <h3 className={cn(
+                        "text-lg font-bold text-slate-900 tracking-wide transition-colors",
+                        value.hoverText
+                      )}>
+                        {value.title}
+                      </h3>
+                      <p className="mt-3 text-xs sm:text-sm text-slate-500 leading-relaxed font-medium">
+                        {value.description}
+                      </p>
+                    </CardContent>
+                  </Card>
+                </ScrollReveal>
               ))}
             </div>
           </div>
@@ -329,25 +361,29 @@ export default function AboutPage() {
         {/* CTA section */}
         <section className="bg-gradient-to-br from-blue-600 to-indigo-700 py-16 sm:py-20 border-t border-blue-500/20 text-white">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-white">
-              Ready to Partner with Us?
-            </h2>
-            <p className="mx-auto mt-4 max-w-xl text-sm sm:text-base text-blue-100 font-medium">
-              Submit your RFQ bill of materials today and receive comprehensive competitive pricing.
-            </p>
-            <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
-              <Button asChild size="lg" className="bg-white text-blue-700 hover:bg-blue-50 shadow-lg hover:shadow-blue-900/10 hover:-translate-y-0.5 transition-all font-bold">
-                <Link href="/contact">
-                  Submit an RFQ Request
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Link>
-              </Button>
-              <Button asChild size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 font-semibold">
-                <Link href="/products">
-                  Browse Catalog
-                </Link>
-              </Button>
-            </div>
+            <ScrollReveal animation="fade-up" duration={700}>
+              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-white">
+                Ready to Partner with Us?
+              </h2>
+              <p className="mx-auto mt-4 max-w-xl text-sm sm:text-base text-blue-100 font-medium">
+                Submit your RFQ bill of materials today and receive comprehensive competitive pricing.
+              </p>
+            </ScrollReveal>
+            <ScrollReveal animation="fade-up" duration={700} delay={150}>
+              <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+                <Button asChild size="lg" className="bg-white text-blue-700 hover:bg-blue-50 shadow-lg hover:shadow-blue-900/10 hover:-translate-y-0.5 transition-all font-bold">
+                  <Link href="/contact">
+                    Submit an RFQ Request
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </Link>
+                </Button>
+                <Button asChild size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 font-semibold">
+                  <Link href="/products">
+                    Browse Catalog
+                  </Link>
+                </Button>
+              </div>
+            </ScrollReveal>
           </div>
         </section>
       </main>
