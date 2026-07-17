@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { toast } from 'sonner'
-import { Plus, X } from 'lucide-react'
+import { Plus, X, UploadCloud, Trash2 } from 'lucide-react'
 import { createClient } from '@/utils/supabase/client'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -28,7 +28,7 @@ const productSchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters'),
   category: z.enum(['pipes', 'fittings', 'valves', 'flanges']),
   description: z.string().min(10, 'Description must be at least 10 characters'),
-  image_url: z.string().url('Must be a valid URL').optional().or(z.literal('')),
+  image_url: z.string().optional().or(z.literal('')),
   is_active: z.boolean(),
 })
 
@@ -82,6 +82,134 @@ export function ProductForm({ product }: ProductFormProps) {
   const [selectedPreset, setSelectedPreset] = useState<string>(
     presetMatch ? presetMatch.value : (product?.image_url ? 'custom' : 'custom')
   )
+
+  const [isDragging, setIsDragging] = useState(false)
+  const [isUploading, setIsUploading] = useState(false)
+  const [uploadMode, setUploadMode] = useState<'upload' | 'url'>(
+    product?.image_url && !PRESET_IMAGES.some(img => img.value === product.image_url) && !product.image_url.startsWith('data:')
+      ? 'url'
+      : 'upload'
+  )
+
+  const uploadBlob = async (file: File) => {
+    try {
+      const supabase = createClient()
+      
+      if (!supabase.storage) {
+        // Fallback to base64 for offline/mock database
+        const reader = new FileReader()
+        reader.onload = () => {
+          setValue('image_url', reader.result as string)
+          toast.success('Image loaded (local database mode)')
+          setIsUploading(false)
+        }
+        reader.readAsDataURL(file)
+        return
+      }
+
+      const fileExt = file.name.split('.').pop() || 'jpg'
+      const fileName = `${Date.now()}-${Math.random().toString(36).substring(2, 9)}.${fileExt}`
+      const filePath = `products/${fileName}`
+
+      const { error: uploadError } = await supabase.storage
+        .from('product-images')
+        .upload(filePath, file, {
+          cacheControl: '3600',
+          upsert: false
+        })
+
+      if (uploadError) {
+        console.warn('Supabase storage upload failed, falling back to base64:', uploadError)
+        // Fallback to base64
+        const reader = new FileReader()
+        reader.onload = () => {
+          setValue('image_url', reader.result as string)
+          toast.success('Image loaded (local database fallback)')
+          setIsUploading(false)
+        }
+        reader.readAsDataURL(file)
+        return
+      }
+
+      const { data: { publicUrl } } = supabase.storage
+        .from('product-images')
+        .getPublicUrl(filePath)
+
+      setValue('image_url', publicUrl)
+      toast.success('Image uploaded successfully')
+    } catch (err) {
+      console.error('Upload error:', err)
+      const reader = new FileReader()
+      reader.onload = () => {
+        setValue('image_url', reader.result as string)
+        toast.success('Image loaded (local fallback)')
+      }
+      reader.readAsDataURL(file)
+    } finally {
+      setIsUploading(false)
+    }
+  }
+
+  const handleFile = async (file: File) => {
+    if (!file.type.startsWith('image/')) {
+      toast.error('Please upload an image file')
+      return
+    }
+
+    setIsUploading(true)
+    
+    // Read the file and compress it using canvas
+    const reader = new FileReader()
+    reader.onload = (event) => {
+      const img = new Image()
+      img.onload = async () => {
+        const canvas = document.createElement('canvas')
+        const maxDimensions = 800
+        let width = img.width
+        let height = img.height
+
+        if (width > height) {
+          if (width > maxDimensions) {
+            height = Math.round((height * maxDimensions) / width)
+            width = maxDimensions
+          }
+        } else {
+          if (height > maxDimensions) {
+            width = Math.round((width * maxDimensions) / height)
+            height = maxDimensions
+          }
+        }
+
+        canvas.width = width
+        canvas.height = height
+
+        const ctx = canvas.getContext('2d')
+        if (ctx) {
+          ctx.drawImage(img, 0, 0, width, height)
+          
+          canvas.toBlob(
+            async (blob) => {
+              if (!blob) {
+                await uploadBlob(file)
+                return
+              }
+              const compressedFile = new File([blob], file.name, {
+                type: 'image/jpeg',
+                lastModified: Date.now()
+              })
+              await uploadBlob(compressedFile)
+            },
+            'image/jpeg',
+            0.8
+          )
+        } else {
+          await uploadBlob(file)
+        }
+      }
+      img.src = event.target?.result as string
+    }
+    reader.readAsDataURL(file)
+  }
 
   const addSpecification = () => {
     setSpecifications([...specifications, { key: '', value: '' }])
@@ -198,62 +326,183 @@ export function ProductForm({ product }: ProductFormProps) {
             )}
           </div>
 
-          <div className="grid gap-4 sm:grid-cols-2">
-            <div className="space-y-2">
-              <Label>Product Image Selection</Label>
-              <Select
-                value={selectedPreset}
-                onValueChange={(value) => {
-                  setSelectedPreset(value)
-                  if (value !== 'custom') {
-                    setValue('image_url', value)
-                  } else if (!product?.image_url) {
-                    setValue('image_url', '')
-                  }
-                }}
+          {/* Image Mode Tabs */}
+          <div className="space-y-2">
+            <Label>Product Image Source</Label>
+            <div className="flex space-x-1 rounded-lg bg-slate-100 p-1 w-fit mb-4">
+              <button
+                type="button"
+                onClick={() => setUploadMode('upload')}
+                className={`px-3 py-1.5 text-xs font-semibold rounded-md transition-all ${
+                  uploadMode === 'upload'
+                    ? 'bg-white text-slate-900 shadow-xs'
+                    : 'text-slate-600 hover:text-slate-900'
+                }`}
               >
-                <SelectTrigger className="bg-white border-slate-200">
-                  <SelectValue placeholder="Choose preset image" />
-                </SelectTrigger>
-                <SelectContent>
-                  {PRESET_IMAGES.map((img) => (
-                    <SelectItem key={img.value} value={img.value}>
-                      {img.label}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="image_url">Image URL</Label>
-              <Input
-                id="image_url"
-                type="url"
-                placeholder="https://example.com/image.jpg"
-                {...register('image_url')}
-                disabled={selectedPreset !== 'custom'}
-                className="bg-white border-slate-200 disabled:bg-slate-50 disabled:text-slate-500"
-              />
-              {errors.image_url && (
-                <p className="text-sm text-destructive">{errors.image_url.message}</p>
-              )}
+                Upload File
+              </button>
+              <button
+                type="button"
+                onClick={() => setUploadMode('url')}
+                className={`px-3 py-1.5 text-xs font-semibold rounded-md transition-all ${
+                  uploadMode === 'url'
+                    ? 'bg-white text-slate-900 shadow-xs'
+                    : 'text-slate-600 hover:text-slate-900'
+                }`}
+              >
+                Choose Preset / URL
+              </button>
             </div>
           </div>
 
-          {imageUrl && (
-            <div className="mt-2 space-y-2">
-              <Label>Live Preview</Label>
-              <div className="relative aspect-video max-w-sm rounded-lg border border-slate-200 overflow-hidden bg-slate-50 flex items-center justify-center">
-                <img
-                  src={imageUrl}
-                  alt="Live Product Preview"
-                  className="max-h-full max-w-full object-contain"
-                  onError={(e) => {
-                    ;(e.target as HTMLElement).style.display = 'none'
+          {uploadMode === 'upload' ? (
+            <div className="space-y-2">
+              {imageUrl ? (
+                <div className="relative group aspect-video max-w-md rounded-xl border border-slate-200 overflow-hidden bg-slate-50 flex items-center justify-center">
+                  <img
+                    src={imageUrl}
+                    alt="Product preview"
+                    className="max-h-full max-w-full object-contain"
+                  />
+                  <div className="absolute inset-0 bg-slate-900/60 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center gap-3">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        const fileInput = document.getElementById('image-upload-input')
+                        fileInput?.click()
+                      }}
+                      className="bg-white text-slate-900 px-3 py-1.5 rounded-lg text-xs font-semibold shadow-md hover:bg-slate-50 transition-colors"
+                    >
+                      Change Image
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setValue('image_url', '')
+                      }}
+                      className="bg-red-600 text-white p-2 rounded-lg shadow-md hover:bg-red-700 transition-colors"
+                      title="Remove Image"
+                    >
+                      <Trash2 className="h-4 w-4" />
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <div
+                  onDragOver={(e) => {
+                    e.preventDefault()
+                    setIsDragging(true)
                   }}
-                />
+                  onDragLeave={() => setIsDragging(false)}
+                  onDrop={(e) => {
+                    e.preventDefault()
+                    setIsDragging(false)
+                    const files = e.dataTransfer.files
+                    if (files && files[0]) {
+                      handleFile(files[0])
+                    }
+                  }}
+                  onClick={() => {
+                    const fileInput = document.getElementById('image-upload-input')
+                    fileInput?.click()
+                  }}
+                  className={`aspect-video max-w-md rounded-xl border-2 border-dashed flex flex-col items-center justify-center p-6 text-center cursor-pointer transition-all duration-300 ${
+                    isDragging
+                      ? 'border-blue-500 bg-blue-50/50'
+                      : 'border-slate-300 hover:border-slate-400 bg-slate-50/50 hover:bg-slate-50'
+                  }`}
+                >
+                  <input
+                    id="image-upload-input"
+                    type="file"
+                    accept="image/*"
+                    onChange={(e) => {
+                      const files = e.target.files
+                      if (files && files[0]) {
+                        handleFile(files[0])
+                      }
+                    }}
+                    className="hidden"
+                  />
+                  {isUploading ? (
+                    <div className="flex flex-col items-center space-y-2">
+                      <Spinner className="h-8 w-8 text-blue-500" />
+                      <p className="text-sm font-medium text-slate-600">Uploading image...</p>
+                    </div>
+                  ) : (
+                    <>
+                      <div className="h-10 w-10 rounded-full bg-blue-50 flex items-center justify-center mb-3">
+                        <UploadCloud className="h-5 w-5 text-blue-600" />
+                      </div>
+                      <p className="text-sm font-semibold text-slate-800">
+                        Drag and drop image here, or <span className="text-blue-600 hover:underline">browse</span>
+                      </p>
+                      <p className="text-xs text-slate-500 mt-1">Supports PNG, JPG, JPEG up to 5MB</p>
+                    </>
+                  )}
+                </div>
+              )}
+            </div>
+          ) : (
+            <div className="space-y-4">
+              <div className="grid gap-4 sm:grid-cols-2">
+                <div className="space-y-2">
+                  <Label>Product Image Selection</Label>
+                  <Select
+                    value={selectedPreset}
+                    onValueChange={(value) => {
+                      setSelectedPreset(value)
+                      if (value !== 'custom') {
+                        setValue('image_url', value)
+                      } else if (!product?.image_url) {
+                        setValue('image_url', '')
+                      }
+                    }}
+                  >
+                    <SelectTrigger className="bg-white border-slate-200">
+                      <SelectValue placeholder="Choose preset image" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {PRESET_IMAGES.map((img) => (
+                        <SelectItem key={img.value} value={img.value}>
+                          {img.label}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="image_url">Image URL</Label>
+                  <Input
+                    id="image_url"
+                    type="text"
+                    placeholder="https://example.com/image.jpg"
+                    {...register('image_url')}
+                    disabled={selectedPreset !== 'custom'}
+                    className="bg-white border-slate-200 disabled:bg-slate-50 disabled:text-slate-500"
+                  />
+                  {errors.image_url && (
+                    <p className="text-sm text-destructive">{errors.image_url.message}</p>
+                  )}
+                </div>
               </div>
+
+              {imageUrl && (
+                <div className="space-y-2">
+                  <Label>Live Preview</Label>
+                  <div className="relative aspect-video max-w-md rounded-lg border border-slate-200 overflow-hidden bg-slate-50 flex items-center justify-center">
+                    <img
+                      src={imageUrl}
+                      alt="Live Product Preview"
+                      className="max-h-full max-w-full object-contain"
+                      onError={(e) => {
+                        ;(e.target as HTMLElement).style.display = 'none'
+                      }}
+                    />
+                  </div>
+                </div>
+              )}
             </div>
           )}
 
