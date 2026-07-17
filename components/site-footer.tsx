@@ -42,14 +42,14 @@ export function SiteFooter() {
             </div>
             <p className="mt-4 text-xs sm:text-sm text-slate-400 leading-relaxed max-w-xs">
               Your trusted B2B partner for high-grade industrial pipes, fittings, valves, and flanges. 
-              Serving infrastructure, power, oil, and gas projects across India since 2005.
+              Serving infrastructure, power, oil, and gas projects across India since 2019.
             </p>
             
             {/* Social/Trust badges */}
             <div className="mt-6 flex items-center gap-3">
               <div className="inline-flex items-center gap-1.5 rounded-full bg-accent/10 border border-accent/20 px-3 py-1 text-xs font-semibold text-accent">
                 <span className="h-1.5 w-1.5 rounded-full bg-accent animate-pulse" />
-                18+ Years Trusted
+                Trusted Since 2019
               </div>
             </div>
           </div>

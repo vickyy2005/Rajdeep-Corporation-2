@@ -12,14 +12,14 @@ import { ParticleBackground } from '@/components/particle-background'
 import { ScrollReveal } from '@/components/scroll-reveal'
 
 export const metadata: Metadata = {
-  title: 'About Us | Rajdeep Corporation',
-  description: 'Learn about Rajdeep Corporation - your trusted partner for industrial pipes, fittings, valves, and flanges since 2005.',
+  title: 'About Us | RAJDEEP CORPORATION',
+  description: 'Learn about RAJDEEP CORPORATION - your trusted partner for industrial pipes, fittings, valves, and flanges since 2019.',
 }
 
 const stats = [
-  { icon: Clock, value: '18+', label: 'Years Experience', description: 'Serving B2B industries since 2005' },
+  { icon: Clock, value: 'Since 2019', label: 'Years Experience', description: 'Serving B2B industries since 2019' },
   { icon: Users, value: '1000+', label: 'Happy Clients', description: 'Across manufacturing & engineering sectors' },
-  { icon: Package, value: '500+', label: 'Products', description: 'Comprehensive catalog of quality parts' },
+  { icon: Package, value: '100+', label: 'Products', description: 'Comprehensive catalog of quality parts' },
   { icon: Award, value: '100%', label: 'Quality Assured', description: 'Committed to international standards' },
 ]
 
@@ -75,10 +75,10 @@ const values = [
 ]
 
 const milestones = [
-  { year: '2005', title: 'Company Founded', description: 'Rajdeep Corporation was established with a focus on trading steel pipes and basic fittings in Mumbai.' },
-  { year: '2012', title: 'Expansion & Partnerships', description: 'Established direct partnerships with leading national manufacturers, adding valves and flanges to our catalog.' },
-  { year: '2018', title: 'Warehouse Scale-Up', description: 'Opened a state-of-the-art storage facility, increasing stock capacity by 300% to support fast pan-India delivery.' },
-  { year: '2024', title: 'Digital Procurement', description: 'Launched a digital inquiry system to streamline quotes for B2B procurement teams and engineering firms.' },
+  { year: '2019', title: 'Company Founded', description: 'RAJDEEP CORPORATION was established with a focus on trading steel pipes and basic fittings in Mumbai.' },
+  { year: '2021', title: 'Expansion & Partnerships', description: 'Established direct partnerships with leading national manufacturers, adding valves and flanges to our catalog.' },
+  { year: '2023', title: 'Warehouse Scale-Up', description: 'Opened a state-of-the-art storage facility, increasing stock capacity by 300% to support fast pan-India delivery.' },
+  { year: '2026', title: 'Digital Procurement', description: 'Launched a digital inquiry system to streamline quotes for B2B procurement teams and engineering firms.' },
 ]
 
 export default function AboutPage() {

@@ -13,8 +13,8 @@ const features = [
 ]
 
 const stats = [
-  { value: '500+', label: 'Products Catalog', detail: 'ANSI/ASME standard stock' },
-  { value: '18+', label: 'Years of Trust', detail: 'Serving India since 2005' },
+  { value: '100+', label: 'Products Catalog', detail: 'ANSI/ASME standard stock' },
+  { value: 'Since 2019', label: 'Years of Trust', detail: 'Serving India since 2019' },
   { value: '1000+', label: 'Happy Clients', detail: 'Enterprise trust' },
   { value: '24/7', label: 'Inquiry Support', detail: 'Instant quote estimates' },
 ]
