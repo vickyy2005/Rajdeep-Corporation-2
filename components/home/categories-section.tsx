@@ -14,7 +14,7 @@ const categories = [
     icon: Cylinder,
     spec: 'ASTM / ASME standards',
     iconBg: 'bg-cyan-500/10 text-cyan-600 border border-cyan-500/20',
-    hoverBorder: 'hover:border-cyan-300 hover:shadow-lg hover:shadow-cyan-500/10',
+    gradientBorder: 'from-cyan-400 to-blue-500',
     textHover: 'group-hover:text-cyan-600',
     arrowHover: 'group-hover:bg-cyan-600 group-hover:border-cyan-600',
   },
@@ -25,7 +25,7 @@ const categories = [
     icon: Wrench,
     spec: 'Size 1/2" to 48" IPS',
     iconBg: 'bg-teal-500/10 text-teal-600 border border-teal-500/20',
-    hoverBorder: 'hover:border-teal-300 hover:shadow-lg hover:shadow-teal-500/10',
+    gradientBorder: 'from-teal-400 to-emerald-500',
     textHover: 'group-hover:text-teal-600',
     arrowHover: 'group-hover:bg-teal-600 group-hover:border-teal-600',
   },
@@ -36,7 +36,7 @@ const categories = [
     icon: Gauge,
     spec: 'Class 150 to 2500 pressure',
     iconBg: 'bg-blue-500/10 text-blue-600 border border-blue-500/20',
-    hoverBorder: 'hover:border-blue-300 hover:shadow-lg hover:shadow-blue-500/10',
+    gradientBorder: 'from-blue-400 to-indigo-500',
     textHover: 'group-hover:text-blue-600',
     arrowHover: 'group-hover:bg-blue-600 group-hover:border-blue-600',
   },
@@ -47,7 +47,7 @@ const categories = [
     icon: CircleDot,
     spec: 'FF, RF, RTJ faces available',
     iconBg: 'bg-indigo-500/10 text-indigo-600 border border-indigo-500/20',
-    hoverBorder: 'hover:border-indigo-300 hover:shadow-lg hover:shadow-indigo-500/10',
+    gradientBorder: 'from-indigo-400 to-purple-500',
     textHover: 'group-hover:text-indigo-600',
     arrowHover: 'group-hover:bg-indigo-600 group-hover:border-indigo-600',
   },
@@ -97,56 +97,65 @@ export function CategoriesSection() {
             >
               <Link 
                 href={`/products?category=${category.slug}`}
-                className="group"
+                className="group block h-full hover:-translate-y-2 transition-all duration-500"
               >
-                <Card className={cn(
-                  "h-full rounded-2xl border border-slate-200/80 bg-white/70 backdrop-blur-md transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-slate-200/50",
-                  category.hoverBorder
-                )}>
-                  <CardContent className="p-6 flex flex-col h-full justify-between">
-                    <div>
-                      {/* Floating Icon Box */}
-                      <div className="flex items-center justify-between">
-                        <div className={cn(
-                          "inline-flex h-12 w-12 items-center justify-center rounded-xl transition-all duration-500 group-hover:scale-110 group-hover:rotate-6",
-                          category.iconBg
-                        )}>
-                          <category.icon className="h-5.5 w-5.5" />
+                <div className="relative h-full rounded-2xl p-[1.5px] overflow-hidden hover:shadow-2xl hover:shadow-slate-200/40 transition-shadow duration-500">
+                  {/* Default Border Gradient */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-slate-200/80 to-slate-200/30" />
+                  
+                  {/* Hover Border Gradient */}
+                  <div className={cn(
+                    "absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-100 transition-opacity duration-500",
+                    category.gradientBorder
+                  )} />
+                  
+                  {/* Inner Card Container */}
+                  <Card className="relative h-full w-full rounded-[14.5px] border-none bg-white/70 backdrop-blur-md z-10 shadow-none">
+                    <CardContent className="p-6 flex flex-col h-full justify-between">
+                      <div>
+                        {/* Floating Icon Box */}
+                        <div className="flex items-center justify-between">
+                          <div className={cn(
+                            "inline-flex h-12 w-12 items-center justify-center rounded-xl transition-all duration-500 group-hover:scale-110 group-hover:rotate-6",
+                            category.iconBg
+                          )}>
+                            <category.icon className="h-5.5 w-5.5" />
+                          </div>
+                          <span className={cn(
+                            "text-[9px] font-bold tracking-widest text-slate-500 transition-colors uppercase bg-slate-50/50 px-2 py-0.5 rounded-md border border-slate-200/60",
+                            category.textHover
+                          )}>
+                            {category.spec}
+                          </span>
                         </div>
-                        <span className={cn(
-                          "text-[9px] font-bold tracking-widest text-slate-500 transition-colors uppercase bg-slate-50/50 px-2 py-0.5 rounded-md border border-slate-200/60",
+                        
+                        <h3 className={cn(
+                          "mt-6 text-lg font-black text-slate-900 tracking-wide transition-colors",
                           category.textHover
                         )}>
-                          {category.spec}
-                        </span>
+                          {category.name}
+                        </h3>
+                        <p className="mt-3.5 text-xs text-slate-600 leading-relaxed font-semibold">
+                          {category.description}
+                        </p>
                       </div>
                       
-                      <h3 className={cn(
-                        "mt-6 text-lg font-black text-slate-900 tracking-wide transition-colors",
+                      {/* Footer view link */}
+                      <div className={cn(
+                        "mt-6 flex items-center justify-between border-t border-slate-100 pt-4 text-xs font-bold text-slate-500 transition-all duration-300",
                         category.textHover
                       )}>
-                        {category.name}
-                      </h3>
-                      <p className="mt-3.5 text-xs text-slate-600 leading-relaxed font-semibold">
-                        {category.description}
-                      </p>
-                    </div>
-                    
-                    {/* Footer view link */}
-                    <div className={cn(
-                      "mt-6 flex items-center justify-between border-t border-slate-100 pt-4 text-xs font-bold text-slate-500 transition-all duration-300",
-                      category.textHover
-                    )}>
-                      <span>View Specifications</span>
-                      <div className={cn(
-                        "flex h-6 w-6 items-center justify-center rounded-full bg-slate-50 border border-slate-200 transition-all duration-300 group-hover:text-white group-hover:translate-x-0.5",
-                        category.arrowHover
-                      )}>
-                        <ArrowRight className="h-3.5 w-3.5" />
+                        <span>View Specifications</span>
+                        <div className={cn(
+                          "flex h-6 w-6 items-center justify-center rounded-full bg-slate-50 border border-slate-200 transition-all duration-300 group-hover:text-white group-hover:translate-x-0.5",
+                          category.arrowHover
+                        )}>
+                          <ArrowRight className="h-3.5 w-3.5" />
+                        </div>
                       </div>
-                    </div>
-                  </CardContent>
-                </Card>
+                    </CardContent>
+                  </Card>
+                </div>
               </Link>
             </ScrollReveal>
           ))}
