@@ -107,20 +107,20 @@ export function SiteFooter() {
               </li>
               <li>
                 <a
-                  href="mailto:sales@rajdeepcorp.com"
+                  href="mailto:rajdeepcorpn@gmail.com"
                   className="group flex items-center gap-3 text-xs sm:text-sm text-slate-400 hover:text-white transition-colors"
                 >
                   <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-slate-900 group-hover:bg-accent/20 transition-colors">
                     <Mail className="h-4 w-4" />
                   </span>
-                  <span>sales@rajdeepcorp.com</span>
+                  <span>rajdeepcorpn@gmail.com</span>
                 </a>
               </li>
               <li className="flex items-start gap-3 text-xs sm:text-sm text-slate-400">
                 <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-slate-900 shrink-0">
                   <MapPin className="h-4 w-4" />
                 </span>
-                <span className="pt-0.5">Office 302, Steel Market Chamber<br />Loha Bhavan, Kalamboli, Navi Mumbai<br />Maharashtra, India - 410218</span>
+                <span className="pt-0.5">R.K. Apt., C-Bldg., A-201,<br />Talav Road, Bhayandar East,<br />Dist Thane - 401105, Maharashtra, India</span>
               </li>
             </ul>
           </div>

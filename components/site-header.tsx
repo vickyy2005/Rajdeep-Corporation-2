@@ -43,9 +43,9 @@ export function SiteHeader() {
               <Phone className="h-3.5 w-3.5 text-blue-400" />
               <span>+91 70210 03269</span>
             </a>
-            <a href="mailto:sales@rajdeepcorp.com" className="flex items-center gap-2 hover:text-white transition-colors duration-200">
+            <a href="mailto:rajdeepcorpn@gmail.com" className="flex items-center gap-2 hover:text-white transition-colors duration-200">
               <Mail className="h-3.5 w-3.5 text-blue-400" />
-              <span>sales@rajdeepcorp.com</span>
+              <span>rajdeepcorpn@gmail.com</span>
             </a>
           </div>
           <div className="text-slate-400 flex items-center gap-2">
@@ -158,9 +158,9 @@ export function SiteHeader() {
               <Phone className="h-4 w-4" />
               <span>+91 70210 03269</span>
             </a>
-            <a href="mailto:sales@rajdeepcorp.com" className="flex items-center gap-2 text-sm text-slate-500 hover:text-blue-600 transition-colors px-4 py-2">
+            <a href="mailto:rajdeepcorpn@gmail.com" className="flex items-center gap-2 text-sm text-slate-500 hover:text-blue-600 transition-colors px-4 py-2">
               <Mail className="h-4 w-4" />
-              <span>sales@rajdeepcorp.com</span>
+              <span>rajdeepcorpn@gmail.com</span>
             </a>
           </div>
         </div>

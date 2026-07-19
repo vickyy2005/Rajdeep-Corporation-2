@@ -17,21 +17,25 @@ const contactInfo = [
   {
     icon: Phone,
     title: 'Direct Phone / WhatsApp',
-    details: ['+91 70210 03269', '+91 22 4567 8901'],
+    details: ['+91 70210 03269'],
     href: 'tel:+917021003269',
     color: 'text-amber-500 bg-amber-500/10'
   },
   {
     icon: Mail,
     title: 'Sales & Inquiries Email',
-    details: ['sales@rajdeepcorp.com', 'info@rajdeepcorp.com'],
-    href: 'mailto:sales@rajdeepcorp.com',
+    details: ['rajdeepcorpn@gmail.com'],
+    href: 'mailto:rajdeepcorpn@gmail.com',
     color: 'text-blue-500 bg-blue-500/10'
   },
   {
     icon: MapPin,
-    title: 'Corporate Headquarters',
-    details: ['Office 302, Steel Market Chamber', 'Loha Bhavan, Kalamboli, Navi Mumbai', 'Maharashtra, India - 410218'],
+    title: 'Regd. Office',
+    details: [
+      'R.K. Apt., C-Bldg., A-201, Talav Road',
+      'Bhayandar East, Dist Thane - 401105',
+      'Maharashtra, India'
+    ],
     color: 'text-rose-500 bg-rose-500/10'
   },
   {
@@ -141,7 +145,7 @@ export default function ContactPage() {
               <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white/80 p-1 shadow-2xl">
                 <div className="relative aspect-[21/9] w-full min-h-[300px] overflow-hidden rounded-xl bg-slate-200">
                   <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3772.6685718712754!2d73.10091331538356!3d19.00125798713175!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c1e555555555%3A0xe54ef92c10c1409f!2sKalamboli%20Steel%20Market!5e0!3m2!1sen!2sin!4v1657891234567!5m2!1sen!2sin"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3765.7001275990264!2d72.85609191538743!3d19.308381686955097!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7b02be1b0bd5b%3A0x534e3c6f04bf932c!2sRajdeep%20Corporation!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
                     className="absolute inset-0 h-full w-full border-0 filter grayscale opacity-80 hover:grayscale-0 transition-all duration-300"
                     allowFullScreen
                     loading="lazy"
@@ -156,10 +160,18 @@ export default function ContactPage() {
                         <MapPin className="h-5 w-5" />
                       </div>
                       <div>
-                        <p className="text-xs font-bold text-slate-900">Kalamboli Steel Market</p>
-                        <p className="mt-1 text-[10px] text-slate-500 leading-normal font-medium">
-                          Office 302, Steel Market Chamber, Navi Mumbai, MH 410218
+                        <p className="text-xs font-bold text-slate-900 font-black">RAJDEEP CORPORATION</p>
+                        <p className="mt-1 text-[10px] text-slate-500 leading-normal font-semibold">
+                          R.K. Apt., C-Bldg., A-201, Talav Road, Bhayandar East, Dist Thane - 401105, Maharashtra, India
                         </p>
+                        <a 
+                          href="https://www.google.com/maps/place/Rajdeep+Corporation/@19.3075008,72.8527123,15z/data=!4m6!3m5!1s0x3be7b02be1b0bd5b:0x534e3c6f04bf932c!8m2!3d19.3083817!4d72.8582806!16s%2Fg%2F11y35pbq2s?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="mt-2 inline-flex items-center text-[10px] font-bold text-blue-600 hover:text-blue-700 transition-colors"
+                        >
+                          View on Google Maps →
+                        </a>
                       </div>
                     </div>
                   </div>
