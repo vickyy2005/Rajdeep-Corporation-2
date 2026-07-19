@@ -133,11 +133,11 @@ export default function AboutPage() {
                 <ScrollReveal animation="fade-up" duration={700} delay={150}>
                   <div className="space-y-5 text-slate-600 leading-relaxed text-sm sm:text-base font-medium">
                     <p>
-                      Founded in 2005, Rajdeep Corporation began with a simple mission: to supply 
+                      Founded in 2019, RAJDEEP CORPORATION began with a simple mission: to supply 
                       industrial piping products of uncompromised quality at competitive trade prices.
                     </p>
                     <p>
-                      Over nearly two decades, we have evolved from a regional trading company to a prominent 
+                      Over the years, we have evolved from a regional trading company to a prominent 
                       B2B supplier. Our commitment to strict material verification and customer-first service 
                       has earned us the trust of manufacturing plants, petrochemical facilities, power plants, 
                       and construction companies nationwide.
@@ -178,8 +178,8 @@ export default function AboutPage() {
                         className="h-14 w-14 shrink-0 object-contain group-hover:scale-105 transition-transform duration-300"
                       />
                       <div>
-                        <h3 className="font-extrabold text-slate-900 text-base">Rajdeep Corporation</h3>
-                        <p className="text-[10px] font-bold text-blue-600 tracking-wider uppercase mt-0.5">ESTD. 2005</p>
+                        <h3 className="font-extrabold text-slate-900 text-base">RAJDEEP CORPORATION</h3>
+                        <p className="text-[10px] font-bold text-blue-600 tracking-wider uppercase mt-0.5">ESTD 2019</p>
                       </div>
                     </div>
 
