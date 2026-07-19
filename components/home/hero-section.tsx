@@ -25,7 +25,7 @@ export function HeroSection() {
       {/* Background Image with Dark Overlay */}
       <div className="absolute inset-0 z-0">
         <img 
-          src="/images/hero-pipes-valves.png" 
+          src="/images/hero-pipes-blue.jpg" 
           alt="Industrial Pipes and Valves Background" 
           className="h-full w-full object-cover"
         />
