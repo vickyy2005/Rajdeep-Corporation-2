@@ -34,14 +34,12 @@ async function ProductGrid({ category, search }: { category?: string; search?: s
       .select('*')
       .order('name')
 
-    // Category filtering supporting subcategories
+    // Category filtering supporting subcategories dynamically
     if (category) {
-      if (category === 'pipes') {
-        query = query.in('category', ['pipes', 'di-pipes', 'ci-pipes', 'ci-earthing-pipes', 'sgp-pipes'])
-      } else if (category === 'fittings') {
-        query = query.in('category', ['fittings', 'di-fittings', 'ci-fittings'])
-      } else if (category === 'other') {
-        query = query.in('category', ['other', 'ring', 'flanges', 'water-meter'])
+      const parentCategory = CATEGORIES.find(cat => cat.value === category)
+      if (parentCategory && parentCategory.subcategories) {
+        const subcategoryValues = parentCategory.subcategories.map(sub => sub.value)
+        query = query.in('category', subcategoryValues)
       } else {
         query = query.eq('category', category)
       }
@@ -67,12 +65,10 @@ async function ProductGrid({ category, search }: { category?: string; search?: s
   if (hasError || !products || products.length === 0) {
     let mockProducts = MOCK_PRODUCTS
     if (category) {
-      if (category === 'pipes') {
-        mockProducts = mockProducts.filter(p => ['pipes', 'di-pipes', 'ci-pipes', 'ci-earthing-pipes', 'sgp-pipes'].includes(p.category))
-      } else if (category === 'fittings') {
-        mockProducts = mockProducts.filter(p => ['fittings', 'di-fittings', 'ci-fittings'].includes(p.category))
-      } else if (category === 'other') {
-        mockProducts = mockProducts.filter(p => ['other', 'ring', 'flanges', 'water-meter'].includes(p.category))
+      const parentCategory = CATEGORIES.find(cat => cat.value === category)
+      if (parentCategory && parentCategory.subcategories) {
+        const subcategoryValues = parentCategory.subcategories.map(sub => sub.value)
+        mockProducts = mockProducts.filter(p => subcategoryValues.includes(p.category))
       } else {
         mockProducts = mockProducts.filter(p => p.category === category)
       }

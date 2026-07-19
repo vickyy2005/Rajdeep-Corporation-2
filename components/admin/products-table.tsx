@@ -33,7 +33,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from '@/components/ui/alert-dialog'
-import type { Product } from '@/lib/types'
+import { Product, CATEGORIES } from '@/lib/types'
 
 interface ProductsTableProps {
   products: Product[]
@@ -52,26 +52,19 @@ export function ProductsTable({ products }: ProductsTableProps) {
   }
 
   const resolveCategoryKey = (cat: string) => {
-    if (['pipes', 'di-pipes', 'ci-pipes', 'ci-earthing-pipes', 'sgp-pipes'].includes(cat)) return 'pipes'
-    if (['fittings', 'di-fittings', 'ci-fittings'].includes(cat)) return 'fittings'
-    if (cat === 'valves') return 'valves'
+    for (const parent of CATEGORIES) {
+      if (parent.value === cat) return parent.value
+      if (parent.subcategories?.some(sub => sub.value === cat)) return parent.value
+    }
     return 'flanges'
   }
 
   const getCategoryLabel = (val: string) => {
-    if (val === 'pipes') return 'Pipes'
-    if (val === 'di-pipes') return 'DI Pipes'
-    if (val === 'ci-pipes') return 'CI Pipes'
-    if (val === 'ci-earthing-pipes') return 'CI Earthing Pipes'
-    if (val === 'sgp-pipes') return 'SGP Pipes'
-    if (val === 'fittings') return 'Fittings'
-    if (val === 'di-fittings') return 'DI Fittings'
-    if (val === 'ci-fittings') return 'CI Fittings'
-    if (val === 'valves') return 'Valves'
-    if (val === 'other') return 'Other'
-    if (val === 'ring') return 'Ring'
-    if (val === 'flanges') return 'Flanges'
-    if (val === 'water-meter') return 'Water Meter'
+    for (const cat of CATEGORIES) {
+      if (cat.value === val) return cat.label
+      const sub = cat.subcategories?.find(s => s.value === val)
+      if (sub) return sub.label
+    }
     return val
   }
 

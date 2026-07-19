@@ -1,4 +1,5 @@
 import { MOCK_PRODUCTS } from '@/lib/mock-products'
+import { CATEGORIES } from '@/lib/types'
 
 const IS_SERVER = typeof window === 'undefined'
 
@@ -128,12 +129,10 @@ export function createMockClient() {
               if (filterStatus) list = list.filter((x: any) => x.status === filterStatus)
               if (filterId) list = list.filter((x: any) => x.id === filterId)
               if (filterCategory) {
-                if (filterCategory === 'pipes') {
-                  list = list.filter((x: any) => ['pipes', 'di-pipes', 'ci-pipes', 'ci-earthing-pipes', 'sgp-pipes'].includes(x.category))
-                } else if (filterCategory === 'fittings') {
-                  list = list.filter((x: any) => ['fittings', 'di-fittings', 'ci-fittings'].includes(x.category))
-                } else if (filterCategory === 'other') {
-                  list = list.filter((x: any) => ['other', 'ring', 'flanges', 'water-meter'].includes(x.category))
+                const parentCategory = CATEGORIES.find(cat => cat.value === filterCategory)
+                if (parentCategory && parentCategory.subcategories) {
+                  const subcategoryValues = parentCategory.subcategories.map(sub => sub.value)
+                  list = list.filter((x: any) => subcategoryValues.includes(x.category))
                 } else {
                   list = list.filter((x: any) => x.category === filterCategory)
                 }
@@ -146,12 +145,10 @@ export function createMockClient() {
               if (filterStatus) list = list.filter((x: any) => x.status === filterStatus)
               if (filterId) list = list.filter((x: any) => x.id === filterId)
               if (filterCategory) {
-                if (filterCategory === 'pipes') {
-                  list = list.filter((x: any) => ['pipes', 'di-pipes', 'ci-pipes', 'ci-earthing-pipes', 'sgp-pipes'].includes(x.category))
-                } else if (filterCategory === 'fittings') {
-                  list = list.filter((x: any) => ['fittings', 'di-fittings', 'ci-fittings'].includes(x.category))
-                } else if (filterCategory === 'other') {
-                  list = list.filter((x: any) => ['other', 'ring', 'flanges', 'water-meter'].includes(x.category))
+                const parentCategory = CATEGORIES.find(cat => cat.value === filterCategory)
+                if (parentCategory && parentCategory.subcategories) {
+                  const subcategoryValues = parentCategory.subcategories.map(sub => sub.value)
+                  list = list.filter((x: any) => subcategoryValues.includes(x.category))
                 } else {
                   list = list.filter((x: any) => x.category === filterCategory)
                 }

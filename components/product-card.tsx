@@ -5,7 +5,7 @@ import { ArrowRight } from 'lucide-react'
 import { Card, CardContent, CardFooter } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import type { Product } from '@/lib/types'
+import { Product, CATEGORIES } from '@/lib/types'
 import { cn } from '@/lib/utils'
 
 interface ProductCardProps {
@@ -37,34 +37,34 @@ const categoryConfig = {
     textHover: 'group-hover:text-indigo-600',
     btnHover: 'hover:bg-indigo-600 hover:border-indigo-600 hover:text-white',
   },
+  other: { 
+    bg: 'bg-indigo-500/10 text-indigo-600 border-indigo-500/20', 
+    gradientBorder: 'from-indigo-400 to-purple-500',
+    textHover: 'group-hover:text-indigo-600',
+    btnHover: 'hover:bg-indigo-600 hover:border-indigo-600 hover:text-white',
+  },
 }
 
 export function ProductCard({ product }: ProductCardProps) {
   const resolveCategoryKey = (cat: string) => {
-    if (['pipes', 'di-pipes', 'ci-pipes', 'ci-earthing-pipes', 'sgp-pipes'].includes(cat)) return 'pipes'
-    if (['fittings', 'di-fittings', 'ci-fittings'].includes(cat)) return 'fittings'
-    if (cat === 'valves') return 'valves'
-    return 'flanges'
+    for (const parent of CATEGORIES) {
+      if (parent.value === cat) return parent.value
+      if (parent.subcategories?.some(sub => sub.value === cat)) return parent.value
+    }
+    return 'other'
   }
   
   const getCategoryLabel = (val: string) => {
-    if (val === 'pipes') return 'Pipes'
-    if (val === 'di-pipes') return 'DI Pipes'
-    if (val === 'ci-pipes') return 'CI Pipes'
-    if (val === 'ci-earthing-pipes') return 'CI Earthing Pipes'
-    if (val === 'sgp-pipes') return 'SGP Pipes'
-    if (val === 'fittings') return 'Fittings'
-    if (val === 'di-fittings') return 'DI Fittings'
-    if (val === 'ci-fittings') return 'CI Fittings'
-    if (val === 'valves') return 'Valves'
-    if (val === 'other') return 'Other'
-    if (val === 'ring') return 'Ring'
-    if (val === 'flanges') return 'Flanges'
-    if (val === 'water-meter') return 'Water Meter'
+    for (const cat of CATEGORIES) {
+      if (cat.value === val) return cat.label
+      const sub = cat.subcategories?.find(s => s.value === val)
+      if (sub) return sub.label
+    }
     return val
   }
 
-  const config = categoryConfig[resolveCategoryKey(product.category)] || categoryConfig.pipes
+  const resolvedKey = resolveCategoryKey(product.category)
+  const config = categoryConfig[resolvedKey as keyof typeof categoryConfig] || categoryConfig.pipes
 
   return (
     <div className="group block h-full hover:-translate-y-1.5 transition-all duration-500">
