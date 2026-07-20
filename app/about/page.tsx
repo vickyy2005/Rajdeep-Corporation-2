@@ -186,7 +186,7 @@ export default function AboutPage() {
                     {/* Core trust tags */}
                     <div className="grid gap-3 grid-cols-1 sm:grid-cols-2 mt-2 relative z-10">
                       {[
-                        { icon: ShieldCheck, text: 'ISO 9001:2015 Certified', color: 'text-emerald-500 bg-emerald-50/50 border-emerald-100/30' },
+                        { icon: ShieldCheck, text: 'Trust Seal Certified', color: 'text-emerald-500 bg-emerald-50/50 border-emerald-100/30' },
                         { icon: Award, text: 'Top Industrial Brand', color: 'text-blue-500 bg-blue-50/50 border-blue-100/30' },
                         { icon: Package, text: '500+ Active SKUs', color: 'text-indigo-500 bg-indigo-50/50 border-indigo-100/30' },
                         { icon: Users, text: '1000+ B2B Clients', color: 'text-amber-500 bg-amber-50/50 border-amber-100/30' }
