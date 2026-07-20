@@ -1,20 +1,28 @@
 import type { MetadataRoute } from 'next'
 import { MOCK_PRODUCTS } from '@/lib/mock-products'
 import { CATEGORIES } from '@/lib/types'
-import { createClient } from '@/utils/supabase/server'
+import { createClient } from '@supabase/supabase-js'
+
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
+const supabaseKey =
+  process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY ||
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.rajdeepcorp.com'
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://rajdeepcorporation.com'
 
   let products: { id: string; updated_at?: string }[] = MOCK_PRODUCTS
-  try {
-    const supabase = await createClient()
-    const { data } = await supabase.from('products').select('id, updated_at').eq('is_active', true)
-    if (data && data.length > 0) {
-      products = data
+
+  if (supabaseUrl && supabaseKey && !supabaseUrl.includes('ujewukrgqlmiefiwnjfy.supabase.co')) {
+    try {
+      const supabase = createClient(supabaseUrl, supabaseKey)
+      const { data } = await supabase.from('products').select('id, updated_at').eq('is_active', true)
+      if (data && data.length > 0) {
+        products = data
+      }
+    } catch (err) {
+      // fallback to MOCK_PRODUCTS if DB fetch fails
     }
-  } catch (err) {
-    // fallback to mock products if DB fetch fails or offline
   }
 
   // Core static page routes
