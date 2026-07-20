@@ -25,7 +25,7 @@ export function SiteFooter() {
           <div className="sm:col-span-2 lg:col-span-1">
             <div className="flex items-center gap-4">
               <Image
-                src="/logo.png"
+                src="/logo-footer.png"
                 alt="Rajdeep Corporation Logo"
                 width={72}
                 height={72}
