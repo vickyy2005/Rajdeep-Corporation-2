@@ -25,11 +25,11 @@ export function SiteFooter() {
           <div className="sm:col-span-2 lg:col-span-1">
             <div className="flex items-center gap-4">
               <Image
-                src="/logo-footer.png"
+                src="/logo.png"
                 alt="Rajdeep Corporation Logo"
-                width={112}
-                height={112}
-                className="h-24 w-24 sm:h-28 sm:w-28 shrink-0 object-contain transition-transform hover:scale-105"
+                width={72}
+                height={72}
+                className="h-16 w-16 sm:h-20 sm:w-20 shrink-0 object-contain transition-transform hover:scale-105"
               />
               <div>
                 <div className="text-lg sm:text-xl md:text-2xl font-black text-white tracking-wide leading-tight">
