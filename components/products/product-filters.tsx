@@ -202,18 +202,6 @@ export function ProductFilters({ currentCategory, currentSearch }: ProductFilter
               </Button>
             )
           })}
-          {hasFilters && (
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={clearFilters}
-              disabled={isPending}
-              className="text-slate-500 hover:text-rose-600 transition-colors"
-            >
-              <X className="mr-1 h-4 w-4" />
-              Clear all
-            </Button>
-          )}
         </div>
       </div>
 
