@@ -149,12 +149,12 @@ export const MOCK_PRODUCTS: Product[] = [
 
   // FITTINGS SUB-CATEGORIES
   {
-    id: 'fi-fitting-tee',
-    name: 'FI Flanged Tee Fitting',
-    description: 'Flanged iron tee connector designed for robust branching in commercial fluid and pipeline circuits.',
-    category: 'fi-fittings',
+    id: 'di-fitting-tee',
+    name: 'DI Flanged Tee Fitting',
+    description: 'Flanged ductile iron tee connector designed for robust branching in commercial fluid and pipeline circuits.',
+    category: 'di-fittings',
     specifications: {
-      material: 'Flanged Cast Iron',
+      material: 'Ductile Iron',
       connection: 'Flanged Joint',
       sizes: '80mm - 300mm'
     },

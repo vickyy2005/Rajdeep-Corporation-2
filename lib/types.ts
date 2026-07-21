@@ -69,7 +69,7 @@ export const CATEGORIES: CategoryInfo[] = [
     icon: 'Wrench',
     subcategories: [
       { value: 'fittings', label: 'All Fittings' },
-      { value: 'fi-fittings', label: 'FI Fittings' },
+      { value: 'di-fittings', label: 'DI Fittings' },
       { value: 'di-mj-fittings', label: 'DI MJ Fittings' },
       { value: 'ci-fittings', label: 'CI Fittings' },
       { value: 'ci-mj-fittings', label: 'CI MJ Fittings' },
