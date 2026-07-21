@@ -126,6 +126,20 @@ export function ProductFilters({ currentCategory, currentSearch }: ProductFilter
       )}>
         <div className="flex flex-wrap items-center gap-2 py-2">
           <span className="text-sm font-semibold text-slate-500 mr-2">Categories:</span>
+          <Button
+            variant={!currentCategory ? 'default' : 'outline'}
+            size="sm"
+            onClick={() => updateFilters(undefined, currentSearch)}
+            disabled={isPending}
+            className={cn(
+              'transition-all duration-200 font-semibold',
+              !currentCategory 
+                ? 'bg-blue-600 text-white shadow-md hover:bg-blue-700 border-blue-600 font-extrabold' 
+                : 'border-slate-200 text-slate-600 bg-white hover:bg-slate-50 hover:border-slate-300 hover:text-slate-800'
+            )}
+          >
+            All
+          </Button>
           {CATEGORIES.map((category) => {
             const hasSub = !!category.subcategories
             const isMainActive = currentCategory === category.value || 
